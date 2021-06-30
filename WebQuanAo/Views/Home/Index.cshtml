@@ -1,9 +1,45 @@
-﻿@{
+﻿@using WebQuanAo.Models;
+@{
     ViewBag.Title = "Home Page";
+    List<product> product = ViewBag.product;
+    List<product> MEN = product.Where(x => x.byHuman == "MEN").ToList();
+    List<product> WOMEN = product.Where(x => x.byHuman == "WOMEN").ToList();
+    List<product> BOY = product.Where(x => x.byHuman == "BOY").ToList();
+    List<product> GIRL = product.Where(x => x.byHuman == "GIRL").ToList();
+
+    int menCount = MEN.Count / 4;
+    int menCountLeft = MEN.Count % 4;
+    if(menCountLeft != 0)
+    {
+        menCount += 1;
+    }
+
+    int womenCount = WOMEN.Count / 4;
+    int womenCountLeft = WOMEN.Count % 4;
+    if (womenCountLeft != 0)
+    {
+        womenCount += 1;
+    }
+
+    int boyCount = BOY.Count / 4;
+    int boyCountLeft = BOY.Count % 4;
+    if (boyCountLeft != 0)
+    {
+        boyCount += 1;
+    }
+
+    int girlCount = GIRL.Count / 4;
+    int girlCountLeft = BOY.Count % 4;
+    if (girlCountLeft != 0)
+    {
+        girlCount += 1;
+    }
 }
 
-<div class="Container"> <!-- Container -->
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel"> <!-- Carousel Banner -->
+<div class="Container">
+    <!-- Container -->
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <!-- Carousel Banner -->
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -39,134 +75,105 @@
     <div id="carouselMenProduct" class="carousel slide container-fluid" data-bs-ride="carousel">
         <!-- Carousel Product -->
         <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="row row-cols-1 row-cols-md-4 row-cols-sm-2 g-4">
-                    <div class="col">
-                        <div class="product card">
-                            <img src="../Content/Images/Images/lebron-max-air-ambassador-backpack-w7VW7t1-300x300.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="card-title">
-                                    <span> GEAR (M) </span> <br>
-                                    <a href="#">NIKE LEBRON MAX AIR AMBASSADOR</a> <br>
-                                    <span class="price">2,249,000đ</span>
-                                </p>
-                                <div class="Addproduct">
-                                    <a href="#"> Thêm Vào Giỏ </a>
+            @for (int i = 0; i < menCount; i++)
+            {
+
+
+                if (i == 0)
+                {
+                    <div class="carousel-item active">
+                        <div class="row row-cols-1 row-cols-md-4 row-cols-sm-2 g-4">
+
+                            @for (int a = 0; a < 4; a++)
+                            {
+                                <div class="col">
+                                    <div class="product card">
+                                        <img src="@MEN[a].srcImage" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <p class="card-title">
+                                                <span> @MEN[a].types </span> <br>
+                                                <a href="#">@MEN[a].name</a> <br>
+                                                <span class="price">@string.Format("{0:#,##0.00}", @MEN[a].price).Replace(".00", String.Empty) đ</span>
+                                            </p>
+                                            <div class="Addproduct">
+                                                <a href="#"> Thêm Vào Giỏ </a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            }
+
+
+
+
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="product card">
-                            <img src="../Content/Images/Images/vapor-max-air-training-duffel-bag-yJwoN91-300x300.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="card-title">
-                                    <span> GEAR (M) </span> <br>
-                                    <a href="#">NIKE VAPOR MAX AIR (MEDIUM)</a> <br>
-                                    <span class="price">2,249,000đ</span>
-                                </p>
-                                <div class="Addproduct">
-                                    <a href="#"> Thêm Vào Giỏ </a>
-                                </div>
+                }
+                else
+                {
+                    if (i == menCount - 1)
+                    {
+                        <div class="carousel-item">
+                            <div class="row row-cols-1 row-cols-md-4 row-cols-sm-2 g-4">
+
+                                @for (int a = i * 4; a < MEN.Count; a++)
+                                {
+                                    <div class="col">
+                                        <div class="product card">
+                                            <img src="@MEN[a].srcImage" class="card-img-top" alt="Best Dri-Fit UV protective crew shirt. Look stylish and protected from the sun while playing tennis.">
+                                            <div class="card-body">
+                                                <p class="card-title">
+                                                    <span> @MEN[a].types </span> <br>
+                                                    <a href="#">@MEN[a].name</a> <br>
+                                                    <span class="price">@string.Format("{0:#,##0.00}", @MEN[i].price).Replace(".00", String.Empty) đ</span>
+                                                </p>
+                                                <div class="Addproduct">
+                                                    <a href="#"> Thêm Vào Giỏ </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+
+
                             </div>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="product card">
-                            <img src="../Content/Images/Images/new-york-knicks-city-edition-dry-nba-t-shirt-7mFVXN1-300x300.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="card-title">
-                                    <span> COTHING (M) </span> <br>
-                                    <a href="#">NEW YORK KNICKS CITY EDITION NIKE DRY</a> <br>
-                                    <span class="price">2,249,000đ</span>
-                                </p>
-                                <div class="Addproduct">
-                                    <a href="#"> Thêm Vào Giỏ </a>
-                                </div>
+                    }
+                    else
+                    {
+                        <div class="carousel-item">
+                            <div class="row row-cols-1 row-cols-md-4 row-cols-sm-2 g-4">
+
+                                @for (int a = i*4; a < i * 4 +4; a++)
+                                {
+                                    <div class="col">
+                                        <div class="product card">
+                                            <img src="@MEN[a].srcImage" class="card-img-top" alt="Best Dri-Fit UV protective crew shirt. Look stylish and protected from the sun while playing tennis.">
+                                            <div class="card-body">
+                                                <p class="card-title">
+                                                    <span> @MEN[a].types </span> <br>
+                                                    <a href="#">@MEN[a].name</a> <br>
+                                                    <span class="price">@string.Format("{0:#,##0.00}", @MEN[i].price).Replace(".00", String.Empty) đ</span>
+                                                </p>
+                                                <div class="Addproduct">
+                                                    <a href="#"> Thêm Vào Giỏ </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
                             </div>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="product card">
-                            <img src="../Content/Images/Images/kobe-bryant-all-star-edition-swingman-jersey-jordan-nba-connected-jersey-Sv016H1-300x300.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="card-title">
-                                    <span> GEAR (M) </span> <br>
-                                    <a href="#">NIKE LEBRON MAX AIR AMBASSADOR</a> <br>
-                                    <span class="price">2,249,000đ</span>
-                                </p>
-                                <div class="Addproduct">
-                                    <a href="#"> Thêm Vào Giỏ </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="row row-cols-1 row-cols-md-4 row-cols-sm-2 g-4">
-                    <div class="col">
-                        <div class="product card">
-                            <img src="../Content/Images/Images/o4fvv6doadpvey5idrsv-300x300.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="card-title">
-                                    <span> MEN </span> <br>
-                                    <a href="#">NIKE EPIC REACT FLYKNIT</a> <br>
-                                    <span class="price">2,249,000đ</span>
-                                </p>
-                                <div class="Addproduct">
-                                    <a href="#"> Thêm Vào Giỏ </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="product card">
-                            <img src="../Content/Images/Images/air-vapormax-r-running-shoe-9dgzpr1-300x300.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="card-title">
-                                    <span> MEN </span> <br>
-                                    <a href="#">NIKE AIR VAPORMAX</a> <br>
-                                    <span class="price">2,249,000đ</span>
-                                </p>
-                                <div class="Addproduct">
-                                    <a href="#"> Thêm Vào Giỏ </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="product card">
-                            <img src="../Content/Images/Images/5183616d5574f3d370a4f90688358c91.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="card-title">
-                                    <span> CLOTHING (M) </span> <br>
-                                    <a href="#">NIKE MEN SWEATSHIRT</a> <br>
-                                    <span class="price">2,249,000đ</span>
-                                </p>
-                                <div class="Addproduct">
-                                    <a href="#"> Thêm Vào Giỏ </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="product card">
-                            <img src="../Content/Images/Images/6041df7324d9ccb1a8fddf512af7bead.jpg" class="card-img-top" alt="Best Dri-Fit UV protective crew shirt. Look stylish and protected from the sun while playing tennis.">
-                            <div class="card-body">
-                                <p class="card-title">
-                                    <span> CLOTHING </span> <br>
-                                    <a href="#">NIKE MEN'S STATEMENT UV TENNIS CREW</a> <br>
-                                    <span class="price">2,249,000đ</span>
-                                </p>
-                                <div class="Addproduct">
-                                    <a href="#"> Thêm Vào Giỏ </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    }
+
+
+                }
+
+
+
+
+            }
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselMenProduct" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -196,134 +203,97 @@
     <div id="carouselWomenProduct" class="carousel slide container-fluid" data-bs-ride="carousel">
         <!-- Carousel Product -->
         <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="row row-cols-1 row-cols-md-4 row-cols-sm-2 g-4">
-                    <div class="col">
-                        <div class="card">
-                            <img src="https://mauweb.monamedia.net/bitis/wp-content/uploads/2018/03/sportswear-printed-jacket-sR8XbG1-300x300.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="card-title">
-                                    <span> CLOTHING (M) </span> <br>
-                                    <a href="#">NIKE SPORTSWEAR</a> <br>
-                                    <span class="price">2,249,000đ</span>
-                                </p>
-                                <div class="Addproduct">
-                                    <a href="#"> Thêm Vào Giỏ </a>
+            @for (int i = 0; i < womenCount; i++)
+            {
+                if (i == 0)
+                {
+                    <div class="carousel-item active">
+                        <div class="row row-cols-1 row-cols-md-4 row-cols-sm-2 g-4">
+
+                            @for (int a = 0; a < 4; a++)
+                            {
+                                <div class="col">
+                                    <div class="product card">
+                                        <img src="@WOMEN[a].srcImage" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <p class="card-title">
+                                                <span> @WOMEN[a].types </span> <br>
+                                                <a href="#">@WOMEN[a].name</a> <br>
+                                                <span class="price">@string.Format("{0:#,##0.00}", WOMEN[a].price).Replace(".00", String.Empty) đ</span>
+                                            </p>
+                                            <div class="Addproduct">
+                                                <a href="#"> Thêm Vào Giỏ </a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            }
+
+
+
+
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="product card">
-                            <img src="https://mauweb.monamedia.net/bitis/wp-content/uploads/2018/03/sportswear-advance-15-hoodie-9vgMRK1-300x300.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="card-title">
-                                    <span> CLOTHING (W) </span> <br>
-                                    <a href="#">NIKE SPORTSWEAR ADVANCE 15</a> <br>
-                                    <span class="price">2,249,000đ</span>
-                                </p>
-                                <div class="Addproduct">
-                                    <a href="#"> Thêm Vào Giỏ </a>
-                                </div>
+                }
+                else
+                {
+                    if (i == womenCount - 1)
+                    {
+                        <div class="carousel-item">
+                            <div class="row row-cols-1 row-cols-md-4 row-cols-sm-2 g-4">
+
+                                @for (int a = i * 4; a < WOMEN.Count; a++)
+                                {
+                                    <div class="col">
+                                        <div class="product card">
+                                            <img src="@WOMEN[a].srcImage" class="card-img-top" alt="Best Dri-Fit UV protective crew shirt. Look stylish and protected from the sun while playing tennis.">
+                                            <div class="card-body">
+                                                <p class="card-title">
+                                                    <span> @WOMEN[a].types </span> <br>
+                                                    <a href="#">@WOMEN[a].name</a> <br>
+                                                    <span class="price">@string.Format("{0:#,##0.00}", WOMEN[i].price).Replace(".00", String.Empty) đ</span>
+                                                </p>
+                                                <div class="Addproduct">
+                                                    <a href="#"> Thêm Vào Giỏ </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+
+
                             </div>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="product card">
-                            <img src="https://mauweb.monamedia.net/bitis/wp-content/uploads/2018/03/lunarsolo-running-shoe-WyTA797x1-300x300.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="card-title">
-                                    <span> SHOES (W) </span> <br>
-                                    <a href="#">NIKE LUNARSOLO</a> <br>
-                                    <span class="price">2,249,000đ</span>
-                                </p>
-                                <div class="Addproduct">
-                                    <a href="#"> Thêm Vào Giỏ </a>
-                                </div>
+                    }
+                    else
+                    {
+                        <div class="carousel-item">
+                            <div class="row row-cols-1 row-cols-md-4 row-cols-sm-2 g-4">
+
+                                @for (int a = i * 4; a < i * 4 + 4; a++)
+                                {
+                                    <div class="col">
+                                        <div class="product card">
+                                            <img src="@WOMEN[a].srcImage" class="card-img-top" alt="Best Dri-Fit UV protective crew shirt. Look stylish and protected from the sun while playing tennis.">
+                                            <div class="card-body">
+                                                <p class="card-title">
+                                                    <span> @WOMEN[a].types </span> <br>
+                                                    <a href="#">@WOMEN[a].name</a> <br>
+                                                    <span class="price">@string.Format("{0:#,##0.00}", WOMEN[i].price).Replace(".00", String.Empty) đ</span>
+                                                </p>
+                                                <div class="Addproduct">
+                                                    <a href="#"> Thêm Vào Giỏ </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
                             </div>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="product card">
-                            <img src="https://mauweb.monamedia.net/bitis/wp-content/uploads/2018/03/air-huarache-city-low-shoe-3Fz2271-300x300.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="card-title">
-                                    <span> SHOES (W) </span> <br>
-                                    <a href="#">NIKE AIR HUARACHE CITY LOW</a> <br>
-                                    <span class="price">2,249,000đ</span>
-                                </p>
-                                <div class="Addproduct">
-                                    <a href="#"> Thêm Vào Giỏ </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="row row-cols-1 row-cols-md-4 row-cols-sm-2 g-4">
-                    <div class="col">
-                        <div class="product card">
-                            <img src="https://images-na.ssl-images-amazon.com/images/I/81eUbU5%2BjiL._SS400_.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="card-title">
-                                    <span> SHOES (W) </span> <br>
-                                    <a href="#">GANNOU WOMEN'S AIR ATHLETIC RUNNING</a> <br>
-                                    <span class="price">2,249,000đ</span>
-                                </p>
-                                <div class="Addproduct">
-                                    <a href="#"> Thêm Vào Giỏ </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="product card">
-                            <img src="https://images-na.ssl-images-amazon.com/images/I/81srzyREF4L._SS400_.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="card-title">
-                                    <span> SHOES (W) </span> <br>
-                                    <a href="#">BREATHABLE LIGHTWEIGHT SNEAKER</a> <br>
-                                    <span class="price">2,249,000đ</span>
-                                </p>
-                                <div class="Addproduct">
-                                    <a href="#"> Thêm Vào Giỏ </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="product card">
-                            <img src="https://images.sportsdirect.com/images/products/53196002_l.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="card-title">
-                                    <span> CLOTHING (W) </span> <br>
-                                    <a href="#">NIKE NETBALL HOODIE LADIES</a> <br>
-                                    <span class="price">2,249,000đ</span>
-                                </p>
-                                <div class="Addproduct">
-                                    <a href="#"> Thêm Vào Giỏ </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="product card">
-                            <img src="https://images.sportsdirect.com/images/products/34251901_l.jpg" class="card-img-top" alt="Best Dri-Fit UV protective crew shirt. Look stylish and protected from the sun while playing tennis.">
-                            <div class="card-body">
-                                <p class="card-title">
-                                    <span> CLOTHING (W) </span> <br>
-                                    <a href="#">NIKE DRY BLACK HISTORY MONTH</a> <br>
-                                    <span class="price">2,249,000đ</span>
-                                </p>
-                                <div class="Addproduct">
-                                    <a href="#"> Thêm Vào Giỏ </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    }
+                }
+            }
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselWomenProduct" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -353,134 +323,97 @@
     <div id="carouselBoyProduct" class="carousel slide container-fluid" data-bs-ride="carousel">
         <!-- Carousel Product -->
         <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="row row-cols-1 row-cols-md-4 row-cols-sm-2 g-4">
-                    <div class="col">
-                        <div class="card">
-                            <img src="https://mauweb.monamedia.net/bitis/wp-content/uploads/2018/03/sportswear-printed-jacket-sR8XbG1-300x300.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="card-title">
-                                    <span> CLOTHING (M) </span> <br>
-                                    <a href="#">NIKE SPORTSWEAR</a> <br>
-                                    <span class="price">2,249,000đ</span>
-                                </p>
-                                <div class="Addproduct">
-                                    <a href="#"> Thêm Vào Giỏ </a>
+            @for (int i = 0; i < boyCount; i++)
+            {
+                if (i == 0)
+                {
+                    <div class="carousel-item active">
+                        <div class="row row-cols-1 row-cols-md-4 row-cols-sm-2 g-4">
+
+                            @for (int a = 0; a < 4; a++)
+                            {
+                                <div class="col">
+                                    <div class="product card">
+                                        <img src="@BOY[a].srcImage" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <p class="card-title">
+                                                <span> @BOY[a].types </span> <br>
+                                                <a href="#">@BOY[a].name</a> <br>
+                                                <span class="price">@string.Format("{0:#,##0.00}", BOY[a].price).Replace(".00", String.Empty) đ</span>
+                                            </p>
+                                            <div class="Addproduct">
+                                                <a href="#"> Thêm Vào Giỏ </a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            }
+
+
+
+
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="product card">
-                            <img src="https://mauweb.monamedia.net/bitis/wp-content/uploads/2018/03/sportswear-advance-15-hoodie-9vgMRK1-300x300.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="card-title">
-                                    <span> CLOTHING (W) </span> <br>
-                                    <a href="#">NIKE SPORTSWEAR ADVANCE 15</a> <br>
-                                    <span class="price">2,249,000đ</span>
-                                </p>
-                                <div class="Addproduct">
-                                    <a href="#"> Thêm Vào Giỏ </a>
-                                </div>
+                }
+                else
+                {
+                    if (i == boyCount - 1)
+                    {
+                        <div class="carousel-item">
+                            <div class="row row-cols-1 row-cols-md-4 row-cols-sm-2 g-4">
+
+                                @for (int a = i * 4; a < BOY.Count; a++)
+                                {
+                                    <div class="col">
+                                        <div class="product card">
+                                            <img src="@BOY[a].srcImage" class="card-img-top" alt="Best Dri-Fit UV protective crew shirt. Look stylish and protected from the sun while playing tennis.">
+                                            <div class="card-body">
+                                                <p class="card-title">
+                                                    <span> @BOY[a].types </span> <br>
+                                                    <a href="#">@BOY[a].name</a> <br>
+                                                    <span class="price">@string.Format("{0:#,##0.00}", BOY[i].price).Replace(".00", String.Empty) đ</span>
+                                                </p>
+                                                <div class="Addproduct">
+                                                    <a href="#"> Thêm Vào Giỏ </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+
+
                             </div>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="product card">
-                            <img src="https://mauweb.monamedia.net/bitis/wp-content/uploads/2018/03/lunarsolo-running-shoe-WyTA797x1-300x300.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="card-title">
-                                    <span> SHOES (W) </span> <br>
-                                    <a href="#">NIKE LUNARSOLO</a> <br>
-                                    <span class="price">2,249,000đ</span>
-                                </p>
-                                <div class="Addproduct">
-                                    <a href="#"> Thêm Vào Giỏ </a>
-                                </div>
+                    }
+                    else
+                    {
+                        <div class="carousel-item">
+                            <div class="row row-cols-1 row-cols-md-4 row-cols-sm-2 g-4">
+
+                                @for (int a = i * 4; a < i * 4 + 4; a++)
+                                {
+                                    <div class="col">
+                                        <div class="product card">
+                                            <img src="@BOY[a].srcImage" class="card-img-top" alt="Best Dri-Fit UV protective crew shirt. Look stylish and protected from the sun while playing tennis.">
+                                            <div class="card-body">
+                                                <p class="card-title">
+                                                    <span> @BOY[a].types </span> <br>
+                                                    <a href="#">@BOY[a].name</a> <br>
+                                                    <span class="price">@string.Format("{0:#,##0.00}", BOY[i].price).Replace(".00", String.Empty) đ</span>
+                                                </p>
+                                                <div class="Addproduct">
+                                                    <a href="#"> Thêm Vào Giỏ </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
                             </div>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="product card">
-                            <img src="https://mauweb.monamedia.net/bitis/wp-content/uploads/2018/03/air-huarache-city-low-shoe-3Fz2271-300x300.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="card-title">
-                                    <span> SHOES (W) </span> <br>
-                                    <a href="#">NIKE AIR HUARACHE CITY LOW</a> <br>
-                                    <span class="price">2,249,000đ</span>
-                                </p>
-                                <div class="Addproduct">
-                                    <a href="#"> Thêm Vào Giỏ </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="row row-cols-1 row-cols-md-4 row-cols-sm-2 g-4">
-                    <div class="col">
-                        <div class="product card">
-                            <img src="https://images-na.ssl-images-amazon.com/images/I/81eUbU5%2BjiL._SS400_.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="card-title">
-                                    <span> SHOES (W) </span> <br>
-                                    <a href="#">GANNOU WOMEN'S AIR ATHLETIC RUNNING</a> <br>
-                                    <span class="price">2,249,000đ</span>
-                                </p>
-                                <div class="Addproduct">
-                                    <a href="#"> Thêm Vào Giỏ </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="product card">
-                            <img src="https://images-na.ssl-images-amazon.com/images/I/81srzyREF4L._SS400_.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="card-title">
-                                    <span> SHOES (W) </span> <br>
-                                    <a href="#">BREATHABLE LIGHTWEIGHT SNEAKER</a> <br>
-                                    <span class="price">2,249,000đ</span>
-                                </p>
-                                <div class="Addproduct">
-                                    <a href="#"> Thêm Vào Giỏ </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="product card">
-                            <img src="https://images.sportsdirect.com/images/products/53196002_l.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="card-title">
-                                    <span> CLOTHING (W) </span> <br>
-                                    <a href="#">NIKE NETBALL HOODIE LADIES</a> <br>
-                                    <span class="price">2,249,000đ</span>
-                                </p>
-                                <div class="Addproduct">
-                                    <a href="#"> Thêm Vào Giỏ </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="product card">
-                            <img src="https://images.sportsdirect.com/images/products/34251901_l.jpg" class="card-img-top" alt="Best Dri-Fit UV protective crew shirt. Look stylish and protected from the sun while playing tennis.">
-                            <div class="card-body">
-                                <p class="card-title">
-                                    <span> CLOTHING (W) </span> <br>
-                                    <a href="#">NIKE DRY BLACK HISTORY MONTH</a> <br>
-                                    <span class="price">2,249,000đ</span>
-                                </p>
-                                <div class="Addproduct">
-                                    <a href="#"> Thêm Vào Giỏ </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    }
+                }
+            }
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselBoyProduct" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -511,134 +444,97 @@
     <div id="carouselGirlProduct" class="carousel slide container-fluid" data-bs-ride="carousel">
         <!-- Carousel Product -->
         <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="row row-cols-1 row-cols-md-4 row-cols-sm-2 g-4">
-                    <div class="col">
-                        <div class="card">
-                            <img src="https://mauweb.monamedia.net/bitis/wp-content/uploads/2018/03/sportswear-printed-jacket-sR8XbG1-300x300.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="card-title">
-                                    <span> CLOTHING (M) </span> <br>
-                                    <a href="#">NIKE SPORTSWEAR</a> <br>
-                                    <span class="price">2,249,000đ</span>
-                                </p>
-                                <div class="Addproduct">
-                                    <a href="#"> Thêm Vào Giỏ </a>
+            @for (int i = 0; i < girlCount; i++)
+            {
+                if (i == 0)
+                {
+                    <div class="carousel-item active">
+                        <div class="row row-cols-1 row-cols-md-4 row-cols-sm-2 g-4">
+
+                            @for (int a = 0; a < 4; a++)
+                            {
+                                <div class="col">
+                                    <div class="product card">
+                                        <img src="@GIRL[a].srcImage" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <p class="card-title">
+                                                <span> @GIRL[a].types </span> <br>
+                                                <a href="#">@GIRL[a].name</a> <br>
+                                                <span class="price">@string.Format("{0:#,##0.00}", GIRL[a].price).Replace(".00", String.Empty) đ</span>
+                                            </p>
+                                            <div class="Addproduct">
+                                                <a href="#"> Thêm Vào Giỏ </a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            }
+
+
+
+
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="product card">
-                            <img src="https://mauweb.monamedia.net/bitis/wp-content/uploads/2018/03/sportswear-advance-15-hoodie-9vgMRK1-300x300.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="card-title">
-                                    <span> CLOTHING (W) </span> <br>
-                                    <a href="#">NIKE SPORTSWEAR ADVANCE 15</a> <br>
-                                    <span class="price">2,249,000đ</span>
-                                </p>
-                                <div class="Addproduct">
-                                    <a href="#"> Thêm Vào Giỏ </a>
-                                </div>
+                }
+                else
+                {
+                    if (i == girlCount - 1)
+                    {
+                        <div class="carousel-item">
+                            <div class="row row-cols-1 row-cols-md-4 row-cols-sm-2 g-4">
+
+                                @for (int a = i * 4; a < GIRL.Count; a++)
+                                {
+                                    <div class="col">
+                                        <div class="product card">
+                                            <img src="@GIRL[a].srcImage" class="card-img-top" alt="Best Dri-Fit UV protective crew shirt. Look stylish and protected from the sun while playing tennis.">
+                                            <div class="card-body">
+                                                <p class="card-title">
+                                                    <span> @GIRL[a].types </span> <br>
+                                                    <a href="#">@GIRL[a].name</a> <br>
+                                                    <span class="price">@string.Format("{0:#,##0.00}", GIRL[i].price).Replace(".00", String.Empty) đ</span>
+                                                </p>
+                                                <div class="Addproduct">
+                                                    <a href="#"> Thêm Vào Giỏ </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+
+
                             </div>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="product card">
-                            <img src="https://mauweb.monamedia.net/bitis/wp-content/uploads/2018/03/lunarsolo-running-shoe-WyTA797x1-300x300.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="card-title">
-                                    <span> SHOES (W) </span> <br>
-                                    <a href="#">NIKE LUNARSOLO</a> <br>
-                                    <span class="price">2,249,000đ</span>
-                                </p>
-                                <div class="Addproduct">
-                                    <a href="#"> Thêm Vào Giỏ </a>
-                                </div>
+                    }
+                    else
+                    {
+                        <div class="carousel-item">
+                            <div class="row row-cols-1 row-cols-md-4 row-cols-sm-2 g-4">
+
+                                @for (int a = i * 4; a < i * 4 + 4; a++)
+                                {
+                                    <div class="col">
+                                        <div class="product card">
+                                            <img src="@GIRL[a].srcImage" class="card-img-top" alt="Best Dri-Fit UV protective crew shirt. Look stylish and protected from the sun while playing tennis.">
+                                            <div class="card-body">
+                                                <p class="card-title">
+                                                    <span> @GIRL[a].types </span> <br>
+                                                    <a href="#">@GIRL[a].name</a> <br>
+                                                    <span class="price">@string.Format("{0:#,##0.00}", GIRL[i].price).Replace(".00", String.Empty) đ</span>
+                                                </p>
+                                                <div class="Addproduct">
+                                                    <a href="#"> Thêm Vào Giỏ </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
                             </div>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="product card">
-                            <img src="https://mauweb.monamedia.net/bitis/wp-content/uploads/2018/03/air-huarache-city-low-shoe-3Fz2271-300x300.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="card-title">
-                                    <span> SHOES (W) </span> <br>
-                                    <a href="#">NIKE AIR HUARACHE CITY LOW</a> <br>
-                                    <span class="price">2,249,000đ</span>
-                                </p>
-                                <div class="Addproduct">
-                                    <a href="#"> Thêm Vào Giỏ </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="row row-cols-1 row-cols-md-4 row-cols-sm-2 g-4">
-                    <div class="col">
-                        <div class="product card">
-                            <img src="https://images-na.ssl-images-amazon.com/images/I/81eUbU5%2BjiL._SS400_.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="card-title">
-                                    <span> SHOES (W) </span> <br>
-                                    <a href="#">GANNOU WOMEN'S AIR ATHLETIC RUNNING</a> <br>
-                                    <span class="price">2,249,000đ</span>
-                                </p>
-                                <div class="Addproduct">
-                                    <a href="#"> Thêm Vào Giỏ </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="product card">
-                            <img src="https://images-na.ssl-images-amazon.com/images/I/81srzyREF4L._SS400_.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="card-title">
-                                    <span> SHOES (W) </span> <br>
-                                    <a href="#">BREATHABLE LIGHTWEIGHT SNEAKER</a> <br>
-                                    <span class="price">2,249,000đ</span>
-                                </p>
-                                <div class="Addproduct">
-                                    <a href="#"> Thêm Vào Giỏ </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="product card">
-                            <img src="https://images.sportsdirect.com/images/products/53196002_l.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="card-title">
-                                    <span> CLOTHING (W) </span> <br>
-                                    <a href="#">NIKE NETBALL HOODIE LADIES</a> <br>
-                                    <span class="price">2,249,000đ</span>
-                                </p>
-                                <div class="Addproduct">
-                                    <a href="#"> Thêm Vào Giỏ </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="product card">
-                            <img src="https://images.sportsdirect.com/images/products/34251901_l.jpg" class="card-img-top" alt="Best Dri-Fit UV protective crew shirt. Look stylish and protected from the sun while playing tennis.">
-                            <div class="card-body">
-                                <p class="card-title">
-                                    <span> CLOTHING (W) </span> <br>
-                                    <a href="#">NIKE DRY BLACK HISTORY MONTH</a> <br>
-                                    <span class="price">2,249,000đ</span>
-                                </p>
-                                <div class="Addproduct">
-                                    <a href="#"> Thêm Vào Giỏ </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    }
+                }
+            }
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselGirlProduct" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

@@ -88,17 +88,18 @@
                             {
                                 <div class="col">
                                     <div class="product card">
-                                        <img src="@MEN[a].srcImage" class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                            <p class="card-title">
-                                                <span> @MEN[a].types </span> <br>
-                                                <a href="#">@MEN[a].name</a> <br>
-                                                <span class="price">@string.Format("{0:#,##0.00}", @MEN[a].price).Replace(".00", String.Empty) đ</span>
-                                            </p>
-                                            <div class="Addproduct">
-                                                <a href="#"> Thêm Vào Giỏ </a>
+                                        <a href="@Url.Action("Product")?id=@MEN[a].id">
+                                            <img src="@MEN[a].srcImage" class="card-img-top" alt="...">
+                                            <div class="card-body">
+                                                <p class="card-title">
+                                                    <span> @MEN[a].types </span> <br>
+                                                    <a href="#">@MEN[a].name</a> <br>
+                                                    <span class="price">@string.Format("{0:#,##0.00}", @MEN[a].price).Replace(".00", String.Empty) đ</span>
+                                                </p>
+                                                <div class="Addproduct">
+                                                    <a href="#"> Thêm Vào Giỏ </a>
+                                                </div>
                                             </div>
-                                        </div>
                                     </div>
                                 </div>
                             }
@@ -120,17 +121,18 @@
                                 {
                                     <div class="col">
                                         <div class="product card">
-                                            <img src="@MEN[a].srcImage" class="card-img-top" alt="Best Dri-Fit UV protective crew shirt. Look stylish and protected from the sun while playing tennis.">
-                                            <div class="card-body">
-                                                <p class="card-title">
-                                                    <span> @MEN[a].types </span> <br>
-                                                    <a href="#">@MEN[a].name</a> <br>
-                                                    <span class="price">@string.Format("{0:#,##0.00}", @MEN[i].price).Replace(".00", String.Empty) đ</span>
-                                                </p>
-                                                <div class="Addproduct">
-                                                    <a href="#"> Thêm Vào Giỏ </a>
+                                            <a href="@Url.Action("Product")?id=@MEN[a].id">
+                                                <img src="@MEN[a].srcImage" class="card-img-top" alt="Best Dri-Fit UV protective crew shirt. Look stylish and protected from the sun while playing tennis.">
+                                                <div class="card-body">
+                                                    <p class="card-title">
+                                                        <span> @MEN[a].types </span> <br>
+                                                        <a href="#">@MEN[a].name</a> <br>
+                                                        <span class="price">@string.Format("{0:#,##0.00}", @MEN[i].price).Replace(".00", String.Empty) đ</span>
+                                                    </p>
+                                                    <div class="Addproduct">
+                                                        <a href="#"> Thêm Vào Giỏ </a>
+                                                    </div>
                                                 </div>
-                                            </div>
                                         </div>
                                     </div>
                                 }
@@ -149,17 +151,18 @@
                                 {
                                     <div class="col">
                                         <div class="product card">
-                                            <img src="@MEN[a].srcImage" class="card-img-top" alt="Best Dri-Fit UV protective crew shirt. Look stylish and protected from the sun while playing tennis.">
-                                            <div class="card-body">
-                                                <p class="card-title">
-                                                    <span> @MEN[a].types </span> <br>
-                                                    <a href="#">@MEN[a].name</a> <br>
-                                                    <span class="price">@string.Format("{0:#,##0.00}", @MEN[i].price).Replace(".00", String.Empty) đ</span>
-                                                </p>
-                                                <div class="Addproduct">
-                                                    <a href="#"> Thêm Vào Giỏ </a>
+                                            <a href="@Url.Action("Product")?id=@MEN[a].id">
+                                                <img src="@MEN[a].srcImage" class="card-img-top" alt="Best Dri-Fit UV protective crew shirt. Look stylish and protected from the sun while playing tennis.">
+                                                <div class="card-body">
+                                                    <p class="card-title">
+                                                        <span> @MEN[a].types </span> <br>
+                                                        <a href="#">@MEN[a].name</a> <br>
+                                                        <span class="price">@string.Format("{0:#,##0.00}", @MEN[i].price).Replace(".00", String.Empty) đ</span>
+                                                    </p>
+                                                    <div class="Addproduct">
+                                                        <a href="#"> Thêm Vào Giỏ </a>
+                                                    </div>
                                                 </div>
-                                            </div>
                                         </div>
                                     </div>
                                 }
@@ -214,17 +217,18 @@
                             {
                                 <div class="col">
                                     <div class="product card">
-                                        <img src="@WOMEN[a].srcImage" class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                            <p class="card-title">
-                                                <span> @WOMEN[a].types </span> <br>
-                                                <a href="#">@WOMEN[a].name</a> <br>
-                                                <span class="price">@string.Format("{0:#,##0.00}", WOMEN[a].price).Replace(".00", String.Empty) đ</span>
-                                            </p>
-                                            <div class="Addproduct">
-                                                <a href="#"> Thêm Vào Giỏ </a>
+                                        <a href="@Url.Action("Product")?id=@WOMEN[a].id">
+                                            <img src="@WOMEN[a].srcImage" class="card-img-top" alt="...">
+                                            <div class="card-body">
+                                                <p class="card-title">
+                                                    <span> @WOMEN[a].types </span> <br>
+                                                    <a href="#">@WOMEN[a].name</a> <br>
+                                                    <span class="price">@string.Format("{0:#,##0.00}", WOMEN[a].price).Replace(".00", String.Empty) đ</span>
+                                                </p>
+                                                <div class="Addproduct">
+                                                    <a href="#"> Thêm Vào Giỏ </a>
+                                                </div>
                                             </div>
-                                        </div>
                                     </div>
                                 </div>
                             }
@@ -246,17 +250,18 @@
                                 {
                                     <div class="col">
                                         <div class="product card">
-                                            <img src="@WOMEN[a].srcImage" class="card-img-top" alt="Best Dri-Fit UV protective crew shirt. Look stylish and protected from the sun while playing tennis.">
-                                            <div class="card-body">
-                                                <p class="card-title">
-                                                    <span> @WOMEN[a].types </span> <br>
-                                                    <a href="#">@WOMEN[a].name</a> <br>
-                                                    <span class="price">@string.Format("{0:#,##0.00}", WOMEN[i].price).Replace(".00", String.Empty) đ</span>
-                                                </p>
-                                                <div class="Addproduct">
-                                                    <a href="#"> Thêm Vào Giỏ </a>
+                                            <a href="@Url.Action("Product")?id=@WOMEN[a].id">
+                                                <img src="@WOMEN[a].srcImage" class="card-img-top" alt="Best Dri-Fit UV protective crew shirt. Look stylish and protected from the sun while playing tennis.">
+                                                <div class="card-body">
+                                                    <p class="card-title">
+                                                        <span> @WOMEN[a].types </span> <br>
+                                                        <a href="#">@WOMEN[a].name</a> <br>
+                                                        <span class="price">@string.Format("{0:#,##0.00}", WOMEN[i].price).Replace(".00", String.Empty) đ</span>
+                                                    </p>
+                                                    <div class="Addproduct">
+                                                        <a href="#"> Thêm Vào Giỏ </a>
+                                                    </div>
                                                 </div>
-                                            </div>
                                         </div>
                                     </div>
                                 }
@@ -275,17 +280,18 @@
                                 {
                                     <div class="col">
                                         <div class="product card">
-                                            <img src="@WOMEN[a].srcImage" class="card-img-top" alt="Best Dri-Fit UV protective crew shirt. Look stylish and protected from the sun while playing tennis.">
-                                            <div class="card-body">
-                                                <p class="card-title">
-                                                    <span> @WOMEN[a].types </span> <br>
-                                                    <a href="#">@WOMEN[a].name</a> <br>
-                                                    <span class="price">@string.Format("{0:#,##0.00}", WOMEN[i].price).Replace(".00", String.Empty) đ</span>
-                                                </p>
-                                                <div class="Addproduct">
-                                                    <a href="#"> Thêm Vào Giỏ </a>
+                                            <a href="@Url.Action("Product")?id=@WOMEN[a].id">
+                                                <img src="@WOMEN[a].srcImage" class="card-img-top" alt="Best Dri-Fit UV protective crew shirt. Look stylish and protected from the sun while playing tennis.">
+                                                <div class="card-body">
+                                                    <p class="card-title">
+                                                        <span> @WOMEN[a].types </span> <br>
+                                                        <a href="#">@WOMEN[a].name</a> <br>
+                                                        <span class="price">@string.Format("{0:#,##0.00}", WOMEN[i].price).Replace(".00", String.Empty) đ</span>
+                                                    </p>
+                                                    <div class="Addproduct">
+                                                        <a href="#"> Thêm Vào Giỏ </a>
+                                                    </div>
                                                 </div>
-                                            </div>
                                         </div>
                                     </div>
                                 }
@@ -334,17 +340,18 @@
                             {
                                 <div class="col">
                                     <div class="product card">
-                                        <img src="@BOY[a].srcImage" class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                            <p class="card-title">
-                                                <span> @BOY[a].types </span> <br>
-                                                <a href="#">@BOY[a].name</a> <br>
-                                                <span class="price">@string.Format("{0:#,##0.00}", BOY[a].price).Replace(".00", String.Empty) đ</span>
-                                            </p>
-                                            <div class="Addproduct">
-                                                <a href="#"> Thêm Vào Giỏ </a>
+                                        <a href="@Url.Action("Product")?id=@BOY[a].id">
+                                            <img src="@BOY[a].srcImage" class="card-img-top" alt="...">
+                                            <div class="card-body">
+                                                <p class="card-title">
+                                                    <span> @BOY[a].types </span> <br>
+                                                    <a href="#">@BOY[a].name</a> <br>
+                                                    <span class="price">@string.Format("{0:#,##0.00}", BOY[a].price).Replace(".00", String.Empty) đ</span>
+                                                </p>
+                                                <div class="Addproduct">
+                                                    <a href="#"> Thêm Vào Giỏ </a>
+                                                </div>
                                             </div>
-                                        </div>
                                     </div>
                                 </div>
                             }
@@ -366,17 +373,18 @@
                                 {
                                     <div class="col">
                                         <div class="product card">
-                                            <img src="@BOY[a].srcImage" class="card-img-top" alt="Best Dri-Fit UV protective crew shirt. Look stylish and protected from the sun while playing tennis.">
-                                            <div class="card-body">
-                                                <p class="card-title">
-                                                    <span> @BOY[a].types </span> <br>
-                                                    <a href="#">@BOY[a].name</a> <br>
-                                                    <span class="price">@string.Format("{0:#,##0.00}", BOY[i].price).Replace(".00", String.Empty) đ</span>
-                                                </p>
-                                                <div class="Addproduct">
-                                                    <a href="#"> Thêm Vào Giỏ </a>
+                                            <a href="@Url.Action("Product")?id=@BOY[a].id">
+                                                <img src="@BOY[a].srcImage" class="card-img-top" alt="Best Dri-Fit UV protective crew shirt. Look stylish and protected from the sun while playing tennis.">
+                                                <div class="card-body">
+                                                    <p class="card-title">
+                                                        <span> @BOY[a].types </span> <br>
+                                                        <a href="#">@BOY[a].name</a> <br>
+                                                        <span class="price">@string.Format("{0:#,##0.00}", BOY[i].price).Replace(".00", String.Empty) đ</span>
+                                                    </p>
+                                                    <div class="Addproduct">
+                                                        <a href="#"> Thêm Vào Giỏ </a>
+                                                    </div>
                                                 </div>
-                                            </div>
                                         </div>
                                     </div>
                                 }
@@ -395,17 +403,18 @@
                                 {
                                     <div class="col">
                                         <div class="product card">
-                                            <img src="@BOY[a].srcImage" class="card-img-top" alt="Best Dri-Fit UV protective crew shirt. Look stylish and protected from the sun while playing tennis.">
-                                            <div class="card-body">
-                                                <p class="card-title">
-                                                    <span> @BOY[a].types </span> <br>
-                                                    <a href="#">@BOY[a].name</a> <br>
-                                                    <span class="price">@string.Format("{0:#,##0.00}", BOY[i].price).Replace(".00", String.Empty) đ</span>
-                                                </p>
-                                                <div class="Addproduct">
-                                                    <a href="#"> Thêm Vào Giỏ </a>
+                                            <a href="@Url.Action("Product")?id=@BOY[a].id">
+                                                <img src="@BOY[a].srcImage" class="card-img-top" alt="Best Dri-Fit UV protective crew shirt. Look stylish and protected from the sun while playing tennis.">
+                                                <div class="card-body">
+                                                    <p class="card-title">
+                                                        <span> @BOY[a].types </span> <br>
+                                                        <a href="#">@BOY[a].name</a> <br>
+                                                        <span class="price">@string.Format("{0:#,##0.00}", BOY[i].price).Replace(".00", String.Empty) đ</span>
+                                                    </p>
+                                                    <div class="Addproduct">
+                                                        <a href="#"> Thêm Vào Giỏ </a>
+                                                    </div>
                                                 </div>
-                                            </div>
                                         </div>
                                     </div>
                                 }
@@ -455,17 +464,18 @@
                             {
                                 <div class="col">
                                     <div class="product card">
-                                        <img src="@GIRL[a].srcImage" class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                            <p class="card-title">
-                                                <span> @GIRL[a].types </span> <br>
-                                                <a href="#">@GIRL[a].name</a> <br>
-                                                <span class="price">@string.Format("{0:#,##0.00}", GIRL[a].price).Replace(".00", String.Empty) đ</span>
-                                            </p>
-                                            <div class="Addproduct">
-                                                <a href="#"> Thêm Vào Giỏ </a>
+                                        <a href="@Url.Action("Product")?id=@GIRL[a].id">
+                                            <img src="@GIRL[a].srcImage" class="card-img-top" alt="...">
+                                            <div class="card-body">
+                                                <p class="card-title">
+                                                    <span> @GIRL[a].types </span> <br>
+                                                    <a href="#">@GIRL[a].name</a> <br>
+                                                    <span class="price">@string.Format("{0:#,##0.00}", GIRL[a].price).Replace(".00", String.Empty) đ</span>
+                                                </p>
+                                                <div class="Addproduct">
+                                                    <a href="#"> Thêm Vào Giỏ </a>
+                                                </div>
                                             </div>
-                                        </div>
                                     </div>
                                 </div>
                             }
@@ -487,17 +497,18 @@
                                 {
                                     <div class="col">
                                         <div class="product card">
-                                            <img src="@GIRL[a].srcImage" class="card-img-top" alt="Best Dri-Fit UV protective crew shirt. Look stylish and protected from the sun while playing tennis.">
-                                            <div class="card-body">
-                                                <p class="card-title">
-                                                    <span> @GIRL[a].types </span> <br>
-                                                    <a href="#">@GIRL[a].name</a> <br>
-                                                    <span class="price">@string.Format("{0:#,##0.00}", GIRL[i].price).Replace(".00", String.Empty) đ</span>
-                                                </p>
-                                                <div class="Addproduct">
-                                                    <a href="#"> Thêm Vào Giỏ </a>
+                                            <a href="@Url.Action("Product")?id=@GIRL[a].id">
+                                                <img src="@GIRL[a].srcImage" class="card-img-top" alt="Best Dri-Fit UV protective crew shirt. Look stylish and protected from the sun while playing tennis.">
+                                                <div class="card-body">
+                                                    <p class="card-title">
+                                                        <span> @GIRL[a].types </span> <br>
+                                                        <a href="#">@GIRL[a].name</a> <br>
+                                                        <span class="price">@string.Format("{0:#,##0.00}", GIRL[i].price).Replace(".00", String.Empty) đ</span>
+                                                    </p>
+                                                    <div class="Addproduct">
+                                                        <a href="#"> Thêm Vào Giỏ </a>
+                                                    </div>
                                                 </div>
-                                            </div>
                                         </div>
                                     </div>
                                 }
@@ -516,17 +527,18 @@
                                 {
                                     <div class="col">
                                         <div class="product card">
-                                            <img src="@GIRL[a].srcImage" class="card-img-top" alt="Best Dri-Fit UV protective crew shirt. Look stylish and protected from the sun while playing tennis.">
-                                            <div class="card-body">
-                                                <p class="card-title">
-                                                    <span> @GIRL[a].types </span> <br>
-                                                    <a href="#">@GIRL[a].name</a> <br>
-                                                    <span class="price">@string.Format("{0:#,##0.00}", GIRL[i].price).Replace(".00", String.Empty) đ</span>
-                                                </p>
-                                                <div class="Addproduct">
-                                                    <a href="#"> Thêm Vào Giỏ </a>
+                                            <a href="@Url.Action("Product")?id=@GIRL[a].id">
+                                                <img src="@GIRL[a].srcImage" class="card-img-top" alt="Best Dri-Fit UV protective crew shirt. Look stylish and protected from the sun while playing tennis.">
+                                                <div class="card-body">
+                                                    <p class="card-title">
+                                                        <span> @GIRL[a].types </span> <br>
+                                                        <a href="#">@GIRL[a].name</a> <br>
+                                                        <span class="price">@string.Format("{0:#,##0.00}", GIRL[i].price).Replace(".00", String.Empty) đ</span>
+                                                    </p>
+                                                    <div class="Addproduct">
+                                                        <a href="#"> Thêm Vào Giỏ </a>
+                                                    </div>
                                                 </div>
-                                            </div>
                                         </div>
                                     </div>
                                 }

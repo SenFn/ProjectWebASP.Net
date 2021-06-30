@@ -19,7 +19,7 @@ namespace WebQuanAo.Controllers
             }
             else
             {
-                ViewBag.userName = "Account";
+                ViewBag.userName = "";
             }
 
             using (DBStore dbModel = new DBStore())
@@ -44,10 +44,6 @@ namespace WebQuanAo.Controllers
         public ActionResult SignUp(string username, string password, string verifyPassword, string email, string phone)
         {
 
-            if(password != verifyPassword)
-            {
-                return View();
-            }
 
             using (DBStore dbModel = new DBStore())
             {
@@ -77,7 +73,7 @@ namespace WebQuanAo.Controllers
             ModelState.Clear();
 
 
-            Session["user"] = username;
+            Session["username"] = username;
             return RedirectToAction("Index");
         }
 
@@ -144,6 +140,28 @@ namespace WebQuanAo.Controllers
             {
                 return new List<GioHang>();
             }
+        }
+
+        public ActionResult Product(int? id)
+        {
+            if (!string.IsNullOrEmpty(Session["username"] as string))
+            {
+                ViewBag.userName = Session["username"].ToString();
+            }
+            else
+            {
+                ViewBag.userName = "";
+            }
+
+            if (id == null)
+                id = 1;
+
+            using (DBStore dbModel = new DBStore())
+            {
+                product product = dbModel.products.FirstOrDefault(x => x.id == id);
+                ViewBag.product = product;
+            }
+            return View();
         }
     }
 }

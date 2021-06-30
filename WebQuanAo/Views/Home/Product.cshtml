@@ -1,18 +1,19 @@
-﻿
+﻿@using WebQuanAo.Models;
 @{
     ViewBag.Title = "Product";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    product product = ViewBag.product;
 }
 <link rel="stylesheet" href="../Content/style-Product.css">
 
 <div class="productName d-block pt-1 mt-4">Product</div>
 <div class="productInfo w-100 row">
     <div class="image col-md-2">
-        <img class="mt-3" src="../Content/Images/Images/vapor-max-air-training-duffel-bag-yJwoN91-300x300.jpg" alt="Product Image">
+        <img class="mt-3" src="@product.srcImage" alt="Product Image">
     </div>
     <div class="info mt-3 col-md-3">
-        <span>NIKE VAPOR MAX AIR (MEDIUM)</span>
-        <p class="price">2,249,000đ</p>
+        <span>@product.name</span>
+        <p class="price">@string.Format("{0:#,##0.00}", @product.price).Replace(".00", String.Empty) đ</p>
         <div class="row">
             <div class="col-md-6">
                 <p class="size-name">Kích Cỡ:</p>
@@ -24,7 +25,7 @@
             </div>
             <div class="col-md-5">
                 <p class="number">Số Lượng:</p>
-                <input type="number" name="num-product" id="num-product" placeholder="0">
+                <input type="number" name="num-product" id="num-product" placeholder="1">
             </div>
         </div>
         <div class="buy mt-5">Mua Ngay</div>

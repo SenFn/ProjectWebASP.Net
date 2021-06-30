@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -27,14 +28,26 @@
                 <ul class="navbar-nav ms-5 mb-2 mb-lg-0">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                       
                             <img src="../Content/Images/Icon/icons8_account_25px.png" alt="Account_icon">
+
+
+
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="@Url.Action("Login","Home")">Đăng Nhập</a></li>
-                            <li><a class="dropdown-item" href="@Url.Action("SignUp","Home")">Đăng Ký</a></li>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                @if (ViewBag.userName != "")
+                                {
+                                    <li><a class="dropdown-item" href="@Url.Action("Login","Home")">Đăng Xuất</a></li>
+                                }
+                                else
+                                {
+                                    <li><a class="dropdown-item" href="@Url.Action("Login","Home")">Đăng Nhập</a></li>
+                                    <li><a class="dropdown-item" href="@Url.Action("SignUp","Home")">Đăng Ký</a></li>
+                                }
+
+                            </ul>
+                            </li>
                         </ul>
-                    </li>
-                </ul>
             </div>
         </div>
     </nav> <!-- End Navigation -->

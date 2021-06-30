@@ -20,5 +20,9 @@ namespace WebQuanAo.Controllers
         {
             return View();
         }
+        public ActionResult Product()
+        {
+            return View();
+        }
     }
 }

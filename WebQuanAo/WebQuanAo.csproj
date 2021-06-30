@@ -150,6 +150,7 @@
     <Content Include="Content\Images\Images\vapor-max-air-training-duffel-bag-yJwoN91-300x300.jpg" />
     <Content Include="Content\style-Home.css" />
     <Content Include="Content\style-Login.css" />
+    <Content Include="Content\style-Product.css" />
     <Content Include="Content\style-Register.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -182,6 +183,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\SignUp.cshtml" />
+    <Content Include="Views\Home\Product.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

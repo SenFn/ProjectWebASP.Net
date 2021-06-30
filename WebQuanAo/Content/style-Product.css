@@ -1,0 +1,111 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    background: white;
+}
+
+:root{
+    --HeightNav: 80px;
+}
+/* Navigation */
+.navbar{
+    height: var(--HeightNav);
+}
+.navbar-brand img{
+    width: 200px;
+}
+
+/* Container */
+.productName{
+    background: rgba(0, 0, 0, 0.884);
+    color: white;
+    font-weight: 700 !important;
+    width: 200px;
+    height: 35px;
+    border-radius: .5rem;
+    text-align: center;
+    margin-left: 16%;
+}
+.productInfo{
+    height: 500px;
+}
+.size-name,.number{
+    color: #707070;
+}
+.buy{
+    width: 300px;
+    text-align: center;
+    border: 3px solid black;
+    font-weight: 500;
+    font-size: 20px;
+    border-radius: .5rem;
+
+}
+.buy:hover{
+    cursor: pointer;
+    background: black;
+    color: white;
+}
+.image{
+    margin-left: 22%;
+}
+    .image img{
+        height: 400px;
+    }
+.info{
+    margin-left: 12%;
+}
+    .info span{
+        font-size: 25px;
+    }
+    .price{
+        font-size: 20px;
+        color: red;
+        font-weight: 700;
+    }
+    .size{
+        margin-left: 2%;
+    }
+    .size-num{
+        width: 50px;
+    }
+    .size a{
+        width: 50px;
+        border: 1px solid #707070;
+        text-align: center;
+        text-decoration: none;
+        color: #707070;
+    }
+    .size a:hover{
+        cursor: pointer;
+        color: red;
+        border: 1px solid red !important;
+    }
+    .size a:focus{
+        color: red;
+        border: 1px solid red !important;
+    }
+    #num-product{
+        width: 80px;
+        height: 25px;
+        text-align: center;
+    }
+/* Footer */
+.footer{
+    background: rgba(0, 0, 0, 0.884);
+    color: white;
+    height: 200px;
+}
+    .footer h5{
+        margin-left: 10%;
+    }
+    .contact-social{
+        margin-left: 10%;
+    }
+    .contact-social a{
+        text-decoration: none;
+        color: white;
+    }

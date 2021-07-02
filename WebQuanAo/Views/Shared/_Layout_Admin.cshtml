@@ -1,0 +1,146 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <link rel="stylesheet" href="../Content/style-Admin.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Thu Về', 'Chi Phí Nhập'],
+          ['2004',  1000,      400],
+          ['2005',  1170,      460],
+          ['2006',  660,       1120],
+          ['2007',  1030,      540]
+        ]);
+
+        var options = {
+          title: 'Doanh Thu Bán Hàng',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        <div class="container-fluid">
+            <!-- Offcanvas bridge -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Offcanvas bridge -->
+            <a class="navbar-brand" href="#"><img src="../Content/Images/Icon/kisspng-logo-brand-retail-price-book-store-5b1ff6bb22f1a4.9079057215288214351431-removebg-preview.png" alt=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="../Content/Images/Icon/icons8_account_25px.png" alt="Account_icon">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Chào, User!</a></li>
+                            <li><a class="dropdown-item" href="#">Đổi Mật Khẩu</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="@Url.Action("Login","Home")">Thoát</a></li>
+                        </ul>
+                    </li>
+            </div>
+        </div>
+    </nav>
+    <!-- OffCanvas -->
+    <div class="offcanvas offcanvas-start sidebar-nav" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-body p-0">
+            <nav>
+                <ul class="navbar-nav sidebar_link">
+                    <li>
+                        <div class="Title">Giao Diện</div>
+                    </li>
+                    <li>
+                        <a class="nav-link item" data-bs-toggle="collapse" href="#collapseInterface" role="button" aria-expanded="false" aria-controls="collapseExample">Giao Diện Người Dùng</a>
+                        <i class="bi bi-chevron-down"></i>
+                        <div class="collapse" id="collapseInterface">
+                            <div>
+                                <ul class="navbar-nav">
+                                    <li>
+                                        <a class="nav-link mx-4" href="@Url.Action("Header","Admin")">Header</a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link mx-4" href="@Url.Action("Body","Admin")">Body</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="Title">Sản Phẩm</div>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="@Url.Action("ProductInfo","Admin")">Thông Tin Sản Phẩm</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" data-bs-toggle="collapse" href="#collapseBill" role="button" aria-expanded="false" aria-controls="collapseBill">Hóa Đơn</a>
+                        <div class="collapse" id="collapseBill">
+                            <div>
+                                <ul class="navbar-nav">
+                                    <li>
+                                        <a class="nav-link mx-4" href="#">Hóa Đơn Mua</a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link mx-4" href="#">Hóa Đơn Bán</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="Title">Tài Khoản</div>
+                    </li>
+                    <li>
+                        <a class="nav-link" data-bs-toggle="collapse" href="#collapseAccount" role="button" aria-expanded="false" aria-controls="collapseAccount">Danh Sách Tài Khoản</a>
+                        <div class="collapse" id="collapseAccount">
+                            <div>
+                                <ul class="navbar-nav">
+                                    <li>
+                                        <a class="nav-link mx-4" href="#">Tài Khoản Admin</a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link mx-4" href="#">Tài Khoản User</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div> <!-- End Body Offcanvas -->
+    </div> <!-- End Offcanvas -->
+    <!----->
+
+    @RenderBody();
+</body>
+</html>

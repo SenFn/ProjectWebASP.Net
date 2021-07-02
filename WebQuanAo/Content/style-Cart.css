@@ -1,0 +1,47 @@
+/* Container */
+.productName {
+    background: rgba(0, 0, 0, 0.884);
+    color: white;
+    font-weight: 700 !important;
+    width: 200px;
+    height: 35px;
+    border-radius: .5rem;
+    text-align: center;
+    margin-left: 16%;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 60% !important;
+    margin-left: 20%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+.image {
+    width: 150px;
+}
+
+td input {
+    width: 50px;
+    text-align: center;
+}
+.buy {
+    width: 20%;
+    text-align: center;
+    border: 3px solid black;
+    font-weight: 500;
+    font-size: 20px;
+    border-radius: .5rem;
+    margin-left: 60%;
+}
+
+    .buy:hover {
+        cursor: pointer;
+        background: black;
+        color: white;
+    }

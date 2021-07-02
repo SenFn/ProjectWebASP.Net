@@ -1,0 +1,152 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+@media screen and (min-width: 1200px){
+    .sidebar-nav{
+        transform: none;
+        visibility: visible !important;
+        top:var(--topNavbarHeight);
+        height: calc(100% - var(--topNavbarHeight));
+    }
+}
+
+@media screen and (min-width:992px) {
+    .sidebar-nav{
+        transform: none;
+        visibility: visible !important;
+        top:var(--topNavbarHeight);
+        height: calc(100% - var(--topNavbarHeight));
+    }
+}
+@media screen and (max-width:991px) {
+    .Content{
+        transform: translateX(-20%) !important;
+    }
+}
+@media screen and (max-width:767px) {
+    .Content{
+        transform: translateX(-40%) !important;
+    }
+}
+body{
+    background:#333;
+}
+
+:root{
+    --offcanvas-width:270px;
+    --topNavbarHeight:75px;
+}
+/* Navbar */
+.navbar-brand img{
+    width: 170px;
+}
+.dropdown-menu a:hover{
+    color: white;
+    background: #ff723b;
+}
+/* Offcanvas */
+
+.sidebar-nav{
+    width: var(--offcanvas-width);
+}
+
+.Title{
+    background: #ff723b;
+    color: white;
+    font-weight: 700;
+    text-align: center;
+    font-size: 18px;
+}
+.offcanvas a{
+    color: black;
+    margin-left: 2%;
+    font-size: 15px;
+    font-weight: 500;
+}
+.offcanvas a:hover{
+    color: #ff723b;
+}
+.offcanvas a:focus{
+    color: #ff723b;
+}
+
+/* Content */
+.Content{
+    margin-left: var(--offcanvas-width);
+}
+
+    .Home{
+        color: white;
+        background:#ff723b;
+        text-align: center;
+        border-radius: 1rem;
+        box-shadow: 0 10px 40px rgba(143, 143, 143, 0.719) !important;
+    }
+    form{
+        margin: 30px 30px 30px 50px;
+        width: 400px;
+        height: 450px;
+        border-radius: 1rem;
+        border: 2px solid black;
+        box-shadow: 0 10px 40px rgba(92, 99, 105, .2);
+        background: white;
+    }
+        form h2{
+            padding-top: 20px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        label{
+            margin-left: 20px;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        #text{
+            margin-bottom: 20px;
+            width: 200px;
+            font-family: inherit;
+            font-size: inherit;
+            border-radius: 10px;
+            outline: none;
+            text-align: center;
+        }
+            .picturelbl{
+                margin-left: 110px;
+            }
+            .sizelbl{
+                margin-left: 110px;
+            }
+            .numberlbl{
+                margin-left: 60px;
+            }
+            .pricelbl{
+                margin-left: 110px;
+            }
+        #text:hover{
+            border-color:#ff723b;
+            border-radius: 10px;
+        }
+        #text:focus{
+            border-color: #ff733ccc;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .button{
+            width: 75px;
+            height: 25px;
+            outline: none;
+            border: none;
+            color: #fff;
+            border-radius: .5rem;
+            cursor: pointer;
+            transition: .3s;
+            background: #ff723b;
+        }
+            #send-btn{
+                margin-left: 270px;
+            }
+            .button:hover{
+                background: #ff733ccc;
+            }

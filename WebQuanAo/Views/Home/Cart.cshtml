@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="../Content/style-Cart.css">
+
+<div class="productName d-block pt-1 mt-4">Cart</div>
+<div class="overflow-x:auto">
+    <table class="table table-dark table-striped mt-4">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Ảnh</th>
+                <th scope="col">Tên Sản Phẩm</th>
+                <th scope="col">Size</th>
+                <th scope="col">Số Lượng</th>
+                <th scope="col">Giá</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td><img class="image" src="../Content/Images/Images/vapor-max-air-training-duffel-bag-yJwoN91-300x300.jpg" alt=""></td>
+                <td>Vapor Max Air Trainning Duffel Bag</td>
+                <td>M</td>
+                <td><input type="number" name="" id="" placeholder="0"></td>
+                <td>2,500,000đ</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td><img class="image" src="../Content/Images/Images/lebron-max-air-ambassador-backpack-w7VW7t1-300x300.jpg" alt=""></td>
+                <td>Lebron Max Air Ambassador Backpack</td>
+                <td>M</td>
+                <td><input type="number" name="" id="" placeholder="0"></td>
+                <td>2,500,000đ</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="buy mt-4 mb-5">Thanh Toán</div>
+</div>

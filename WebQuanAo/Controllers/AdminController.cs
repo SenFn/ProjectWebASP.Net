@@ -6,25 +6,26 @@ using System.Web.Mvc;
 
 namespace WebQuanAo.Controllers
 {
-    public class HomeController : Controller
+    public class AdminController : Controller
     {
+        // GET: Admin
         public ActionResult Index()
         {
             return View();
         }
-        public ActionResult Login()
+        public ActionResult Header()
         {
             return View();
         }
-        public ActionResult SignUp()
+        public ActionResult Body()
         {
             return View();
         }
-        public ActionResult Product()
+        public ActionResult ProductInfo()
         {
             return View();
         }
-        public ActionResult Cart()
+        public ActionResult EditProduct()
         {
             return View();
         }

@@ -158,8 +158,15 @@ namespace WebQuanAo.Controllers
 
             using (DBStore dbModel = new DBStore())
             {
-                product product = dbModel.products.FirstOrDefault(x => x.id == id);
+                product product = dbModel.products.FirstOrDefault(x => x.id == id); 
+                if (product == null)
+                {
+                    product product1 = dbModel.products.FirstOrDefault(x => x.id == 1);
+                    ViewBag.product = product1;
+                    return View();
+                }
                 ViewBag.product = product;
+
             }
             return View();
         }

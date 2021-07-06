@@ -29,5 +29,23 @@ namespace WebQuanAo.Controllers
         {
             return View();
         }
+
+        //Đây Là Form Hóa Đơn Bán
+        public ActionResult Bill()
+        {
+            return View();
+        }
+
+        //Đây Là Form Chi Tiết Của Hóa Đơn Bán Khi Click Vào Tình Trạng Của Hóa Đơn
+        public ActionResult BillInfo()
+        {
+            return View();
+        }
+
+        //Đây Là Form Danh Sách Tài Khoản (Đã Chỉnh Sửa Chỗ DropDown Không Còn Chia Làm 2 Loại Tài Khoản Nữa Mà Lọc Chung Với Phần Tìm Kiếm
+        public ActionResult ListAccount()
+        {
+            return View();
+        }
     }
 }

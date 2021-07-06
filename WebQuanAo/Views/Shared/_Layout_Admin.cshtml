@@ -111,7 +111,7 @@
                                         <a class="nav-link mx-4" href="#">Hóa Đơn Mua</a>
                                     </li>
                                     <li>
-                                        <a class="nav-link mx-4" href="#">Hóa Đơn Bán</a>
+                                        <a class="nav-link mx-4" href="@Url.Action("Bill","Admin")">Hóa Đơn Bán</a>
                                     </li>
                                 </ul>
                             </div>
@@ -121,19 +121,7 @@
                         <div class="Title">Tài Khoản</div>
                     </li>
                     <li>
-                        <a class="nav-link" data-bs-toggle="collapse" href="#collapseAccount" role="button" aria-expanded="false" aria-controls="collapseAccount">Danh Sách Tài Khoản</a>
-                        <div class="collapse" id="collapseAccount">
-                            <div>
-                                <ul class="navbar-nav">
-                                    <li>
-                                        <a class="nav-link mx-4" href="#">Tài Khoản Admin</a>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link mx-4" href="#">Tài Khoản User</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                        <a class="nav-link" href="@Url.Action("ListAccount","Admin")">Danh Sách Tài Khoản</a>
                     </li>
                 </ul>
             </nav>

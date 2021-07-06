@@ -26,12 +26,13 @@
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
                 <ul class="navbar-nav ms-5 mb-2 mb-lg-0">
-                    <li class="nav-item me-2"> <!-- Cart Icon -->
+                    <li class="nav-item me-2">
+                        <!-- Cart Icon -->
                         <a href="@Url.Action("Cart","Home")"><img class="mt-2" src="../Content/Images/Icon/icons8_delivery_handcart_24px.png" alt="Cart Icon"></a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                       
+
                             <img src="../Content/Images/Icon/icons8_account_25px.png" alt="Account_icon">
 
 
@@ -53,17 +54,20 @@
                             }
 
                         </ul>
-                            </li>
-                        </ul>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav> <!-- End Navigation -->
+
+
 
     <div class="Container">
         <!-- Container -->
         @RenderBody();
 
-        <div class="footer d-block w-100 mt-3"> <!-- Footer -->
+        <div class="footer d-block w-100 mt-3">
+            <!-- Footer -->
             <h5 class="pt-3 pb-1">Contact Us:</h5>
             <div class="contact-social">
                 <div class="fb pb-1">
@@ -79,6 +83,34 @@
         </div>
     </div>
 </body>
+
+<!-- Messenger Plugin chat Code -->
+<div id="fb-root"></div>
+
+<!-- Your Plugin chat code -->
+<div id="fb-customer-chat" class="fb-customerchat">
+</div>
+
+<script>
+    var chatbox = document.getElementById('fb-customer-chat');
+    chatbox.setAttribute("page_id", "103304748693248");
+    chatbox.setAttribute("attribution", "page_inbox");
+
+    window.fbAsyncInit = function () {
+        FB.init({
+            xfbml: true,
+            version: 'v11.0'
+        });
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
 
 <script>
     function logOut(){

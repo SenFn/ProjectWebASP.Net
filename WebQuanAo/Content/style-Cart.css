@@ -10,6 +10,16 @@
     margin-left: 16%;
 }
 
+td a {
+    text-decoration: none;
+    color: white;
+}
+
+    td a:hover {
+        text-decoration: none;
+        color: white;
+    }
+
 table {
     border-collapse: collapse;
     border-spacing: 0;

@@ -10,12 +10,14 @@ namespace WebQuanAo.Controllers
 {
     public class HomeController : Controller
     {
+
         public ActionResult Index()
         {
 
             if (!string.IsNullOrEmpty(Session["username"] as string))
             {
                 ViewBag.userName = Session["username"].ToString();
+                ViewBag.admin = Session["admin"];
             }
             else
             {
@@ -26,6 +28,9 @@ namespace WebQuanAo.Controllers
             {
                 List<product> product = dbModel.products.ToList();
                 ViewBag.product = product;
+
+                bodySave bS = dbModel.bodySaves.FirstOrDefault();
+                ViewBag.bodySave = bS;
             }
             return View();
         }
@@ -43,8 +48,6 @@ namespace WebQuanAo.Controllers
         [HttpPost]
         public ActionResult SignUp(string username, string password, string verifyPassword, string email, string phone)
         {
-
-
             using (DBStore dbModel = new DBStore())
             {
                 account acc = new account(username, password, email, phone);
@@ -74,6 +77,7 @@ namespace WebQuanAo.Controllers
 
 
             Session["username"] = username;
+           
             return RedirectToAction("Index");
         }
 
@@ -94,32 +98,29 @@ namespace WebQuanAo.Controllers
                     return View();
                 }
                 Session["username"] = username;
+                Session["admin"] = names.admin;
                 return RedirectToAction("Index");
             }
 
         }
 
 
-        public ActionResult AddCard(int count, int? id, string name = "", string url = "", string price = "")
+        public ActionResult AddCard(int count, int? id, decimal? price, string name = "", string url = "", string size = "")
         {
-            if (id == null)
-            {
-                return Content("No more id");
-            }
-
             List<GioHang> cart = GetListCart();
 
             string array = "";
-            if (cart.Exists(x => x.id == id))
+            if (cart.Exists(x => x.id == id && x.size == size))
             {
-                GioHang gioHang = cart.Find(x => x.id == id);
+                GioHang gioHang = cart.Find(x => x.id == id & x.size == size);
+
+                cart.Remove(gioHang);
                 gioHang.count += count;
-                cart = cart.Where(rm => rm.id != id).ToList();
                 cart.Add(gioHang);
             }
             else
             {
-                cart.Add(new GioHang(id, name, url, price, count));
+                cart.Add(new GioHang(id, name, url, size, price, count));
             }
 
             foreach (GioHang l in cart)
@@ -127,7 +128,7 @@ namespace WebQuanAo.Controllers
                 array += l.ToString() + "\n";
             }
             Session["Cart"] = cart;
-            return Content(array);
+            return RedirectToAction("Cart");
         }
 
         private List<GioHang> GetListCart()
@@ -147,6 +148,7 @@ namespace WebQuanAo.Controllers
             if (!string.IsNullOrEmpty(Session["username"] as string))
             {
                 ViewBag.userName = Session["username"].ToString();
+                ViewBag.admin = Session["admin"];
             }
             else
             {
@@ -158,21 +160,67 @@ namespace WebQuanAo.Controllers
 
             using (DBStore dbModel = new DBStore())
             {
-                product product = dbModel.products.FirstOrDefault(x => x.id == id); 
+                product product = dbModel.products.FirstOrDefault(x => x.id == id);
+                List<productInfo> pInfo = dbModel.productInfoes.ToList();
                 if (product == null)
                 {
                     product product1 = dbModel.products.FirstOrDefault(x => x.id == 1);
+                    List<productInfo> info1 = pInfo.Where(x => x.id == 1).ToList();
                     ViewBag.product = product1;
+                    ViewBag.infoS = info1.Exists(x => x.size.Contains("S")) ? info1.Find(x => x.size.Contains("S")) : new productInfo();
+                    ViewBag.infoM = info1.Exists(x => x.size.Contains("M")) ? info1.Find(x => x.size.Contains("M")) : new productInfo();
+                    ViewBag.infoL = info1.Exists(x => x.size.Contains("L")) ? info1.Find(x => x.size.Contains("L")) : new productInfo();
                     return View();
                 }
+
+                List<productInfo> info = pInfo.Where(x => x.id == id).ToList();
+                ViewBag.infoS = info.Exists(x => x.size.Contains("S")) ? info.Find(x => x.size.Contains("S")) : new productInfo();
+                ViewBag.infoM = info.Exists(x => x.size.Contains("M")) ? info.Find(x => x.size.Contains("M")) : new productInfo();
+                ViewBag.infoL = info.Exists(x => x.size.Contains("L")) ? info.Find(x => x.size.Contains("L")) : new productInfo();
                 ViewBag.product = product;
 
             }
             return View();
         }
-        public ActionResult Cart()
+
+
+
+        public ActionResult Cart(int? id)
         {
+            using (DBStore dbModel = new DBStore())
+            {
+                List<product> product = dbModel.products.ToList();
+                ViewBag.product = product;
+            }
+            if (id is null)
+            {
+                List<GioHang> cart1 = GetListCart();
+                if (Session["Cart"] is List<GioHang>)
+                {
+                    ViewBag.Cart = (List<GioHang>)Session["Cart"];
+                }
+                else
+                {
+                    ViewBag.Cart = new List<GioHang>();
+                }
+                return View();
+            }
+            List<GioHang> cart = GetListCart();
+            cart.RemoveAt((int)id);
+            Session["Cart"] = cart;
+            ViewBag.Cart = (List<GioHang>)Session["Cart"];
             return View();
+
+
         }
+
+
+        public ActionResult LogOut()
+        {
+            Session["username"] = null;
+            Session["admin"] = null;
+            return RedirectToAction("Login");
+        }
+
     }
 }

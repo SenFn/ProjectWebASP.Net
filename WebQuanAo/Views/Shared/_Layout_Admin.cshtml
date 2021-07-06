@@ -52,7 +52,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <!-- Offcanvas bridge -->
-            <a class="navbar-brand" href="#"><img src="../Content/Images/Icon/kisspng-logo-brand-retail-price-book-store-5b1ff6bb22f1a4.9079057215288214351431-removebg-preview.png" alt=""></a>
+            <a class="navbar-brand" href="@Url.Action("Index", "Home")"><img src="../Content/Images/Icon/kisspng-logo-brand-retail-price-book-store-5b1ff6bb22f1a4.9079057215288214351431-removebg-preview.png" alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -66,7 +66,7 @@
                             <li><a class="dropdown-item" href="#">Chào, User!</a></li>
                             <li><a class="dropdown-item" href="#">Đổi Mật Khẩu</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="@Url.Action("Login","Home")">Thoát</a></li>
+                            <li><a class="dropdown-item" onclick="logOut()">Thoát</a></li>
                         </ul>
                     </li>
             </div>
@@ -143,4 +143,10 @@
 
     @RenderBody();
 </body>
+
+<script>
+    function logOut() {
+        window.location.href = "@Url.Action("LogOut", "Home", new { area = "Admin" })";
+    }
+</script>   
 </html>

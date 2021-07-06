@@ -135,8 +135,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\account.cs" />
+    <Compile Include="Models\bodySave.cs" />
+    <Compile Include="Models\cardInfo.cs" />
+    <Compile Include="Models\cart.cs" />
     <Compile Include="Models\DBStore.cs" />
+    <Compile Include="Models\headerSave.cs" />
     <Compile Include="Models\product.cs" />
+    <Compile Include="Models\productInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

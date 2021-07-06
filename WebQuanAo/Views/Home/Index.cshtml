@@ -7,6 +7,8 @@
     List<product> BOY = product.Where(x => x.byHuman == "BOY").ToList();
     List<product> GIRL = product.Where(x => x.byHuman == "GIRL").ToList();
 
+    bodySave bS = ViewBag.bodySave;
+
     int menCount = MEN.Count / 4;
     int menCountLeft = MEN.Count % 4;
     if(menCountLeft != 0)
@@ -34,6 +36,7 @@
     {
         girlCount += 1;
     }
+
 }
 
 <div class="Container">
@@ -46,10 +49,10 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="../Content/Images/Images/slideshow_1.jpg" class="d-block w-100" alt="slideshow1">
+                <img src="@bS.b1" class="d-block w-100" alt="slideshow1">
             </div>
             <div class="carousel-item">
-                <img src="../Content/Images/Images/slideshow_2.jpg" class="d-block w-100" alt="slideshow2">
+                <img src="@bS.b2" class="d-block w-100" alt="slideshow2">
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -96,9 +99,9 @@
                                                     <a href="#">@MEN[a].name</a> <br>
                                                     <span class="price">@string.Format("{0:#,##0.00}", @MEN[a].price).Replace(".00", String.Empty) đ</span>
                                                 </p>
-                                                <div class="Addproduct">
+                                                @*<div class="Addproduct">
                                                     <a href="#"> Thêm Vào Giỏ </a>
-                                                </div>
+                                                </div>*@
                                             </div>
                                     </div>
                                 </div>
@@ -129,9 +132,9 @@
                                                         <a href="#">@MEN[a].name</a> <br>
                                                         <span class="price">@string.Format("{0:#,##0.00}", @MEN[i].price).Replace(".00", String.Empty) đ</span>
                                                     </p>
-                                                    <div class="Addproduct">
+                                                    @*<div class="Addproduct">
                                                         <a href="#"> Thêm Vào Giỏ </a>
-                                                    </div>
+                                                    </div>*@
                                                 </div>
                                         </div>
                                     </div>
@@ -159,9 +162,9 @@
                                                         <a href="#">@MEN[a].name</a> <br>
                                                         <span class="price">@string.Format("{0:#,##0.00}", @MEN[i].price).Replace(".00", String.Empty) đ</span>
                                                     </p>
-                                                    <div class="Addproduct">
+                                                    @*<div class="Addproduct">
                                                         <a href="#"> Thêm Vào Giỏ </a>
-                                                    </div>
+                                                    </div>*@
                                                 </div>
                                         </div>
                                     </div>
@@ -188,7 +191,7 @@
         </button>
     </div>
     <!-- Banner Ads -->
-    <a href="#"><img class="Ads mt-5 d-block w-100" src="http://mauweb.monamedia.net/bitis/wp-content/uploads/2018/03/slideshow_3.jpg" alt=""></a>
+    <a href="#"><img class="Ads mt-5 d-block w-100" src="@bS.b3" alt=""></a>
     <!-- End Shop Men's -->
     <!-- Shop Women's -->
     <div class="Title">
@@ -225,9 +228,9 @@
                                                     <a href="#">@WOMEN[a].name</a> <br>
                                                     <span class="price">@string.Format("{0:#,##0.00}", WOMEN[a].price).Replace(".00", String.Empty) đ</span>
                                                 </p>
-                                                <div class="Addproduct">
+                                                @*<div class="Addproduct">
                                                     <a href="#"> Thêm Vào Giỏ </a>
-                                                </div>
+                                                </div>*@
                                             </div>
                                     </div>
                                 </div>
@@ -258,9 +261,9 @@
                                                         <a href="#">@WOMEN[a].name</a> <br>
                                                         <span class="price">@string.Format("{0:#,##0.00}", WOMEN[i].price).Replace(".00", String.Empty) đ</span>
                                                     </p>
-                                                    <div class="Addproduct">
+                                                    @*<div class="Addproduct">
                                                         <a href="#"> Thêm Vào Giỏ </a>
-                                                    </div>
+                                                    </div>*@
                                                 </div>
                                         </div>
                                     </div>
@@ -288,9 +291,9 @@
                                                         <a href="#">@WOMEN[a].name</a> <br>
                                                         <span class="price">@string.Format("{0:#,##0.00}", WOMEN[i].price).Replace(".00", String.Empty) đ</span>
                                                     </p>
-                                                    <div class="Addproduct">
+                                                    @*<div class="Addproduct">
                                                         <a href="#"> Thêm Vào Giỏ </a>
-                                                    </div>
+                                                    </div>*@
                                                 </div>
                                         </div>
                                     </div>
@@ -311,7 +314,7 @@
         </button>
     </div> <!-- End Carousel Product -->
     <!-- Banner Ads -->
-    <a href="#"><img class="Ads mt-5 d-block w-100" src="http://mauweb.monamedia.net/bitis/wp-content/uploads/2018/03/slideshow_5.jpg" alt=""></a>
+    <a href="#"><img class="Ads mt-5 d-block w-100" src="@bS.b4" alt=""></a>
     <!-- End Shop Women's-->
     <!-- Shop Boy's -->
     <div class="Title">
@@ -348,9 +351,9 @@
                                                     <a href="#">@BOY[a].name</a> <br>
                                                     <span class="price">@string.Format("{0:#,##0.00}", BOY[a].price).Replace(".00", String.Empty) đ</span>
                                                 </p>
-                                                <div class="Addproduct">
+                                                @*<div class="Addproduct">
                                                     <a href="#"> Thêm Vào Giỏ </a>
-                                                </div>
+                                                </div>*@
                                             </div>
                                     </div>
                                 </div>
@@ -381,9 +384,9 @@
                                                         <a href="#">@BOY[a].name</a> <br>
                                                         <span class="price">@string.Format("{0:#,##0.00}", BOY[i].price).Replace(".00", String.Empty) đ</span>
                                                     </p>
-                                                    <div class="Addproduct">
+                                                    @*<div class="Addproduct">
                                                         <a href="#"> Thêm Vào Giỏ </a>
-                                                    </div>
+                                                    </div>*@
                                                 </div>
                                         </div>
                                     </div>
@@ -411,9 +414,9 @@
                                                         <a href="#">@BOY[a].name</a> <br>
                                                         <span class="price">@string.Format("{0:#,##0.00}", BOY[i].price).Replace(".00", String.Empty) đ</span>
                                                     </p>
-                                                    <div class="Addproduct">
+                                                    @*<div class="Addproduct">
                                                         <a href="#"> Thêm Vào Giỏ </a>
-                                                    </div>
+                                                    </div>*@
                                                 </div>
                                         </div>
                                     </div>
@@ -434,7 +437,7 @@
         </button>
     </div> <!-- End Carousel Product -->
     <!-- Banner Ads -->
-    <a href="#"><img class="Ads mt-5 d-block w-100" src="http://mauweb.monamedia.net/bitis/wp-content/uploads/2018/03/P3_1_Image-1.jpg" alt=""></a>
+    <a href="#"><img class="Ads mt-5 d-block w-100" src="@bS.b5" alt=""></a>
     <!-- End Shop Boy's-->
     <!-- Shop Girl's -->
     <div class="Title">
@@ -472,9 +475,9 @@
                                                     <a href="#">@GIRL[a].name</a> <br>
                                                     <span class="price">@string.Format("{0:#,##0.00}", GIRL[a].price).Replace(".00", String.Empty) đ</span>
                                                 </p>
-                                                <div class="Addproduct">
+                                                @*<div class="Addproduct">
                                                     <a href="#"> Thêm Vào Giỏ </a>
-                                                </div>
+                                                </div>*@
                                             </div>
                                     </div>
                                 </div>
@@ -505,9 +508,9 @@
                                                         <a href="#">@GIRL[a].name</a> <br>
                                                         <span class="price">@string.Format("{0:#,##0.00}", GIRL[i].price).Replace(".00", String.Empty) đ</span>
                                                     </p>
-                                                    <div class="Addproduct">
+                                                    @*<div class="Addproduct">
                                                         <a href="#"> Thêm Vào Giỏ </a>
-                                                    </div>
+                                                    </div>*@
                                                 </div>
                                         </div>
                                     </div>
@@ -535,9 +538,9 @@
                                                         <a href="#">@GIRL[a].name</a> <br>
                                                         <span class="price">@string.Format("{0:#,##0.00}", GIRL[i].price).Replace(".00", String.Empty) đ</span>
                                                     </p>
-                                                    <div class="Addproduct">
+                                                    @*<div class="Addproduct">
                                                         <a href="#"> Thêm Vào Giỏ </a>
-                                                    </div>
+                                                    </div>*@
                                                 </div>
                                         </div>
                                     </div>

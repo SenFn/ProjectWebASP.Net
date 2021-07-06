@@ -9,6 +9,13 @@ namespace WebQuanAo.Models
     [Table("product")]
     public partial class product
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public product()
+        {
+            cardInfoes = new HashSet<cardInfo>();
+            productInfoes = new HashSet<productInfo>();
+        }
+
         public int id { get; set; }
 
         [Required]
@@ -28,5 +35,11 @@ namespace WebQuanAo.Models
 
         [StringLength(50)]
         public string byHuman { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<cardInfo> cardInfoes { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<productInfo> productInfoes { get; set; }
     }
 }

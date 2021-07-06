@@ -37,18 +37,22 @@
 
 
                         </a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                @if (ViewBag.userName != "")
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            @if (ViewBag.userName != "")
+                            {
+                                if (ViewBag.admin == true)
                                 {
-                                    <li><a class="dropdown-item" href="@Url.Action("Login","Home")">Đăng Xuất</a></li>
+                                    <li><a class="dropdown-item" onclick="admin()">Admin</a></li>
                                 }
-                                else
-                                {
-                                    <li><a class="dropdown-item" href="@Url.Action("Login","Home")">Đăng Nhập</a></li>
-                                    <li><a class="dropdown-item" href="@Url.Action("SignUp","Home")">Đăng Ký</a></li>
-                                }
+                                <li><a class="dropdown-item" onclick="logOut()">Đăng Xuất</a></li>
+                            }
+                            else
+                            {
+                                <li><a class="dropdown-item" href="@Url.Action("Login","Home")">Đăng Nhập</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("SignUp","Home")">Đăng Ký</a></li>
+                            }
 
-                            </ul>
+                        </ul>
                             </li>
                         </ul>
             </div>
@@ -75,4 +79,14 @@
         </div>
     </div>
 </body>
+
+<script>
+    function logOut(){
+        window.location.href = "@Url.Action("LogOut")";
+    }
+
+    function admin(){
+        window.location.href = "@Url.Action("Index", "Admin")";
+    }
+</script>
 </html>

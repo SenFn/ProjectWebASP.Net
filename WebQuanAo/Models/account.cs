@@ -9,10 +9,12 @@ namespace WebQuanAo.Models
     [Table("account")]
     public partial class account
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+
         public account()
         {
+            
         }
-
         public account(string username, string password, string email, string phone)
         {
             this.username = username;
@@ -21,31 +23,30 @@ namespace WebQuanAo.Models
             this.phone = phone;
         }
 
-        [Key]
-        [Column(Order = 0)]
+        public int id { get; set; }
+
+        [Required]
         [StringLength(50)]
         public string username { get; set; }
 
-        [Key]
-        [Column(Order = 1)]
+        [Required]
         [StringLength(50)]
         public string password { get; set; }
 
-        [Key]
-        [Column(Order = 2)]
+        [Required]
         [StringLength(50)]
         public string email { get; set; }
 
-        [Key]
-        [Column(Order = 3)]
+        [Required]
         [StringLength(10)]
         public string phone { get; set; }
 
         [StringLength(100)]
         public string location { get; set; }
 
-        [Key]
-        [Column(Order = 4)]
-        public bool admin { get; set; }
+        public bool? admin { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<cart> carts { get; set; }
     }
 }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using WebQuanAo.Models;
 
 namespace WebQuanAo.Controllers
 {
@@ -12,92 +11,19 @@ namespace WebQuanAo.Controllers
         // GET: Admin
         public ActionResult Index()
         {
-
-            if (!string.IsNullOrEmpty(Session["username"] as string))
-            {
-                String userName = Session["username"].ToString();
-                using (DBStore dbModel = new DBStore())
-                {
-                    account names = dbModel.accounts.FirstOrDefault(x => x.username == userName);
-                    if(names.admin== true)
-                    {
-                        return View();
-                    }                    
-                }
-                
-            }
-
-            return RedirectToAction("Index", "Home", new { area = "Admin" });
+            return View();
         }
         public ActionResult Header()
         {
-            if (!string.IsNullOrEmpty(Session["username"] as string))
-            {
-                return View();
-
-            }
-            return RedirectToAction("Index", "Home", new { area = "Admin" });
-           
+            return View();
         }
-        public ActionResult Body(string b1 = "", string b2 = "", string b3 = "", string b4 = "", string b5 = "")
+        public ActionResult Body()
         {
-            if (!string.IsNullOrEmpty(Session["username"] as string))
-            {
-                if (b1 == "" ||
-                    b2 == "" ||
-                    b3 == "" ||
-                    b4 == "" ||
-                    b5 == "")
-                {
-                    using (DBStore dbModel = new DBStore())
-                    {
-                        bodySave bS = dbModel.bodySaves.FirstOrDefault();
-                        ViewBag.bodySave = bS;
-                    }
-                    return View();
-                }
-                else
-                {
-                    using (DBStore dbModel = new DBStore())
-                    {
-                        bodySave bS = dbModel.bodySaves.FirstOrDefault();
-                        dbModel.bodySaves.Remove(bS);
-                        dbModel.SaveChanges();
-                        bS.b1 = b1;
-                        bS.b2 = b2;
-                        bS.b3 = b3;
-                        bS.b4 = b4;
-                        bS.b5 = b5;
-                        dbModel.bodySaves.Add(bS);
-                        dbModel.SaveChanges();
-                        ViewBag.bodySave = bS;
-                    }
-                    return View();
-                }
-
-                  
-
-            }
-            return RedirectToAction("Index", "Home", new { area = "Admin" });
+            return View();
         }
-
         public ActionResult ProductInfo()
         {
-
-            if (!string.IsNullOrEmpty(Session["username"] as string))
-            {
-                using (DBStore dbModel = new DBStore())
-                {
-                    List<product> product = dbModel.products.ToList();
-                    List<productInfo> productInfo = dbModel.productInfoes.ToList();
-                    ViewBag.productInfo = productInfo;
-                    ViewBag.product = product;
-                }
-                return View();
-
-            }
-            return RedirectToAction("Index", "Home", new { area = "Admin" });
-            
+            return View();
         }
         public ActionResult EditProduct()
         {
@@ -110,10 +36,10 @@ namespace WebQuanAo.Controllers
             return View();
         }
        
-        //public ActionResult Body()
-        //{
-        //    return View();
-        //}        
+        public ActionResult Body()
+        {
+            return View();
+        }        
 
         //Đây Là Form Hóa Đơn Bán
         public ActionResult Bill()

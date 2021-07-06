@@ -3,20 +3,12 @@
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
-
 body{
     background: white;
 }
 
 :root{
     --HeightNav: 80px;
-}
-/* Navigation */
-.navbar{
-    height: var(--HeightNav);
-}
-.navbar-brand img{
-    width: 200px;
 }
 
 /* Container */
@@ -36,20 +28,25 @@ body{
 .size-name,.number{
     color: #707070;
 }
-.buy{
+.buy {
     width: 300px;
     text-align: center;
     border: 3px solid black;
-    font-weight: 500;
-    font-size: 20px;
     border-radius: .5rem;
-
 }
-.buy:hover{
-    cursor: pointer;
-    background: black;
-    color: white;
-}
+    .buy a {
+        text-decoration: none !important;
+        color: black !important;
+        font-weight: 500;
+        font-size: 20px;
+    }
+    .buy:hover {
+        cursor: pointer;
+        background: black !important;
+    }
+    .buy a:hover {
+        color: white !important;
+    }
 .image{
     margin-left: 22%;
 }
@@ -62,11 +59,12 @@ body{
     .info span{
         font-size: 25px;
     }
-    .price{
-        font-size: 20px;
-        color: red;
-        font-weight: 700;
-    }
+.price {
+    font-size: 20px !important;
+    color: red !important;
+    font-weight: 700 !important;
+    padding-top:5% !important;
+}
     .size{
         margin-left: 2%;
     }
@@ -93,20 +91,4 @@ body{
         width: 80px;
         height: 25px;
         text-align: center;
-    }
-/* Footer */
-.footer{
-    background: rgba(0, 0, 0, 0.884);
-    color: white;
-    height: 200px;
-}
-    .footer h5{
-        margin-left: 10%;
-    }
-    .contact-social{
-        margin-left: 10%;
-    }
-    .contact-social a{
-        text-decoration: none;
-        color: white;
     }

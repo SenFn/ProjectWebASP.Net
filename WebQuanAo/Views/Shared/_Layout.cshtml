@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,8 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../Content/style-Home.css">
+    <link rel="stylesheet" href="../Content/style-Home1.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
@@ -26,29 +24,16 @@
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
                 <ul class="navbar-nav ms-5 mb-2 mb-lg-0">
+                    <li class="nav-item me-2"> <!-- Cart Icon -->
+                        <a href="@Url.Action("Cart","Home")"><img class="mt-2" src="../Content/Images/Icon/icons8_delivery_handcart_24px.png" alt="Cart Icon"></a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-
                             <img src="../Content/Images/Icon/icons8_account_25px.png" alt="Account_icon">
-
-
-
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            @if (ViewBag.userName != "")
-                            {
-                                if (ViewBag.admin == true)
-                                {
-                                    <li><a class="dropdown-item" onclick="admin()">Admin</a></li>
-                                }
-                                <li><a class="dropdown-item" onclick="logOut()">Đăng Xuất</a></li>
-                            }
-                            else
-                            {
-                                <li><a class="dropdown-item" href="@Url.Action("Login","Home")">Đăng Nhập</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("SignUp","Home")">Đăng Ký</a></li>
-                            }
-
+                            <li><a class="dropdown-item" href="@Url.Action("Login","Home")">Đăng Nhập</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("SignUp","Home")">Đăng Ký</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -56,65 +41,30 @@
         </div>
     </nav> <!-- End Navigation -->
 
-
-
     <div class="Container">
         <!-- Container -->
         @RenderBody();
 
-        <div class="footer d-block w-100 mt-3">
-            <!-- Footer -->
-            <h5 class="pt-3 pb-1">Contact Us:</h5>
-            <div class="contact-social">
-                <div class="fb pb-1">
-                    <a href="https://www.facebook.com/Sen.HoangNhan"><img src="../Content/Images/Icon/icons8_facebook_40px.png" alt="facebook-icon">/Sen.HoangNhan</a>
-                </div>
-                <div class="github pb-1">
-                    <a href="https://github.com/nameishuy"><img src="../Content/Images/Icon/icons8_github_40px.png" alt="github-icon">/nameishuy</a>
-                </div>
-                <div class="instagram pb-1">
-                    <a href="https://www.instagram.com/h21.25/"><img src="../Content/Images/Icon/icons8_instagram_40px.png" alt="instagram-icon">/h21.25</a>
-                </div>
+        <div class="footer">
+            <div class="socialmedia float-start">
+                <p class="tit">Contact Us:</p>
+                <a href="#"><img src="../Content/Images/Icon/icons8_facebook_40px.png" alt="Facebook Icon">/Sen.HoangNhan</a> <br>
+                <a href="#"><img src="../Content/Images/Icon/icons8_github_40px.png" alt="">/nameishuy</a> <br>
+                <a href="#"><img src="../Content/Images/Icon/icons8_instagram_40px.png" alt="">/h21.25</a>
             </div>
+            <div class="policy float-start">
+                <p class="tit">Chính Sách:</p>
+                <a href="#">Chính Sách Đổi Hàng</a> <br>
+                <a href="#">Chính Sách Bảo Hành</a> <br>
+                <a href="#">Chính Sách Hoàn Tiền</a>
+            </div>
+            <div class="policy float-start">
+                <p class="tit">Hotline:</p>
+                <p style="color: #ff723b;font-size: 16px;font-weight: 600;">0974264707</p>
+                <p class="emailcontact">nameishuy@gmail.com</p>
+            </div>
+            <iframe class="mt-5 me-5 float-end" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15673.682645064993!2d106.785103!3d10.855575!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb6cf10bb7d719327!2sHUTECH%20University%20-%20E%20Campus%20(SHTP)!5e0!3m2!1svi!2sus!4v1625553645545!5m2!1svi!2sus" width="30%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </div>
 </body>
-
-<!-- Messenger Plugin chat Code -->
-<div id="fb-root"></div>
-
-<!-- Your Plugin chat code -->
-<div id="fb-customer-chat" class="fb-customerchat">
-</div>
-
-<script>
-    var chatbox = document.getElementById('fb-customer-chat');
-    chatbox.setAttribute("page_id", "103304748693248");
-    chatbox.setAttribute("attribution", "page_inbox");
-
-    window.fbAsyncInit = function () {
-        FB.init({
-            xfbml: true,
-            version: 'v11.0'
-        });
-    };
-
-    (function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
-
-<script>
-    function logOut(){
-        window.location.href = "@Url.Action("LogOut")";
-    }
-
-    function admin(){
-        window.location.href = "@Url.Action("Index", "Admin")";
-    }
-</script>
 </html>

@@ -1,104 +1,35 @@
-﻿@using WebQuanAo.Models;
+﻿
 @{
     ViewBag.Title = "Product";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    product product = ViewBag.product;
-    productInfo infoS = (productInfo)ViewBag.infoS;
-    productInfo infoM = (productInfo)ViewBag.infoM;
-    productInfo infoL = (productInfo)ViewBag.infoL;
-    decimal currentPrice = 0;
-    string currentSize = "S";
-    int currentCount = 1;
 }
 <link rel="stylesheet" href="../Content/style-Product.css">
 
 
 <div class="productName d-block pt-1 mt-4">Product</div>
 <div class="productInfo w-100 row">
-    <div class="image col-xl-2 col-lg-3 col-md-4 col-sm-3 col-2">
-        <img class="mt-3" src="@product.srcImage" alt="Product Image">
-
+    <div class="image col-md-2">
+        <img class="mt-3" src="../Content/Images/Images/vapor-max-air-training-duffel-bag-yJwoN91-300x300.jpg" alt="">
     </div>
-    <div class="info mt-3 col-md-3 col-sm-3 col-2">
-        <span>@product.name</span>
-        <p id="countSize"></p>
-        <p id="priceP" class="price">@string.Format("{0:#,##0.00}", @product.price).Replace(".00", String.Empty) đ</p>
+    <div class="info mt-3 col-md-3">
+        <span>NIKE VAPOR MAX AIR (MEDIUM)</span>
+        <p class="price">2,249,000đ</p>
         <div class="row">
-            <div class="col-md-6 col-sm-6 col-6">
-                <p class="size-name">Size:</p>
+            <div class="col-md-6">
+                <p class="size-name">Kích Cỡ:</p>
                 <div class="size row">
-                    <a class="col-md-1 col-sm-2" onclick="sizeOnClick('S')">S</a>
-                    <a class="col-md-1 ms-1 col-sm-2" onclick="sizeOnClick('M')">M</a>
-                    <a class="col-md-1 ms-1 col-sm-2" onclick="sizeOnClick('L')">L</a>
+                    <a class="col-md-1" href="#">S</a>
+                    <a class="col-md-1 ms-1" href="#">M</a>
+                    <a class="col-md-1 ms-1" href="#">L</a>
                 </div>
             </div>
-            <div class="col-md-5 col-sm-6 col-5">
+            <div class="col-md-5">
                 <p class="number">Số Lượng:</p>
-                <input type="number" name="num-product" id="num_product" min="1" placeholder="1" value="1">
+                <input type="number" name="num-product" id="num-product" placeholder="0">
             </div>
         </div>
-        <div class="buy mt-5"><a id="them" href="#" >Mua Ngay</a></div>
-        <div class="buy mt-5"><a id="them1" href="#" >Thêm giỏ</a></div>
-
+        <div class="buy mt-3"><a class="d-block" href="#">Mua Ngay</a></div>
+        <div class="buy mt-3"><a class="d-block" href="#">Thêm Giỏ Hàng</a></div>
     </div>
 </div>
 
-<script>
-    function sizeOnClick(id) {
-        switch (id) {
-            case "S":
-                if (@infoS.count != 0) {
-                    document.getElementById("countSize").innerHTML = "Size S: " + @infoS.count;
-                    document.getElementById("priceP").innerHTML = `@string.Format("{0:#,##0.00}", @infoS.price).Replace(".00", String.Empty) đ`;
-
-                    @{
-                        currentPrice = infoS.price;
-                        currentSize = infoS.size;
-                    }
-                    document.getElementById("them1").setAttribute("href", "@Url.Action("AddCard")?id=@product.id&name=@product.name&url=@HttpContext.Current.Request.Url.AbsoluteUri&size=@currentSize&price=@currentPrice&count=" + (document.getElementById("num_product").value == "" ? 1 : document.getElementById("num_product").value));
-                    break;
-                } else {
-                    document.getElementById("countSize").innerHTML = "Size S: Hết hàng";
-                    document.getElementById("priceP").innerHTML = `@string.Format("{0:#,##0.00}", @product.price).Replace(".00", String.Empty) đ`;
-                    break;
-                }
-
-            case "M":
-                if (@infoM.count != 0) {
-                    document.getElementById("countSize").innerHTML = "Size M: " + @infoM.count;
-                    document.getElementById("priceP").innerHTML = `@string.Format("{0:#,##0.00}", @infoM.price).Replace(".00", String.Empty) đ`;
-
-                     @{
-                        currentSize = infoM.size;
-                        currentPrice = infoM.price;
-                     }
-                    document.getElementById("them1").setAttribute("href", "@Url.Action("AddCard")?id=@product.id&name=@product.name&url=@HttpContext.Current.Request.Url.AbsoluteUri&size=@currentSize&price=@currentPrice&count=" + (document.getElementById("num_product").value == "" ? 1 : document.getElementById("num_product").value));
-
-                    break;
-                } else {
-                    document.getElementById("countSize").innerHTML = "Size M: Hết hàng";
-                    document.getElementById("priceP").innerHTML = `@string.Format("{0:#,##0.00}", @product.price).Replace(".00", String.Empty) đ`;
-                    break;
-                }
-
-            case "L":
-                if (@infoL.count != 0) {
-                    document.getElementById("countSize").innerHTML = "Size L: " + @infoL.count;
-                    document.getElementById("priceP").innerHTML = `@string.Format("{0:#,##0.00}", @infoL.price).Replace(".00", String.Empty) đ`;
-                    @{
-                        currentPrice = infoL.price;
-                        currentSize = infoL.size;
-                    }
-                    document.getElementById("them1").setAttribute("href", "@Url.Action("AddCard")?id=@product.id&name=@product.name&url=@HttpContext.Current.Request.Url.AbsoluteUri&size=@currentSize&price=@currentPrice&count=" + (document.getElementById("num_product").value == "" ? 1 : document.getElementById("num_product").value));
-
-                    break;
-                } else {
-                    document.getElementById("countSize").innerHTML = "Size L: Hết hàng";
-                    document.getElementById("priceP").innerHTML = `@string.Format("{0:#,##0.00}", @product.price).Replace(".00", String.Empty) đ`;
-                    break;
-                }
-        }
-    }
-
-
-</script>

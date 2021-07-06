@@ -86,6 +86,7 @@ body{
     }
     form{
         margin: 30px 30px 30px 50px;
+        width: 400px;
         height: 450px;
         border-radius: 1rem;
         border: 2px solid black;

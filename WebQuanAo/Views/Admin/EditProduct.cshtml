@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "EditProduct";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+<link rel="stylesheet" href="../Content/style-EditProduct.css">
+
+<div class="Content">
+    <!-- Đây Là Chỗ Để Render Body Khi Quăng Vào MVC -->
+    <!-- Nó Sẽ Thay Đổi Dựa Theo Người Dùng Muốn Click Coi Gì -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="Home col-lg-2 col-md-3 col-sm-5 col-10 fw-bold my-2 mx-3">Header</div>
+        </div>
+        <form action="#">
+            <h2>Edit Product</h2>
+            <!-------------------------------->
+            <label class="picturelbl" for="picture">Ảnh: </label> <input type="text" name="text-logo" id="text" class="text-pic"><br>
+            <!-------------------------------->
+            <label for="nameProduct">Tên Sản Phẩm: </label> <input type="text" name="text-name" id="text" class="text-account"><br>
+            <!-------------------------------->
+            <label class="sizelbl" for="cartIcon">Size: </label> <input type="text" name="text-cart" id="text" class="text-size"><br>
+            <!-------------------------------->
+            <label class="numberlbl" for="number">Số Lượng: </label> <input type="number" name="text-cart" id="text" class="text-number"><br>
+            <!-------------------------------->
+            <label class="pricelbl" for="cartIcon">Giá: </label> <input type="text" name="text-price" id="text" class="text-size"><br>
+            <!-------------------------------->
+            <input type="submit" value="SEND" id="send-btn" class="button mt-2">
+        </form>
+    </div>
+</div>
+

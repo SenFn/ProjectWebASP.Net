@@ -20,7 +20,7 @@
     <div class="info mt-3 col-md-3 col-sm-3 col-2">
         <span>@product.name</span>
         <p id="countSize"></p>
-        <p id="priceP" class="price">@string.Format("{0:#,##0.00}", @product.price).Replace(",00", String.Empty) đ</p>
+        <p id="priceP" class="price">@string.Format("{0:#,##0.00}", @product.price).Replace(".00", String.Empty) đ</p>
         <div class="row">
             <div class="col-md-6 col-sm-6 col-6">
                 <p class="size-name">Size:</p>
@@ -47,47 +47,47 @@
             case "S":
                 if (@infoS.count != 0) {
                     document.getElementById("countSize").innerHTML = "Size S: " + @infoS.count;
-                    document.getElementById("priceP").innerHTML = `@string.Format("{0:#,##0.00}", @infoS.price).Replace(",00", String.Empty) đ`;
+                    document.getElementById("priceP").innerHTML = `@string.Format("{0:#,##0.00}", @infoS.price).Replace(".00", String.Empty) đ`;
 
                     @{
                         currentPrice = infoS.price;
                         currentSize = infoS.size;
                     }
-                    document.getElementById("them1").setAttribute("href", "@Url.Action("AddCard")?id=@product.id&name=@product.name&url=@HttpContext.Current.Request.Url.AbsoluteUri&size=@currentSize&price=@string.Format("{0:0.00}", @infoM.price).Replace(",00", String.Empty)&count=" + (document.getElementById("num_product").value == "" ? 1 : document.getElementById("num_product").value));
+                    document.getElementById("them1").setAttribute("href", "@Url.Action("AddCard")?id=@product.id&name=@product.name&url=@HttpContext.Current.Request.Url.AbsoluteUri&size=@currentSize&price=@currentPrice&count=" + (document.getElementById("num_product").value == "" ? 1 : document.getElementById("num_product").value));
                     break;
                 } else {
                     document.getElementById("countSize").innerHTML = "Size S: Hết hàng";
-                    document.getElementById("priceP").innerHTML = `@string.Format("{0:#,##0.00}", @product.price).Replace(",00", String.Empty) đ`;
+                    document.getElementById("priceP").innerHTML = `@string.Format("{0:#,##0.00}", @product.price).Replace(".00", String.Empty) đ`;
                     break;
                 }
 
             case "M":
                 if (@infoM.count != 0) {
                     document.getElementById("countSize").innerHTML = "Size M: " + @infoM.count;
-                    document.getElementById("priceP").innerHTML = `@string.Format("{0:#,##0.00}", @infoM.price).Replace(",00", String.Empty) đ`;
+                    document.getElementById("priceP").innerHTML = `@string.Format("{0:#,##0.00}", @infoM.price).Replace(".00", String.Empty) đ`;
 
                      @{
                         currentSize = infoM.size;
                         currentPrice = infoM.price;
                      }
-                    document.getElementById("them1").setAttribute("href", "@Url.Action("AddCard")?id=@product.id&name=@product.name&url=@HttpContext.Current.Request.Url.AbsoluteUri&size=@currentSize&price=@string.Format("{0:0.00}", @infoM.price).Replace(",00", String.Empty)&count=" + (document.getElementById("num_product").value == "" ? 1 : document.getElementById("num_product").value));
+                    document.getElementById("them1").setAttribute("href", "@Url.Action("AddCard")?id=@product.id&name=@product.name&url=@HttpContext.Current.Request.Url.AbsoluteUri&size=@currentSize&price=@currentPrice&count=" + (document.getElementById("num_product").value == "" ? 1 : document.getElementById("num_product").value));
 
                     break;
                 } else {
                     document.getElementById("countSize").innerHTML = "Size M: Hết hàng";
-                    document.getElementById("priceP").innerHTML = `@string.Format("{0:#,##0.00}", @product.price).Replace(",00", String.Empty) đ`;
+                    document.getElementById("priceP").innerHTML = `@string.Format("{0:#,##0.00}", @product.price).Replace(".00", String.Empty) đ`;
                     break;
                 }
 
             case "L":
                 if (@infoL.count != 0) {
                     document.getElementById("countSize").innerHTML = "Size L: " + @infoL.count;
-                    document.getElementById("priceP").innerHTML = `@string.Format("{0:#,##0.00}", @infoL.price).Replace(",00", String.Empty) đ`;
+                    document.getElementById("priceP").innerHTML = `@string.Format("{0:#,##0.00}", @infoL.price).Replace(".00", String.Empty) đ`;
                     @{
                         currentPrice = infoL.price;
                         currentSize = infoL.size;
                     }
-                    document.getElementById("them1").setAttribute("href", "@Url.Action("AddCard")?id=@product.id&name=@product.name&url=@HttpContext.Current.Request.Url.AbsoluteUri&size=@currentSize&price=@string.Format("{0:0.00}", @infoM.price).Replace(",00", String.Empty)&count=" + (document.getElementById("num_product").value == "" ? 1 : document.getElementById("num_product").value));
+                    document.getElementById("them1").setAttribute("href", "@Url.Action("AddCard")?id=@product.id&name=@product.name&url=@HttpContext.Current.Request.Url.AbsoluteUri&size=@currentSize&price=@currentPrice&count=" + (document.getElementById("num_product").value == "" ? 1 : document.getElementById("num_product").value));
 
                     break;
                 } else {

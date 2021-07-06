@@ -214,7 +214,6 @@
     <Content Include="Views\Shared\_Layout_Admin.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\Header.cshtml" />
-    <Content Include="Views\Admin\Body.cshtml" />
     <Content Include="Views\Admin\ProductInfo.cshtml" />
     <Content Include="Views\Admin\EditProduct.cshtml" />
     <Content Include="Views\Home\Cart.cshtml" />

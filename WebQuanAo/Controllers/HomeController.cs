@@ -182,9 +182,6 @@ namespace WebQuanAo.Controllers
             }
             return View();
         }
-<<<<<<< HEAD
-
-
 
         public ActionResult Cart(int? id)
         {
@@ -222,12 +219,9 @@ namespace WebQuanAo.Controllers
             Session["admin"] = null;
             return RedirectToAction("Login");
         }
-
-=======
         public ActionResult Cart()
         {
             return View();
         }
->>>>>>> NoConnectDB
     }
 }

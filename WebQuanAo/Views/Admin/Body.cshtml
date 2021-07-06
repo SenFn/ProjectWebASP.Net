@@ -1,15 +1,8 @@
-<<<<<<< HEAD
 ﻿@using WebQuanAo.Models; 
 @{
     ViewBag.Title = "Body";
     Layout = "~/Views/Shared/_Layout_Admin.cshtml";
     bodySave bS = ViewBag.bodySave;
-=======
-﻿
-@{
-    ViewBag.Title = "Body";
-    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
->>>>>>> NoConnectDB
 }
 <link rel="stylesheet" href="../Content/style-BodyForm.css">
 
@@ -23,7 +16,6 @@
         <form action="#">
             <h2>Change Body</h2>
             <!-------------------------------->
-<<<<<<< HEAD
             <label class="banner" for="banner1">Banner 1: </label> <input type="text" name="b1" id="text1" class="text-banner" value="@bS.b1"><br>
             <!-------------------------------->
             <label class="banner" for="banner2">Banner 2: </label> <input type="text" name="b2" id="text2" class="text-banner" value="@bS.b2"><br>
@@ -39,25 +31,10 @@
             </div>
 
             <input value="SEND" type="submit" class="button mt-2" href="#" id="save" onclick="save()">
-
-=======
-            <label class="banner" for="banner1">Banner 1: </label> <input type="text" name="text-banner1" id="text" class="text-banner"><br>
-            <!-------------------------------->
-            <label class="banner" for="banner2">Banner 2: </label> <input type="text" name="text-banner2" id="text" class="text-banner"><br>
-            <!-------------------------------->
-            <label class="banner" for="banner3">Banner 3: </label> <input type="text" name="text-banner3" id="text" class="text-banner"><br>
-            <!-------------------------------->
-            <label class="banner" for="banner4">Banner 4: </label> <input type="text" name="text-banner4" id="text" class="text-banner"><br>
-            <!-------------------------------->
-            <label class="banner" for="banner5">Banner 5: </label> <input type="text" name="text-banner5" id="text" class="text-banner"><br>
-            <!-------------------------------->
-            <input type="submit" value="SEND" id="send-btn" class="button mt-2">
->>>>>>> NoConnectDB
         </form>
     </div>
 </div>
 
-<<<<<<< HEAD
 <script>
     function save() {
         var b1 = document.getElementById("text1").value;
@@ -78,6 +55,3 @@
         }
     }
 </script>
-
-=======
->>>>>>> NoConnectDB

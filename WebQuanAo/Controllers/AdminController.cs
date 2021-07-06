@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-<<<<<<< HEAD
 using WebQuanAo.Models;
-=======
->>>>>>> NoConnectDB
 
 namespace WebQuanAo.Controllers
 {
@@ -15,7 +12,7 @@ namespace WebQuanAo.Controllers
         // GET: Admin
         public ActionResult Index()
         {
-<<<<<<< HEAD
+
             if (!string.IsNullOrEmpty(Session["username"] as string))
             {
                 String userName = Session["username"].ToString();
@@ -109,25 +106,14 @@ namespace WebQuanAo.Controllers
                 return View();
             }
             return RedirectToAction("Index", "Home", new { area = "Admin" });
-=======
+
             return View();
         }
-        public ActionResult Header()
-        {
-            return View();
-        }
+       
         public ActionResult Body()
         {
             return View();
-        }
-        public ActionResult ProductInfo()
-        {
-            return View();
-        }
-        public ActionResult EditProduct()
-        {
-            return View();
-        }
+        }        
 
         //Đây Là Form Hóa Đơn Bán
         public ActionResult Bill()
@@ -145,7 +131,6 @@ namespace WebQuanAo.Controllers
         public ActionResult ListAccount()
         {
             return View();
->>>>>>> NoConnectDB
         }
     }
 }

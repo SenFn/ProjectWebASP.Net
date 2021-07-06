@@ -174,7 +174,7 @@
     <Content Include="Content\style-Cart.css" />
     <Content Include="Content\style-EditProduct.css" />
     <Content Include="Content\style-HeaderForm.css" />
-    <Content Include="Content\style-Home.css" />
+    <Content Include="Content\style-Home1.css" />
     <Content Include="Content\style-ListAccount.css" />
     <Content Include="Content\style-Login.css" />
     <Content Include="Content\style-Product.css" />

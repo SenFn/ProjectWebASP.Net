@@ -120,6 +120,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\GioHang.cs" />
+=======
+>>>>>>> NoConnectDB
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -151,8 +154,11 @@
     <Content Include="Content\Images\Images\slideshow_2.jpg" />
     <Content Include="Content\Images\Images\vapor-max-air-training-duffel-bag-yJwoN91-300x300.jpg" />
     <Content Include="Content\style-Admin.css" />
+<<<<<<< HEAD
+=======
     <Content Include="Content\style-Bill.css" />
     <Content Include="Content\style-BillInfo.css" />
+>>>>>>> NoConnectDB
     <Content Include="Content\style-BodyForm.css" />
     <Content Include="Content\style-Cart.css" />
     <Content Include="Content\style-EditProduct.css" />
@@ -202,9 +208,17 @@
     <Content Include="Views\Admin\EditProduct.cshtml" />
     <Content Include="Views\Home\Cart.cshtml" />
     <Content Include="Views\Home\Product.cshtml" />
+    <Content Include="Views\Shared\_Layout_Admin.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Header.cshtml" />
+    <Content Include="Views\Admin\Body.cshtml" />
+    <Content Include="Views\Admin\ProductInfo.cshtml" />
+    <Content Include="Views\Admin\EditProduct.cshtml" />
+    <Content Include="Views\Home\Cart.cshtml" />
     <Content Include="Views\Admin\Bill.cshtml" />
     <Content Include="Views\Admin\BillInfo.cshtml" />
     <Content Include="Views\Admin\ListAccount.cshtml" />
+>>>>>>> NoConnectDB
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

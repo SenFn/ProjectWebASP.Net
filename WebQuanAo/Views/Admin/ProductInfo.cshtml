@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 ﻿@using WebQuanAo.Models;
 @{
     ViewBag.Title = "ProductInfo";
     Layout = "~/Views/Shared/_Layout_Admin.cshtml";
     List<productInfo> productInfo = ViewBag.productInfo;
     List<product> product = ViewBag.product;
+=======
+﻿
+@{
+    ViewBag.Title = "ProductInfo";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+>>>>>>> NoConnectDB
 }
 <link rel="stylesheet" href="../Content/style-ProductForm.css">
 
@@ -27,6 +34,7 @@
                 </tr>
             </thead>
             <tbody>
+<<<<<<< HEAD
                 @foreach (productInfo i in @productInfo)
                 {
                     <tr>
@@ -43,6 +51,20 @@
                     </tr>
                 }
 
+=======
+                <tr>
+                    <th scope="row">1</th>
+                    <td><img class="image" src="../Content/Images/Images/vapor-max-air-training-duffel-bag-yJwoN91-300x300.jpg" alt=""></td>
+                    <td>Vapor Max Air Trainning Duffel Bag</td>
+                    <td>M</td>
+                    <td>40</td>
+                    <td>2,500,000đ</td>
+                    <td>
+                        <a href="@Url.Action("EditProduct","Admin")">Chỉnh Sửa</a>
+                        <a class="ml-1" href="#">Xóa</a>
+                    </td>
+                </tr>
+>>>>>>> NoConnectDB
             </tbody>
         </table>
     </div>

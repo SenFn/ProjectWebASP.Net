@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "BillInfo";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+<link rel="stylesheet" href="../Content/style-BillInfo.css">
+<div class="Content">
+    <!-- Đây Là Chỗ Để Render Body Khi Quăng Vào MVC -->
+    <!-- Nó Sẽ Thay Đổi Dựa Theo Người Dùng Muốn Click Coi Gì -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="Home col-lg-2 col-md-3 col-sm-5 col-10 fw-bold my-2 mx-3">Chi Tiết Hóa Đơn</div>
+        </div>
+        <table class="table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Ảnh</th>
+                    <th scope="col">Tên Sản Phẩm</th>
+                    <th scope="col">Size</th>
+                    <th scope="col">Số Lượng</th>
+                    <th scope="col">Giá</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td><img class="image" src="../Content/Images/Images/vapor-max-air-training-duffel-bag-yJwoN91-300x300.jpg" alt=""></td>
+                    <td>Vapor Max Air Trainning Duffel Bag</td>
+                    <td>M</td>
+                    <td>40</td>
+                    <td>2,500,000đ</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

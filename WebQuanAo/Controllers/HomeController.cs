@@ -182,6 +182,7 @@ namespace WebQuanAo.Controllers
             }
             return View();
         }
+<<<<<<< HEAD
 
 
 
@@ -222,5 +223,11 @@ namespace WebQuanAo.Controllers
             return RedirectToAction("Login");
         }
 
+=======
+        public ActionResult Cart()
+        {
+            return View();
+        }
+>>>>>>> NoConnectDB
     }
 }

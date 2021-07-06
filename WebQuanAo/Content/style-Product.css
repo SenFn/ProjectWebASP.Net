@@ -36,6 +36,7 @@ body{
 .size-name,.number{
     color: #707070;
 }
+<<<<<<< HEAD
 
 
 
@@ -58,6 +59,27 @@ body{
     text-decoration: none !important;
 }
 
+=======
+.buy {
+    width: 300px;
+    text-align: center;
+    border: 3px solid black;
+    border-radius: .5rem;
+}
+    .buy a {
+        text-decoration: none !important;
+        color: black !important;
+        font-weight: 500;
+        font-size: 20px;
+    }
+    .buy:hover {
+        cursor: pointer;
+        background: black !important;
+    }
+    .buy a:hover {
+        color: white !important;
+    }
+>>>>>>> NoConnectDB
 .image{
     margin-left: 22%;
 }
@@ -71,10 +93,17 @@ body{
         font-size: 25px;
     }
 .price {
+<<<<<<< HEAD
     font-size: 20px;
     color: red !important;
     font-weight: 700;
     padding-top: 5%;
+=======
+    font-size: 20px !important;
+    color: red !important;
+    font-weight: 700 !important;
+    padding-top:5% !important;
+>>>>>>> NoConnectDB
 }
     .size{
         margin-left: 2%;

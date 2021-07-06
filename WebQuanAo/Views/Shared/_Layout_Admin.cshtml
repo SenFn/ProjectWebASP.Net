@@ -52,7 +52,11 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <!-- Offcanvas bridge -->
+<<<<<<< HEAD
             <a class="navbar-brand" href="@Url.Action("Index", "Home")"><img src="../Content/Images/Icon/kisspng-logo-brand-retail-price-book-store-5b1ff6bb22f1a4.9079057215288214351431-removebg-preview.png" alt=""></a>
+=======
+            <a class="navbar-brand" href="#"><img src="../Content/Images/Icon/kisspng-logo-brand-retail-price-book-store-5b1ff6bb22f1a4.9079057215288214351431-removebg-preview.png" alt=""></a>
+>>>>>>> NoConnectDB
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -66,7 +70,11 @@
                             <li><a class="dropdown-item" href="#">Chào, User!</a></li>
                             <li><a class="dropdown-item" href="#">Đổi Mật Khẩu</a></li>
                             <li><hr class="dropdown-divider"></li>
+<<<<<<< HEAD
                             <li><a class="dropdown-item" onclick="logOut()">Thoát</a></li>
+=======
+                            <li><a class="dropdown-item" href="@Url.Action("Login","Home")">Thoát</a></li>
+>>>>>>> NoConnectDB
                         </ul>
                     </li>
             </div>
@@ -111,7 +119,11 @@
                                         <a class="nav-link mx-4" href="#">Hóa Đơn Mua</a>
                                     </li>
                                     <li>
+<<<<<<< HEAD
                                         <a class="nav-link mx-4" href="#">Hóa Đơn Bán</a>
+=======
+                                        <a class="nav-link mx-4" href="@Url.Action("Bill","Admin")">Hóa Đơn Bán</a>
+>>>>>>> NoConnectDB
                                     </li>
                                 </ul>
                             </div>
@@ -121,6 +133,7 @@
                         <div class="Title">Tài Khoản</div>
                     </li>
                     <li>
+<<<<<<< HEAD
                         <a class="nav-link" data-bs-toggle="collapse" href="#collapseAccount" role="button" aria-expanded="false" aria-controls="collapseAccount">Danh Sách Tài Khoản</a>
                         <div class="collapse" id="collapseAccount">
                             <div>
@@ -134,6 +147,9 @@
                                 </ul>
                             </div>
                         </div>
+=======
+                        <a class="nav-link" href="@Url.Action("ListAccount","Admin")">Danh Sách Tài Khoản</a>
+>>>>>>> NoConnectDB
                     </li>
                 </ul>
             </nav>
@@ -143,10 +159,13 @@
 
     @RenderBody();
 </body>
+<<<<<<< HEAD
 
 <script>
     function logOut() {
         window.location.href = "@Url.Action("LogOut", "Home", new { area = "Admin" })";
     }
 </script>   
+=======
+>>>>>>> NoConnectDB
 </html>

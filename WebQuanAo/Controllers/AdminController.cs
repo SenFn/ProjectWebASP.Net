@@ -110,10 +110,10 @@ namespace WebQuanAo.Controllers
             return View();
         }
        
-        public ActionResult Body()
-        {
-            return View();
-        }        
+        //public ActionResult Body()
+        //{
+        //    return View();
+        //}        
 
         //Đây Là Form Hóa Đơn Bán
         public ActionResult Bill()

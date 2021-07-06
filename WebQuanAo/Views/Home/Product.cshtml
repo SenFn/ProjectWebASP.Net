@@ -53,7 +53,7 @@
                         currentPrice = infoS.price;
                         currentSize = infoS.size;
                     }
-                    document.getElementById("them1").setAttribute("href", "@Url.Action("AddCard")?id=@product.id&name=@product.name&url=@HttpContext.Current.Request.Url.AbsoluteUri&size=@currentSize&price=@currentPrice.ToString("0,0000").Replace(".",String.Empty)&count=" + (document.getElementById("num_product").value == "" ? 1 : document.getElementById("num_product").value));
+                    document.getElementById("them1").setAttribute("href", "@Url.Action("AddCard")?id=@product.id&name=@product.name&url=@HttpContext.Current.Request.Url.AbsoluteUri&size=@currentSize&price=@currentPrice&count=" + (document.getElementById("num_product").value == "" ? 1 : document.getElementById("num_product").value));
                     break;
                 } else {
                     document.getElementById("countSize").innerHTML = "Size S: Hết hàng";
@@ -71,7 +71,7 @@
                         currentSize = infoM.size;
                         currentPrice = infoM.price;
                      }
-                    document.getElementById("them1").setAttribute("href", "@Url.Action("AddCard")?id=@product.id&name=@product.name&url=@HttpContext.Current.Request.Url.AbsoluteUri&size=@currentSize&price=@currentPrice.ToString("0,0000").Replace(".",String.Empty)&count=" + (document.getElementById("num_product").value == "" ? 1 : document.getElementById("num_product").value));
+                    document.getElementById("them1").setAttribute("href", "@Url.Action("AddCard")?id=@product.id&name=@product.name&url=@HttpContext.Current.Request.Url.AbsoluteUri&size=@currentSize&price=@currentPrice&count=" + (document.getElementById("num_product").value == "" ? 1 : document.getElementById("num_product").value));
 
                     break;
                 } else {
@@ -89,7 +89,7 @@
                         currentPrice = infoL.price;
                         currentSize = infoL.size;
                     }
-                    document.getElementById("them1").setAttribute("href", "@Url.Action("AddCard")?id=@product.id&name=@product.name&url=@HttpContext.Current.Request.Url.AbsoluteUri&size=@currentSize&price=@currentPrice.ToString("0,0000").Replace(".",String.Empty)&count=" + (document.getElementById("num_product").value == "" ? 1 : document.getElementById("num_product").value));
+                    document.getElementById("them1").setAttribute("href", "@Url.Action("AddCard")?id=@product.id&name=@product.name&url=@HttpContext.Current.Request.Url.AbsoluteUri&size=@currentSize&price=@currentPrice&count=" + (document.getElementById("num_product").value == "" ? 1 : document.getElementById("num_product").value));
 
                     break;
                 } else {

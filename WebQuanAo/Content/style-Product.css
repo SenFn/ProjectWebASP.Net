@@ -10,13 +10,6 @@ body{
 :root{
     --HeightNav: 80px;
 }
-/* Navigation */
-.navbar{
-    height: var(--HeightNav);
-}
-.navbar-brand img{
-    width: 200px;
-}
 
 /* Container */
 .productName{
@@ -98,20 +91,4 @@ body{
         width: 80px;
         height: 25px;
         text-align: center;
-    }
-/* Footer */
-.footer{
-    background: rgba(0, 0, 0, 0.884);
-    color: white;
-    height: 200px;
-}
-    .footer h5{
-        margin-left: 10%;
-    }
-    .contact-social{
-        margin-left: 10%;
-    }
-    .contact-social a{
-        text-decoration: none;
-        color: white;
     }

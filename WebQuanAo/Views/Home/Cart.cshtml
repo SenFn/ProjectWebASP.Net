@@ -35,13 +35,13 @@
                 <td>@product.Find(x => x.id == cart[i].id).name</td>
                 <td>@cart[i].size</td>
                 <td><input type="number" name="" id="" min="1" placeholder="0" value="@cart[i].count"></td>
-                <td>@string.Format("{0:#,##0.00}", @cart[i].price * @cart[i].count).Replace(".00", String.Empty) đ</td>
+                <td>@string.Format("{0:#,##0}", @cart[i].price * @cart[i].count).Replace(".0000", String.Empty) đ</td>
                 <td><a href="@Url.Action("Cart")?id=@i">Xóa</a></td>
             </tr>
             }
         </tbody>
     </table>
-    <div class="buy">Tổng: @string.Format("{0:#,##0.00}", @totalPrice).Replace(".00", String.Empty) đ</div>
+    <div class="buy">Tổng: @string.Format("{0:#,##0}", @totalPrice).Replace(".0000", String.Empty) đ</div>
     <div class="buy mt-4 mb-5">Thanh Toán</div>
 </div>
 

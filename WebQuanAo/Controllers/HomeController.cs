@@ -104,7 +104,7 @@ namespace WebQuanAo.Controllers
         }
 
 
-        public ActionResult AddCard(int count, int? id, decimal? price, string name = "", string url = "", string size = "")
+        public ActionResult AddCard(int count, int? id, decimal price, string name = "", string url = "", string size = "")
         {
             List<GioHang> cart = GetListCart();
 

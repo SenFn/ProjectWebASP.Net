@@ -172,6 +172,7 @@
     <Content Include="Content\style-BillInfo.css" />
     <Content Include="Content\style-BodyForm.css" />
     <Content Include="Content\style-Cart.css" />
+    <Content Include="Content\style-ConfirmPay.css" />
     <Content Include="Content\style-EditProduct.css" />
     <Content Include="Content\style-HeaderForm.css" />
     <Content Include="Content\style-Home1.css" />
@@ -180,6 +181,7 @@
     <Content Include="Content\style-Product.css" />
     <Content Include="Content\style-ProductForm.css" />
     <Content Include="Content\style-Register.css" />
+    <Content Include="Content\style-SuccessPay.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -227,6 +229,8 @@
     <Content Include="Views\Admin\BillInfo.cshtml" />
     <Content Include="Views\Admin\ListAccount.cshtml" />
     <Content Include="Views\Shared\_Layout_Admin.cshtml" />
+    <Content Include="Views\Home\ComfirmPay.cshtml" />
+    <Content Include="Views\Home\SuccessPay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -221,5 +221,16 @@ namespace WebQuanAo.Controllers
             return RedirectToAction("Login");
         }
 
+
+        public ActionResult ComfirmPay()
+        {
+            return View();
+        }
+
+        
+        public ActionResult SuccessPay()
+        {
+            return View();
+        }
     }
 }

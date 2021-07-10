@@ -29,7 +29,7 @@ body{
     color: #707070;
 }
 .buy {
-    width: 300px;
+    width: 70%;
     text-align: center;
     border: 3px solid black;
     border-radius: .5rem;
@@ -47,11 +47,32 @@ body{
     .buy a:hover {
         color: white !important;
     }
+.add {
+    width: 70%;
+    text-align: center;
+    border: 3px solid black;
+    border-radius: .5rem;
+}
+    .add a {
+        text-decoration: none !important;
+        color: black !important;
+        font-weight: 500;
+        font-size: 20px;
+    }
+
+    .add:hover {
+        cursor: pointer;
+        background: black !important;
+    }
+
+    .add a:hover {
+        color: white !important;
+    }
 .image{
     margin-left: 22%;
 }
     .image img{
-        height: 400px;
+        height:75%;
     }
 .info{
     margin-left: 12%;
@@ -86,9 +107,4 @@ body{
     .size a:focus{
         color: red;
         border: 1px solid red !important;
-    }
-    #num-product{
-        width: 80px;
-        height: 25px;
-        text-align: center;
     }

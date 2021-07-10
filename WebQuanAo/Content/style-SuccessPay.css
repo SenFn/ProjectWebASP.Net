@@ -1,0 +1,41 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    background: white;
+}
+
+/* Container */
+.Success-Pay{
+    height: 500px;
+}
+    .Success-Pay img{
+        width: 15%;
+        margin-left: 44%;
+    }
+    .Success-Pay h3,.back{
+        text-align: center;
+    }
+    .Success-Pay h3{
+        margin-left: 4%;
+        font-weight: 900;
+        color: blue;
+    }
+    .Success-Pay p{
+        text-align: center;
+        margin-left: 4%;
+        font-weight: 700;
+    }
+    .back{
+        background: red;
+        width: 16%;
+        margin-left: 44%;
+        border-radius: .5rem;
+        height: 25px;
+    }
+    .back a{
+        color: white;
+        text-decoration: none;
+    }

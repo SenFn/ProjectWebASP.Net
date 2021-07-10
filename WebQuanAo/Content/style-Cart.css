@@ -40,23 +40,36 @@ table {
         width: 50px;
         text-align: center;
     }
-    .buy{
-        width: 300px;
-        text-align: center;
+    .buy {
+        text-align: center !important;
+        width: 20%;
         border: 3px solid black;
-        font-weight: 500;
-        font-size: 20px;
         border-radius: .5rem;
         margin-left: 60%;
     }
     .buy:hover{
-        cursor: pointer;
         background: black;
-        color: white;
     }
-td a{
-    text-decoration:none;
-    color:white;
+        .buy a {
+            font-weight: 500 !important;
+            font-size: 20px !important;
+            text-decoration: none !important;
+            color: black;
+        }
+            .buy a:hover {
+                color:white;
+            }
+.price {
+    width:20%;
+    text-align: center;
+    font-size: 20px !important;
+    font-weight: 500 !important;
+    margin-left: 60%;
+    color:red !important;
+}
+td a {
+    text-decoration: none;
+    color: white;
 }
     td a:hover {
         text-decoration: none;

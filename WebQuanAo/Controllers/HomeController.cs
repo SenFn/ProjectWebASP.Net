@@ -186,6 +186,15 @@ namespace WebQuanAo.Controllers
 
         public ActionResult Cart(int? id)
         {
+            if (!string.IsNullOrEmpty(Session["username"] as string))
+            {
+                ViewBag.userName = Session["username"].ToString();
+                ViewBag.admin = Session["admin"];
+            }
+            else
+            {
+                ViewBag.userName = "";
+            }
             using (DBStore dbModel = new DBStore())
             {
                 List<product> product = dbModel.products.ToList();
@@ -224,12 +233,55 @@ namespace WebQuanAo.Controllers
 
         public ActionResult ComfirmPay()
         {
+            if (!string.IsNullOrEmpty(Session["username"] as string))
+            {
+                string uname = Session["username"].ToString();
+                ViewBag.userName = uname;
+                ViewBag.admin = Session["admin"];
+
+                using (DBStore dbModel = new DBStore())
+                {
+                    account names = dbModel.accounts.FirstOrDefault(x => x.username == uname);
+
+                    if (names == null)
+                    {
+                        return View();
+                    }
+                    ViewBag.accResult = names;
+                }
+            }
+            else
+            {
+                ViewBag.userName = "";
+            }
+
+            using (DBStore dbModel = new DBStore())
+            {
+                List<product> product = dbModel.products.ToList();
+                ViewBag.product = product;
+            }
+            List<GioHang> cart = GetListCart();
+            if(cart.Count == 0)
+            {
+                return RedirectToAction("Index", "Home", new { area = "ConfirmCart" });
+            }
+            ViewBag.cart = cart;
             return View();
         }
 
         
         public ActionResult SuccessPay()
         {
+            if (!string.IsNullOrEmpty(Session["username"] as string))
+            {
+                ViewBag.userName = Session["username"].ToString();
+                ViewBag.admin = Session["admin"];
+            }
+            else
+            {
+                ViewBag.userName = "";
+            }
+            Session["Cart"] = new List<GioHang>();
             return View();
         }
     }

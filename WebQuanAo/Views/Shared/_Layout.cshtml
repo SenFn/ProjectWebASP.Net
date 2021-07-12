@@ -37,18 +37,19 @@
 
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            @if (ViewBag.userName != "")
+                            @if (ViewBag.userName == null || ViewBag.userName == "")
+                            {
+                                <li><a class="dropdown-item" href="@Url.Action("Login","Home")">Đăng Nhập</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("SignUp","Home")">Đăng Ký</a></li>
+
+                            }
+                            else
                             {
                                 if (ViewBag.admin == true)
                                 {
                                     <li><a class="dropdown-item" onclick="admin()">Admin</a></li>
                                 }
                                 <li><a class="dropdown-item" onclick="logOut()">Đăng Xuất</a></li>
-                            }
-                            else
-                            {
-                                <li><a class="dropdown-item" href="@Url.Action("Login","Home")">Đăng Nhập</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("SignUp","Home")">Đăng Ký</a></li>
                             }
 
                         </ul>
@@ -84,13 +85,15 @@
     </div>
 
     <script>
-    function logOut(){
+        function logOut() {
         window.location.href = "@Url.Action("LogOut")";
     }
 
     function admin(){
         window.location.href = "@Url.Action("Index", "Admin")";
-    }
+        }
+
+      
     </script>
 
     <!-- Messenger Plugin chat Code -->

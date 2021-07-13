@@ -49,8 +49,7 @@
                     Không tìm thấy tài khoản!
                 </tr>
             }
-            else
-            {
+            else{
                 for (int i = 0; i < acc.Count; i++)
                 {
                     <tr>
@@ -62,7 +61,7 @@
                         <td>@acc[i].admin</td>
                         <td>
                             <a href="#">Chỉnh Sửa</a>
-                            <a class="ml-1" href="#">Xóa</a>
+                            <a class="ml-1" href="@Url.Action("RemoveAccount")?acc=@acc[i].username">Xóa</a>
                         </td>
                     </tr>
                 }

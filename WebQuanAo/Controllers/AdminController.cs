@@ -165,5 +165,20 @@ namespace WebQuanAo.Controllers
             return RedirectToAction("Index", "Home", new { area = "Admin" });
            
         }
+
+        public ActionResult RemoveAccount(string acc = "")
+        {
+            if(acc == "")
+                return RedirectToAction("ListAccount", "Admin");
+
+            using (DBStore dbModel = new DBStore())
+            {
+                account find = dbModel.accounts.FirstOrDefault(a=> a.username == acc && a.admin != true);
+                dbModel.accounts.Remove(find);
+                dbModel.SaveChanges();
+            }
+
+            return RedirectToAction("ListAccount", "Admin");
+        }
     }
 }

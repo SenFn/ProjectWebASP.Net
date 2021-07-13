@@ -120,9 +120,50 @@ namespace WebQuanAo.Controllers
         }
 
         //Đây Là Form Danh Sách Tài Khoản (Đã Chỉnh Sửa Chỗ DropDown Không Còn Chia Làm 2 Loại Tài Khoản Nữa Mà Lọc Chung Với Phần Tìm Kiếm
-        public ActionResult ListAccount()
+        public ActionResult ListAccount(bool? admin, string name = "", string email = "", string location = "")
         {
-            return View();
+            if (!string.IsNullOrEmpty(Session["username"] as string))
+            {
+                using (DBStore dbModel = new DBStore())
+                {
+
+                    if (name != "")
+                    {
+                        List<account> account = dbModel.accounts.Where(a => (a.username.ToLower()).IndexOf(name) != -1).ToList();
+                        ViewBag.account = account;
+                    }
+                    else if (email != "")
+                    {
+                        List<account> account = dbModel.accounts.Where(a => (a.email.ToLower()).IndexOf(email) != -1).ToList();
+                        ViewBag.account = account;
+                    }
+                    else if (location != "")
+                    {
+                        List<account> account = dbModel.accounts.Where(a => (a.location.ToLower()).IndexOf(location) != -1).ToList();
+                        ViewBag.account = account;
+                    }
+                    else if (admin == true)
+                    {
+                        List<account> account = dbModel.accounts.Where(a => a.admin == true).ToList();
+                        ViewBag.account = account;
+                    }
+                    else if (admin == false)
+                    {
+                        List<account> account = dbModel.accounts.Where(a => a.admin != true).ToList();
+                        ViewBag.account = account;
+                    }
+                    else if (admin == null)
+                    {
+                        List<account> account = dbModel.accounts.ToList();
+                        ViewBag.account = account;
+                    }
+
+
+                }
+                return View();
+            }
+            return RedirectToAction("Index", "Home", new { area = "Admin" });
+           
         }
     }
 }

@@ -38,9 +38,19 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             @if (ViewBag.userName == null || ViewBag.userName == "")
-                            {
-                                <li><a class="dropdown-item" href="@Url.Action("Login","Home")">Đăng Nhập</a></li>
-                                <li><a class="dropdown-item" href="@Url.Action("SignUp","Home")">Đăng Ký</a></li>
+                            {// new { area = "ConfirmCart" }
+                                if (ViewBag.Page == null || ViewBag.Page == "")
+                                {
+                                    <li><a class="dropdown-item" href="@Url.Action("Login","Home")">Đăng Nhập</a></li>
+                                    <li><a class="dropdown-item" href="@Url.Action("SignUp","Home")">Đăng Ký</a></li>
+                                }
+                                else
+                                {
+                                    <li><a class="dropdown-item" href="@Url.Action("Login","Home", new { area = @ViewBag.Page})">Đăng Nhập</a></li>
+                                    <li><a class="dropdown-item" href="@Url.Action("SignUp","Home", new { area = @ViewBag.Page})">Đăng Ký</a></li>
+                                }
+
+
 
                             }
                             else

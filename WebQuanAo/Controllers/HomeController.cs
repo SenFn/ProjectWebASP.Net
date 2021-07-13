@@ -45,8 +45,9 @@ namespace WebQuanAo.Controllers
 
 
         [HttpPost]
-        public ActionResult SignUp(string username, string password, string verifyPassword, string email, string phone)
+        public ActionResult SignUp(string username, string password, string verifyPassword, string email, string phone, string area = "")
         {
+            ViewBag.Page = "SignUp";
             using (DBStore dbModel = new DBStore())
             {
                 account acc = new account(username, password, email, phone);
@@ -77,12 +78,18 @@ namespace WebQuanAo.Controllers
 
             Session["username"] = username;
 
-            return RedirectToAction("Index");
+            if (area == "ConfirmCart")
+                return RedirectToAction("ComfirmPay");
+            else if (area == "")
+                return RedirectToAction("Index");
+            else
+                return RedirectToAction(area);
         }
 
         [HttpPost]
-        public ActionResult Login(string username, string password)
+        public ActionResult Login(string username, string password,string area = "")
         {
+            ViewBag.Page = "Login";
             using (DBStore dbModel = new DBStore())
             {
                 account names = dbModel.accounts.FirstOrDefault(x => x.username == username);
@@ -98,7 +105,12 @@ namespace WebQuanAo.Controllers
                 }
                 Session["username"] = username;
                 Session["admin"] = names.admin;
-                return RedirectToAction("Index");
+                if (area == "ConfirmCart")
+                    return RedirectToAction("ComfirmPay");
+                else if(area == "")
+                    return RedirectToAction("Index");
+                else
+                    return RedirectToAction(area);
             }
 
         }
@@ -144,6 +156,7 @@ namespace WebQuanAo.Controllers
 
         public ActionResult Product(int? id)
         {
+            ViewBag.Page = "Product";
             if (!string.IsNullOrEmpty(Session["username"] as string))
             {
                 ViewBag.userName = Session["username"].ToString();
@@ -186,6 +199,7 @@ namespace WebQuanAo.Controllers
 
         public ActionResult Cart(int? id)
         {
+            ViewBag.Page = "Cart";
             if (!string.IsNullOrEmpty(Session["username"] as string))
             {
                 ViewBag.userName = Session["username"].ToString();
@@ -253,6 +267,7 @@ namespace WebQuanAo.Controllers
             else
             {
                 ViewBag.userName = "";
+                return RedirectToAction("Login", "Home", new { area = "ConfirmCart" });
             }
 
             using (DBStore dbModel = new DBStore())

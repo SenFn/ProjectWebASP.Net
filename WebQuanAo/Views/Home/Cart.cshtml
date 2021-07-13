@@ -28,20 +28,19 @@
             @for (int i = 0; i < cart.Count; i++)
             {
                 product p = @product.FirstOrDefault(x => x.id == cart[i].id);
-                totalPrice += (decimal) (cart[i].price * cart[i].count);
-            <tr>
-                <th id="num" scope="row">@(i+1)</th>
-                <td><img class="" src="@p.srcImage" alt=""></td>
-                <td>@product.Find(x => x.id == cart[i].id).name</td>
-                <td>@cart[i].size</td>
-                <td><input type="number" name="" id="" min="1" placeholder="0" value="@cart[i].count"></td>
-                <td>@string.Format("{0:#,##0}", @cart[i].price * @cart[i].count).Replace(".0000", String.Empty) đ</td>
-                <td><a href="@Url.Action("Cart")?id=@i">Xóa</a></td>
-            </tr>
-            }
+                totalPrice += (decimal)(cart[i].price * cart[i].count);
+<tr>
+    <th id="num" scope="row">@(i+1)</th>
+    <td><img class="" src="@p.srcImage" alt=""></td>
+    <td>@product.Find(x => x.id == cart[i].id).name</td>
+    <td>@cart[i].size</td>
+    <td><input type="number" name="" id="" min="1" placeholder="0" value="@cart[i].count"></td>
+    <td>@string.Format("{0:#,##0}", @cart[i].price * @cart[i].count).Replace(".0000", String.Empty) đ</td>
+    <td><a href="@Url.Action("Cart")?id=@i">Xóa</a></td>
+</tr>            }
         </tbody>
     </table>
-    <div class="buy">Tổng: @string.Format("{0:#,##0}", @totalPrice).Replace(".0000", String.Empty) đ</div>
+    <div class="buy"><a class="d-block" id="them1">Tổng: @string.Format("{0:#,##0}", @totalPrice).Replace(".0000", String.Empty) đ</a></div>    
     <div class="buy mt-4 mb-5"><a class="d-block" id="them1" href="@Url.Action("ComfirmPay")">Thanh Toán</a></div>
 </div>
 

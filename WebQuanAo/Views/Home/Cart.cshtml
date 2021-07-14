@@ -8,7 +8,7 @@
     List<product> product = ViewBag.product;
     decimal totalPrice = 0;
 }
-<link rel="stylesheet" href="../Content/style-Cart.css">
+<link rel="stylesheet" href="~/Content/style-Cart.css">
 
 <div class="productName d-block pt-1 mt-4">Cart</div>
 <div class="overflow-x:auto">
@@ -29,18 +29,19 @@
             {
                 product p = @product.FirstOrDefault(x => x.id == cart[i].id);
                 totalPrice += (decimal)(cart[i].price * cart[i].count);
-<tr>
-    <th id="num" scope="row">@(i+1)</th>
-    <td><img class="" src="@p.srcImage" alt=""></td>
-    <td>@product.Find(x => x.id == cart[i].id).name</td>
-    <td>@cart[i].size</td>
-    <td><input type="number" name="" id="" min="1" placeholder="0" value="@cart[i].count"></td>
-    <td>@string.Format("{0:#,##0}", @cart[i].price * @cart[i].count).Replace(".0000", String.Empty) đ</td>
-    <td><a href="@Url.Action("Cart")?id=@i">Xóa</a></td>
-</tr>            }
+                <tr>
+                    <th id="num" scope="row">@(i+1)</th>
+                    <td><img class="" src="@p.srcImage" alt=""></td>
+                    <td>@product.Find(x => x.id == cart[i].id).name</td>
+                    <td>@cart[i].size</td>
+                    <td><input type="number" name="" id="" min="1" placeholder="0" value="@cart[i].count"></td>
+                    <td>@string.Format("{0:#,##0}", @cart[i].price * @cart[i].count).Replace(".0000", String.Empty) đ</td>
+                    <td><a href="@Url.Action("Cart")?id=@i">Xóa</a></td>
+                </tr>
+            }
         </tbody>
     </table>
-    <div class="buy"><a class="d-block" id="them1">Tổng: @string.Format("{0:#,##0}", @totalPrice).Replace(".0000", String.Empty) đ</a></div>    
+    <p class="price-cart" id="them1">Tổng: @string.Format("{0:#,##0}", @totalPrice).Replace(".0000", String.Empty) đ</p>
     <div class="buy mt-4 mb-5"><a class="d-block" id="them1" href="@Url.Action("ComfirmPay")">Thanh Toán</a></div>
 </div>
 

@@ -38,6 +38,11 @@
     }
 
 }
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
 
 <div class="Container">
     <!-- Container -->
@@ -65,7 +70,7 @@
         </button>
     </div> <!-- End Carousel Banner -->
     <!-- Shop Men's-->
-    <div class="Title">
+    <div class="Title" data-aos="fade-up" data-aos-delay="500">
         <!-- Title For List Product -->
         <div class="pt-5">
             <h2>SHOP MEN'S</h2>
@@ -75,7 +80,7 @@
         <a href="#">Clothing</a>
         <a href="#">Gear</a>
     </div>
-    <div id="carouselMenProduct" class="carousel slide container-fluid" data-bs-ride="carousel">
+    <div id="carouselMenProduct" class="carousel slide container-fluid" data-bs-ride="carousel" data-aos="fade-up">
         <!-- Carousel Product -->
         <div class="carousel-inner">
             @for (int i = 0; i < menCount; i++)
@@ -191,10 +196,10 @@
         </button>
     </div>
     <!-- Banner Ads -->
-    <a href="#"><img class="Ads mt-5 d-block w-100" src="@bS.b3" alt=""></a>
+    <a href="#"><img class="Ads mt-5 d-block w-100" src="@bS.b3" alt="" data-aos="fade-up"></a>
     <!-- End Shop Men's -->
     <!-- Shop Women's -->
-    <div class="Title">
+    <div class="Title" data-aos="fade-up" data-aos-delay="500">
         <!-- Title For List Product -->
         <div class="pt-5">
             <h2>SHOP WOMEN'S</h2>
@@ -206,7 +211,7 @@
         <a href="#">Shoes</a>
         <a href="#">Clothing</a>
     </div>
-    <div id="carouselWomenProduct" class="carousel slide container-fluid" data-bs-ride="carousel">
+    <div id="carouselWomenProduct" class="carousel slide container-fluid" data-bs-ride="carousel" data-aos="fade-up">
         <!-- Carousel Product -->
         <div class="carousel-inner">
             @for (int i = 0; i < womenCount; i++)
@@ -314,10 +319,10 @@
         </button>
     </div> <!-- End Carousel Product -->
     <!-- Banner Ads -->
-    <a href="#"><img class="Ads mt-5 d-block w-100" src="@bS.b4" alt=""></a>
+    <a href="#"><img class="Ads mt-5 d-block w-100" src="@bS.b4" alt="" data-aos="fade-up"></a>
     <!-- End Shop Women's-->
     <!-- Shop Boy's -->
-    <div class="Title">
+    <div class="Title" data-aos="fade-up" data-aos-delay="500">
         <!-- Title For List Product -->
         <div class="pt-5">
             <h2>SHOP BOY'S</h2>
@@ -329,7 +334,7 @@
         <a href="#">Shoes</a>
         <a href="#">Clothing</a>
     </div>
-    <div id="carouselBoyProduct" class="carousel slide container-fluid" data-bs-ride="carousel">
+    <div id="carouselBoyProduct" class="carousel slide container-fluid" data-bs-ride="carousel" data-aos="fade-up">
         <!-- Carousel Product -->
         <div class="carousel-inner">
             @for (int i = 0; i < boyCount; i++)
@@ -437,10 +442,10 @@
         </button>
     </div> <!-- End Carousel Product -->
     <!-- Banner Ads -->
-    <a href="#"><img class="Ads mt-5 d-block w-100" src="@bS.b5" alt=""></a>
+    <a href="#"><img class="Ads mt-5 d-block w-100" src="@bS.b5" alt="" data-aos="fade-up"></a>
     <!-- End Shop Boy's-->
     <!-- Shop Girl's -->
-    <div class="Title">
+    <div class="Title" data-aos="fade-up" data-aos-delay="500">
         <!-- Title For List Product -->
         <div class="pt-5">
             <h2>SHOP GIRL'S</h2>
@@ -453,7 +458,7 @@
         <a href="#">Clothing</a>
         <a href="#">Gear</a>
     </div>
-    <div id="carouselGirlProduct" class="carousel slide container-fluid" data-bs-ride="carousel">
+    <div id="carouselGirlProduct" class="carousel slide container-fluid" data-bs-ride="carousel" data-aos="fade-up">
         <!-- Carousel Product -->
         <div class="carousel-inner">
             @for (int i = 0; i < girlCount; i++)

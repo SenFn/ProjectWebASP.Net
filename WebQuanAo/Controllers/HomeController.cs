@@ -299,5 +299,10 @@ namespace WebQuanAo.Controllers
             Session["Cart"] = new List<GioHang>();
             return View();
         }
+
+        public ActionResult UpdateInfo()
+        {
+            return View();
+        }
     }
 }

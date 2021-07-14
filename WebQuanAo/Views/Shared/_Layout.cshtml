@@ -57,9 +57,11 @@
                             {
                                 if (ViewBag.admin == true)
                                 {
-                                    <li><a class="dropdown-item" onclick="admin()">Admin</a></li>
+                                    <li><a class="dropdown-item" style="cursor:pointer;" onclick="admin()">Admin</a></li>
                                 }
-                                <li><a class="dropdown-item" onclick="logOut()">Đăng Xuất</a></li>
+                                <!-- Bổ Sung Thêm Phần Cập Nhật Thông Tin Cho Tài Khoản -->
+                                <li><a class="dropdown-item" style="cursor:pointer;" href="@Url.Action("UpdateInfo","Home")">Cập Nhật Thông Tin</a></li>
+                                <li><a class="dropdown-item" style="cursor:pointer;" onclick="logOut()">Đăng Xuất</a></li>
                             }
 
                         </ul>

@@ -40,13 +40,13 @@ table {
         width: 50px;
         text-align: center;
     }
-    .buy {
-        text-align: center !important;
-        width: 20%;
-        border: 3px solid black;
-        border-radius: .5rem;
-        margin-left: 60%;
-    }
+.buy {
+    text-align: center !important;
+    width: 20%;
+    border: 3px solid black;
+    border-radius: .5rem;
+    margin-left: 60%;
+}
     .buy:hover{
         background: black;
     }
@@ -59,12 +59,13 @@ table {
             .buy a:hover {
                 color:white;
             }
-.price {
-    width:20%;
-    text-align: center;
+.price-cart {
+    width: 20%;
+    text-align: center !important;
     font-size: 20px !important;
     font-weight: 500 !important;
     margin-left: 60%;
+    margin-top: 10px;
     color:red !important;
 }
 td a {

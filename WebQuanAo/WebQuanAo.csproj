@@ -182,6 +182,7 @@
     <Content Include="Content\style-ProductForm.css" />
     <Content Include="Content\style-Register.css" />
     <Content Include="Content\style-SuccessPay.css" />
+    <Content Include="Content\style-UpdateInfo.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -231,6 +232,7 @@
     <Content Include="Views\Shared\_Layout_Admin.cshtml" />
     <Content Include="Views\Home\ComfirmPay.cshtml" />
     <Content Include="Views\Home\SuccessPay.cshtml" />
+    <Content Include="Views\Home\UpdateInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

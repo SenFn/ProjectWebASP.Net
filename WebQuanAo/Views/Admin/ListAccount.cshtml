@@ -4,7 +4,8 @@
     Layout = "~/Views/Shared/_Layout_Admin.cshtml";
     List<account> acc = ViewBag.account;
 }
-<link rel="stylesheet" href="../Content/style-ListAccount.css">
+<link rel="stylesheet" href="~/Content/style-ListAccount.css">
+
 <div class="Content">
     <!-- Đây Là Chỗ Để Render Body Khi Quăng Vào MVC -->
     <!-- Nó Sẽ Thay Đổi Dựa Theo Người Dùng Muốn Click Coi Gì -->
@@ -24,8 +25,8 @@
             </ul>
             <form class="d-inline-flex ms-3">
                 <input class="form-control me-2" id="findInput" type="search" placeholder="Search" aria-label="Search">
-                <button onmouseover="search()">
-                        <a href="#" id="searchButton" class="btn btnsearch">Search</a>
+                <button class="btnsearch" onmouseover="search()">
+                    <a class="d-block" href="#" id="searchButton" onmouseover="search()">Search</a>
                 </button>
             </form>
         </div>
@@ -49,7 +50,8 @@
                     Không tìm thấy tài khoản!
                 </tr>
             }
-            else{
+            else
+            {
                 for (int i = 0; i < acc.Count; i++)
                 {
                     <tr>

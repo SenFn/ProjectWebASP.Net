@@ -43,15 +43,23 @@ body{
         color: white;
         font-size: 500;
     }
-    .btnsearch{
-        color: #ff723b;
+    .btnsearch {
         background: none;
-        border-color:#ff723b;
+        border-color: #ff723b;
+        width: 100px;
+        border-radius: .2rem #ff723b !important;
     }
-    .btnsearch:hover{
-        background: #ff723b;
-        color: white;
-    }
+        .btnsearch a {
+            color: #ff723b;
+            text-decoration: none;
+        }
+        .btnsearch:hover {
+            background: #ff723b;
+        }
+        .btnsearch a:hover {
+            color: white !important;
+            text-decoration: none;
+        }
     td a{
         text-decoration: none;
         color: white;

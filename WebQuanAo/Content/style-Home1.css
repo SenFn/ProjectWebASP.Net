@@ -19,7 +19,10 @@ body {
 .navbar-brand img {
     width: 200px;
 }
-
+.dropdown-menu a:hover {
+    color: white;
+    background: #ff723b;
+}
 /* Container */
 .Title {
     background: white;

@@ -300,7 +300,14 @@ namespace WebQuanAo.Controllers
             return View();
         }
 
+        /* Cập Nhật Thông Tin Tài Khoản */
         public ActionResult UpdateInfo()
+        {
+            return View();
+        }
+
+        /* Đổi Mật Khẩu */
+        public ActionResult ChangePassword()
         {
             return View();
         }

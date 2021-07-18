@@ -172,6 +172,7 @@
     <Content Include="Content\style-BillInfo.css" />
     <Content Include="Content\style-BodyForm.css" />
     <Content Include="Content\style-Cart.css" />
+    <Content Include="Content\style-ChangePassword.css" />
     <Content Include="Content\style-ConfirmPay.css" />
     <Content Include="Content\style-EditProduct.css" />
     <Content Include="Content\style-HeaderForm.css" />
@@ -233,6 +234,7 @@
     <Content Include="Views\Home\ComfirmPay.cshtml" />
     <Content Include="Views\Home\SuccessPay.cshtml" />
     <Content Include="Views\Home\UpdateInfo.cshtml" />
+    <Content Include="Views\Home\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

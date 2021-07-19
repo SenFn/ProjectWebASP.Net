@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -32,8 +33,15 @@ namespace WebQuanAo.Controllers
         {
             if (!string.IsNullOrEmpty(Session["username"] as string))
             {
-                return View();
-
+                String userName = Session["username"].ToString();
+                using (DBStore dbModel = new DBStore())
+                {
+                    account names = dbModel.accounts.FirstOrDefault(x => x.username == userName);
+                    if (names.admin == true)
+                    {
+                        return View();
+                    }
+                }
             }
             return RedirectToAction("Index", "Home", new { area = "Admin" });
 
@@ -42,40 +50,45 @@ namespace WebQuanAo.Controllers
         {
             if (!string.IsNullOrEmpty(Session["username"] as string))
             {
-                if (b1 == "" ||
-                    b2 == "" ||
-                    b3 == "" ||
-                    b4 == "" ||
-                    b5 == "")
+                String userName = Session["username"].ToString();
+                using (DBStore dbModel = new DBStore())
                 {
-                    using (DBStore dbModel = new DBStore())
+                    account names = dbModel.accounts.FirstOrDefault(x => x.username == userName);
+                    if (names.admin == true)
                     {
-                        bodySave bS = dbModel.bodySaves.FirstOrDefault();
-                        ViewBag.bodySave = bS;
+                        if (b1 == "" ||
+                   b2 == "" ||
+                   b3 == "" ||
+                   b4 == "" ||
+                   b5 == "")
+                        {
+                            using (DBStore dbModel1 = new DBStore())
+                            {
+                                bodySave bS = dbModel.bodySaves.FirstOrDefault();
+                                ViewBag.bodySave = bS;
+                            }
+                            return View();
+                        }
+                        else
+                        {
+                            using (DBStore dbModel1 = new DBStore())
+                            {
+                                bodySave bS = dbModel1.bodySaves.FirstOrDefault();
+                                dbModel1.bodySaves.Remove(bS);
+                                dbModel1.SaveChanges();
+                                bS.b1 = b1;
+                                bS.b2 = b2;
+                                bS.b3 = b3;
+                                bS.b4 = b4;
+                                bS.b5 = b5;
+                                dbModel1.bodySaves.Add(bS);
+                                dbModel1.SaveChanges();
+                                ViewBag.bodySave = bS;
+                            }
+                            return View();
+                        }
                     }
-                    return View();
                 }
-                else
-                {
-                    using (DBStore dbModel = new DBStore())
-                    {
-                        bodySave bS = dbModel.bodySaves.FirstOrDefault();
-                        dbModel.bodySaves.Remove(bS);
-                        dbModel.SaveChanges();
-                        bS.b1 = b1;
-                        bS.b2 = b2;
-                        bS.b3 = b3;
-                        bS.b4 = b4;
-                        bS.b5 = b5;
-                        dbModel.bodySaves.Add(bS);
-                        dbModel.SaveChanges();
-                        ViewBag.bodySave = bS;
-                    }
-                    return View();
-                }
-
-
-
             }
             return RedirectToAction("Index", "Home", new { area = "Admin" });
         }
@@ -85,24 +98,111 @@ namespace WebQuanAo.Controllers
 
             if (!string.IsNullOrEmpty(Session["username"] as string))
             {
+                String userName = Session["username"].ToString();
                 using (DBStore dbModel = new DBStore())
                 {
-                    List<product> product = dbModel.products.ToList();
-                    List<productInfo> productInfo = dbModel.productInfoes.ToList();
-                    ViewBag.productInfo = productInfo;
-                    ViewBag.product = product;
+                    account names = dbModel.accounts.FirstOrDefault(x => x.username == userName);
+                    if (names.admin == true)
+                    {
+                        using (DBStore dbModel1 = new DBStore())
+                        {
+                            List<product> product = dbModel1.products.ToList();
+                            List<productInfo> productInfo = dbModel1.productInfoes.ToList();
+                            ViewBag.productInfo = productInfo;
+                            ViewBag.product = product;
+                        }
+                        return View();
+                    }
                 }
-                return View();
-
             }
             return RedirectToAction("Index", "Home", new { area = "Admin" });
 
         }
-        public ActionResult EditProduct()
+        public ActionResult EditProduct(int ?id, string size)
         {
             if (!string.IsNullOrEmpty(Session["username"] as string))
             {
+                String userName = Session["username"].ToString();
+                using (DBStore dbModel = new DBStore())
+                {
+                    account names = dbModel.accounts.FirstOrDefault(x => x.username == userName);
+                    if (names.admin == true)
+                    {
+                        if (id == null)
+                            return RedirectToAction("ProductInfo", "Admin");
+
+
+                            List<product> product = dbModel.products.ToList();
+                            List<productInfo> productInfo = dbModel.productInfoes.ToList();
+                            ViewBag.productInfo = productInfo;
+                            ViewBag.product = product;
+
+
+                        using (var db = new DBStore())
+                        {
+                            var result = db.products.SingleOrDefault(b => b.id == id);
+                            var result2 = db.productInfoes.SingleOrDefault(b => b.id == id && b.size == size);
+                            if (result != null && result2 != null)
+                            {
+                                ViewBag.name = result.name;
+                                ViewBag.image = result.srcImage;
+                                ViewBag.price = result2.price;
+                                ViewBag.count = result2.count;
+                                ViewBag.size = size;
+                                ViewBag.id = id;
+                            }
+                        }
+                    }
+                }
                 return View();
+            }
+            return RedirectToAction("Index", "Home", new { area = "Admin" });
+        }
+
+        public ActionResult SaveProduct(int ?id, string size, string price, string image, string name, int count)
+        {
+            decimal p = decimal.Parse(price, CultureInfo.InvariantCulture);
+
+            if (!string.IsNullOrEmpty(Session["username"] as string))
+            {
+
+                String userName = Session["username"].ToString();
+                using (DBStore dbModel = new DBStore())
+                {
+                    account names = dbModel.accounts.FirstOrDefault(x => x.username == userName);
+                    if (names.admin == true)
+                    {
+                        if (id == null || size == "")
+                            return RedirectToAction("ProductInfo", "Admin");
+
+                        product result = dbModel.products.FirstOrDefault(b => b.id == id);
+
+                        if (result.id == id)
+                        {
+                            result.name = name;
+                            result.srcImage = image;                            
+                            dbModel.SaveChanges();
+                        }
+
+                        productInfo result1 = dbModel.productInfoes.FirstOrDefault(b => b.id == id && b.size == size);
+                        if (result.id == id)
+                        {
+                            dbModel.productInfoes.Remove(result1);                                                      
+                            dbModel.SaveChanges();
+
+                            result1.id = id;
+                            result1.size = size;
+                            result1.price = p;
+                            result1.count = count;
+                            dbModel.productInfoes.Add(result1);
+                            dbModel.SaveChanges();
+                        }
+
+
+                        return RedirectToAction("ProductInfo", "Admin");
+                    }
+                }
+                
             }
             return RedirectToAction("Index", "Home", new { area = "Admin" });
         }
@@ -124,43 +224,47 @@ namespace WebQuanAo.Controllers
         {
             if (!string.IsNullOrEmpty(Session["username"] as string))
             {
+                String userName = Session["username"].ToString();
                 using (DBStore dbModel = new DBStore())
                 {
-
-                    if (name != "")
+                    account names = dbModel.accounts.FirstOrDefault(x => x.username == userName);
+                    if (names.admin == true)
                     {
-                        List<account> account = dbModel.accounts.Where(a => (a.username.ToLower()).IndexOf(name) != -1).ToList();
-                        ViewBag.account = account;
+                        if (name != "")
+                        {
+                            List<account> account = dbModel.accounts.Where(a => (a.username.ToLower()).IndexOf(name) != -1).ToList();
+                            ViewBag.account = account;
+                        }
+                        else if (email != "")
+                        {
+                            List<account> account = dbModel.accounts.Where(a => (a.email.ToLower()).IndexOf(email) != -1).ToList();
+                            ViewBag.account = account;
+                        }
+                        else if (location != "")
+                        {
+                            List<account> account = dbModel.accounts.Where(a => (a.location.ToLower()).IndexOf(location) != -1).ToList();
+                            ViewBag.account = account;
+                        }
+                        else if (admin == true)
+                        {
+                            List<account> account = dbModel.accounts.Where(a => a.admin == true).ToList();
+                            ViewBag.account = account;
+                        }
+                        else if (admin == false)
+                        {
+                            List<account> account = dbModel.accounts.Where(a => a.admin != true).ToList();
+                            ViewBag.account = account;
+                        }
+                        else if (admin == null)
+                        {
+                            List<account> account = dbModel.accounts.ToList();
+                            ViewBag.account = account;
+                        }                        
+                        return View();
                     }
-                    else if (email != "")
-                    {
-                        List<account> account = dbModel.accounts.Where(a => (a.email.ToLower()).IndexOf(email) != -1).ToList();
-                        ViewBag.account = account;
-                    }
-                    else if (location != "")
-                    {
-                        List<account> account = dbModel.accounts.Where(a => (a.location.ToLower()).IndexOf(location) != -1).ToList();
-                        ViewBag.account = account;
-                    }
-                    else if (admin == true)
-                    {
-                        List<account> account = dbModel.accounts.Where(a => a.admin == true).ToList();
-                        ViewBag.account = account;
-                    }
-                    else if (admin == false)
-                    {
-                        List<account> account = dbModel.accounts.Where(a => a.admin != true).ToList();
-                        ViewBag.account = account;
-                    }
-                    else if (admin == null)
-                    {
-                        List<account> account = dbModel.accounts.ToList();
-                        ViewBag.account = account;
-                    }
-
-
                 }
-                return View();
+
+                
             }
             return RedirectToAction("Index", "Home", new { area = "Admin" });
            
@@ -168,17 +272,47 @@ namespace WebQuanAo.Controllers
 
         public ActionResult RemoveAccount(string acc = "")
         {
-            if(acc == "")
-                return RedirectToAction("ListAccount", "Admin");
-
-            using (DBStore dbModel = new DBStore())
+            if (!string.IsNullOrEmpty(Session["username"] as string))
             {
-                account find = dbModel.accounts.FirstOrDefault(a=> a.username == acc && a.admin != true);
-                dbModel.accounts.Remove(find);
-                dbModel.SaveChanges();
+                String userName = Session["username"].ToString();
+                using (DBStore dbModel = new DBStore())
+                {
+                    if (acc == "")
+                        return RedirectToAction("ListAccount", "Admin");
+
+                    account find = dbModel.accounts.FirstOrDefault(a => a.username == acc && a.admin != true);
+                    dbModel.accounts.Remove(find);
+                    dbModel.SaveChanges();               
+
+                    return RedirectToAction("ListAccount", "Admin");
+                }
+
             }
 
-            return RedirectToAction("ListAccount", "Admin");
+            return RedirectToAction("Index", "Home", new { area = "Admin" });
+            
+        }
+
+        public ActionResult RemoveProDuctinfo(int ?id, string size = "")
+        {
+            if (!string.IsNullOrEmpty(Session["username"] as string))
+            {
+                String userName = Session["username"].ToString();
+                using (DBStore dbModel = new DBStore())
+                {
+                    if (id == null || size == "")
+                        return RedirectToAction("ProductInfo", "Admin");
+
+                    productInfo find = dbModel.productInfoes.FirstOrDefault(a => a.id == id && a.size == size);
+                    dbModel.productInfoes.Remove(find);
+                    dbModel.SaveChanges();
+
+                    return RedirectToAction("ProductInfo", "Admin");
+                }
+
+            }
+            return RedirectToAction("Index", "Home", new { area = "Admin" });
+            
         }
     }
 }

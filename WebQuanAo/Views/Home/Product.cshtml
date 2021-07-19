@@ -6,9 +6,8 @@
     productInfo infoS = (productInfo)ViewBag.infoS;
     productInfo infoM = (productInfo)ViewBag.infoM;
     productInfo infoL = (productInfo)ViewBag.infoL;
-    decimal currentPrice = 0;
-    string currentSize = "S";
-    int currentCount = 1;
+    decimal currentPrice = infoS.price;
+    string currentSize = "";
 }
 <link rel="stylesheet" href="../Content/style-Product.css">
 
@@ -24,7 +23,7 @@
         <div class="row">
             <div class="col-md-6 col-sm-6 col-6">
                 <p class="size-name">Size:</p>
-                <div class="size row">
+                <div class="size row"  onload="sizeOnClick('S')">
                     <a class="col-md-1 col-sm-2" onclick="sizeOnClick('S')">S</a>
                     <a class="col-md-1 ms-1 col-sm-2" onclick="sizeOnClick('M')">M</a>
                     <a class="col-md-1 ms-1 col-sm-2" onclick="sizeOnClick('L')">L</a>
@@ -35,13 +34,28 @@
                 <input type="number" name="num-product" id="num_product" min="1" placeholder="1" value="1" style="width: 80px !important; height: 25px; text-align: center; ">
             </div>
         </div>
-        <div class="buy mt-5"><a class="d-block" id="them" href="#">Mua Ngay</a></div>
-        <div class="add mt-3"><a class="d-block" id="them1" href="#">Thêm giỏ</a></div>
+        <div class="buy mt-5" onmouseover="changeHrefBuy()"><a class="d-block" id="them" href="#">Mua Ngay</a></div>
+        <div class="add mt-3" ><a class="d-block" id="them1" onclick="changeHrefAdd()">Thêm giỏ</a></div>
 
     </div>
 </div>
 
 <script>
+    function changeHrefBuy(){
+
+    }
+
+    function changeHrefAdd() {
+        if (document.getElementById("countSize").innerHTML == "") {
+            alert('Chọn size cần mua!');
+        } else if (document.getElementById("countSize").innerHTML.indexOf("Hết hàng")>-1) {
+           alert('Size hết hàng, hãy chọn size khác!');
+        } else {
+            location.href = "@Url.Action("AddCard")?id=@product.id&name=@product.name&url=null&size=@currentSize&price=@currentPrice.ToString().Replace(",0000",string.Empty)&count=" + document.getElementById("num_product").value;
+        }
+
+    }
+
     function sizeOnClick(id) {
         switch (id) {
             case "S":
@@ -68,8 +82,8 @@
                     document.getElementById("priceP").innerHTML = `@string.Format("{0:#,##0}", @infoM.price).Replace(".0000", String.Empty) đ`;
 
                      @{
-                        currentSize = infoM.size;
-                        currentPrice = infoM.price;
+                         currentSize = infoM.size;
+                         currentPrice = infoM.price;
                      }
                     document.getElementById("them1").setAttribute("href", "@Url.Action("AddCard")?id=@product.id&name=@product.name&url=null&size=@currentSize&price=@currentPrice.ToString().Replace(",0000",string.Empty)&count=" + (document.getElementById("num_product").value == "" ? 1 : document.getElementById("num_product").value));
 

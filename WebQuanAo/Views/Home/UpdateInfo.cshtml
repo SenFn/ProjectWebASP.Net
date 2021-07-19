@@ -1,7 +1,8 @@
-﻿
+﻿@using WebQuanAo.Models; 
 @{
     ViewBag.Title = "UpdateInfo";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    account acc = ViewBag.acc;
 }
 <link rel="stylesheet" href="~/Content/style-UpdateInfo.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
@@ -10,14 +11,28 @@
     <h4 class="mb-4">Cập Nhật Thông Tin</h4>
     <form action="">
         <label class="lbl_txt" for="">Tên</label> <br>
-        <input class="mb-2" type="text" name="" id=""> <br>
+        <input id="uName" class="mb-2" type="text" name="" value="@acc.name"> <br>
         <label class="lbl_txt" for="">Email</label> <br>
-        <input class="mb-2" type="email" name="" id=""> <br>
+        <input id="uEmail" class="mb-2" type="email" name="" value="@acc.email"> <br>
         <label class="lbl_txt" for="">Số Điện Thoại</label> <br>
-        <input class="mb-2" type="tel" id="phone" name="phone"><br>
+        <input id="uPhone" class="mb-2" type="tel" name="phone" value="@acc.phone"><br>
         <label class="lbl_txt" for="">Khu Vực</label> <br>
-        <input class="mb-2" type="tel" id="phone" name="phone"><br>
-        <input class="mt-3 mb-5" type="submit" value="Cập Nhật">
+        <input id="uLocation" class="mb-2" type="tel" name="location" value="@acc.location"><br>
+        <input class="button mt-2" value="Cập Nhật" onclick="save()">
     </form>
 </div>
+
+<script>
+    function save() {
+        var uName = document.getElementById("uName").innerHTML || document.getElementById("uName").value;
+        var uEmail = document.getElementById("uEmail").innerHTML || document.getElementById("uEmail").value;
+        var uPhone = document.getElementById("uPhone").innerHTML || document.getElementById("uPhone").value;
+        var uLocation = document.getElementById("uLocation").innerHTML || document.getElementById("uLocation").value;
+        if (uName == "" || uEmail == "" || uPhone == "" || uLocation == "") {
+            alert('Input không được để trống!');
+        } else { //(int id, string size, decimal price, string image, string name, int count)
+            location.href = window.location.protocol + "//" + window.location.host + "@Url.Action("SaveAccount")?id=@acc.id&name=" + uName + "&email=" + uEmail + "&phone=" + uPhone + "&location=" + uLocation;
+        }
+    }
+</script>
 

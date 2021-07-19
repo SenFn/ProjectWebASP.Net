@@ -1,6 +1,7 @@
 ﻿
 @{
     Layout = null;
+    String userName = Session["username"].ToString();
 }
 
 <!DOCTYPE html>
@@ -19,28 +20,28 @@
     <link rel="stylesheet" href="../Content/style-Admin.css">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
 
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Year', 'Thu Về', 'Chi Phí Nhập'],
-          ['2004',  1000,      400],
-          ['2005',  1170,      460],
-          ['2006',  660,       1120],
-          ['2007',  1030,      540]
-        ]);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Year', 'Thu Về', 'Chi Phí Nhập'],
+                ['2004', 1000, 400],
+                ['2005', 1170, 460],
+                ['2006', 660, 1120],
+                ['2007', 1030, 540]
+            ]);
 
-        var options = {
-          title: 'Doanh Thu Bán Hàng',
-          curveType: 'function',
-          legend: { position: 'bottom' }
-        };
+            var options = {
+                title: 'Doanh Thu Bán Hàng',
+                curveType: 'function',
+                legend: { position: 'bottom' }
+            };
 
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
 
-        chart.draw(data, options);
-      }
+            chart.draw(data, options);
+        }
     </script>
 </head>
 <body>
@@ -63,7 +64,7 @@
                             <img src="../Content/Images/Icon/icons8_account_25px.png" alt="Account_icon">
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Chào, User!</a></li> <!-- Chỗ này bạn đổ dữ liệu vào đi Nhân còn xót này -->
+                            <li><a class="dropdown-item" href="#">Chào, User @userName!</a></li> <!-- Chỗ này bạn đổ dữ liệu vào đi Nhân còn xót này -->
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" onclick="logOut()">Thoát</a></li>
                         </ul>

@@ -50,6 +50,18 @@ namespace WebQuanAo.Controllers
             ViewBag.Page = "SignUp";
             using (DBStore dbModel = new DBStore())
             {
+                //public account()
+                //{
+
+                //}
+                //public account(string username, string password, string email, string phone)
+                //{
+                //    this.username = username;
+                //    this.password = password;
+                //    this.email = email;
+                //    this.phone = phone;
+                //}
+
                 account acc = new account(username, password, email, phone);
                 dbModel.accounts.Add(acc);
 
@@ -303,13 +315,97 @@ namespace WebQuanAo.Controllers
         /* Cập Nhật Thông Tin Tài Khoản */
         public ActionResult UpdateInfo()
         {
+            if (!string.IsNullOrEmpty(Session["username"] as string))
+            {
+                string uName = Session["username"].ToString();
+
+                ViewBag.userName = uName;
+                ViewBag.admin = Session["admin"];
+                using (DBStore dbModel = new DBStore())
+                {
+                    account acc = dbModel.accounts.FirstOrDefault(a => a.username == uName);
+                    ViewBag.acc = acc;
+                }
+            }
+            else
+            {
+                ViewBag.userName = "";
+                return RedirectToAction("Login", "Home");
+            }
+
             return View();
         }
 
         /* Đổi Mật Khẩu */
         public ActionResult ChangePassword()
         {
+            if (!string.IsNullOrEmpty(Session["username"] as string))
+            {
+                string uName = Session["username"].ToString();
+
+                ViewBag.userName = uName;
+                ViewBag.admin = Session["admin"];
+                using (DBStore dbModel = new DBStore())
+                {
+                    account acc = dbModel.accounts.FirstOrDefault(a => a.username == uName);
+                    ViewBag.acc = acc;
+                }
+            }
+            else
+            {
+                ViewBag.userName = "";
+                return RedirectToAction("Login", "Home");
+            }
             return View();
+        }
+
+        public ActionResult SaveAccount(int id, string name, string email, string phone, string location)
+        {
+            if (!string.IsNullOrEmpty(Session["username"] as string))
+            {
+                string uName = Session["username"].ToString();
+
+                ViewBag.userName = uName;
+                ViewBag.admin = Session["admin"];
+                using (DBStore dbModel = new DBStore())
+                {
+                    account acc = dbModel.accounts.FirstOrDefault(a => a.username == uName);
+                    acc.name = name;
+                    acc.email = email;
+                    acc.phone = phone;
+                    acc.location = location;
+                    dbModel.SaveChanges();
+                }
+            }
+            else
+            {
+                ViewBag.userName = "";
+                return RedirectToAction("Login", "Home");
+            }
+            return RedirectToAction("UpdateInfo"); ;
+        }
+
+        public ActionResult SavePass(int id, string pass)
+        {
+            if (!string.IsNullOrEmpty(Session["username"] as string))
+            {
+                string uName = Session["username"].ToString();
+
+                ViewBag.userName = uName;
+                ViewBag.admin = Session["admin"];
+                using (DBStore dbModel = new DBStore())
+                {
+                    account acc = dbModel.accounts.FirstOrDefault(a => a.username == uName);
+                    acc.password = pass;
+                    dbModel.SaveChanges();
+                }
+            }
+            else
+            {
+                ViewBag.userName = "";
+                return RedirectToAction("Login", "Home");
+            }
+            return RedirectToAction("UpdateInfo"); ;
         }
     }
 }

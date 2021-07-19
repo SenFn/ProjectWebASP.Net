@@ -17,7 +17,7 @@ namespace WebQuanAo.Models
         public virtual DbSet<cart> carts { get; set; }
         public virtual DbSet<headerSave> headerSaves { get; set; }
         public virtual DbSet<product> products { get; set; }
-        public virtual DbSet<cardInfo> cardInfoes { get; set; }
+        public virtual DbSet<cardInfo> cardInfos { get; set; }
         public virtual DbSet<productInfo> productInfoes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

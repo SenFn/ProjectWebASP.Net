@@ -2,6 +2,12 @@
 @{
     ViewBag.Title = "EditProduct";
     Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+    int id = ViewBag.id;
+    string name = ViewBag.name;
+    string image = ViewBag.image;
+    decimal price = ViewBag.price;
+    int count = ViewBag.count;
+    string size = ViewBag.size;
 }
 <link rel="stylesheet" href="../Content/style-EditProduct.css">
 
@@ -15,18 +21,34 @@
         <form action="#">
             <h2>Edit Product</h2>
             <!-------------------------------->
-            <label class="picturelbl" for="picture">Ảnh: </label> <input type="text" name="text-logo" id="text" class="text-pic"><br>
+            <label class="picturelbl" for="picture">Ảnh: </label> <input type="text" name="logo" id="iLogo" class="text-pic" value="@image"><br>
             <!-------------------------------->
-            <label for="nameProduct">Tên Sản Phẩm: </label> <input type="text" name="text-name" id="text" class="text-account"><br>
+            <label for="nameProduct">Tên Sản Phẩm: </label> <input type="text" name="name" id="iName" class="text-account" value="@name"><br>
             <!-------------------------------->
-            <label class="sizelbl" for="cartIcon">Size: </label> <input type="text" name="text-cart" id="text" class="text-size"><br>
+            <label class="sizelbl" for="cartIcon">Size: </label> <input type="text" name="size" id="iSize" class="text-size" value="@size"><br>
             <!-------------------------------->
-            <label class="numberlbl" for="number">Số Lượng: </label> <input type="number" name="text-cart" id="text" class="text-number"><br>
+            <label class="numberlbl" for="number">Số Lượng: </label> <input type="number" name="count" id="iCount" class="text-number" value="@count"><br>
             <!-------------------------------->
-            <label class="pricelbl" for="cartIcon">Giá: </label> <input type="text" name="text-price" id="text" class="text-size"><br>
+            <label class="pricelbl" for="cartIcon">Giá: </label> <input type="text" name="price" id="iPrice" class="text-size" value="@price"><br>
             <!-------------------------------->
-            <input type="submit" value="SEND" id="send-btn" class="button mt-2">
+            <input id="send-btn" class="button mt-2" href="#" onclick="save()" value="Save"/>
         </form>
     </div>
 </div>
+
+<script>
+    function save(){
+        var iLogo = document.getElementById("iLogo").innerHTML || document.getElementById("iLogo").value;
+        var iName = document.getElementById("iName").innerHTML || document.getElementById("iName").value;
+        var iSize = document.getElementById("iSize").innerHTML || document.getElementById("iSize").value;
+        var iCount = document.getElementById("iCount").innerHTML || document.getElementById("iCount").value;
+        var iPrice = document.getElementById("iPrice").innerHTML || document.getElementById("iPrice").value;
+        if (iLogo == "" || iName == "" || iSize == "" || iCount == "" || iPrice == "") {
+            alert('Input không được để trống!');
+        } else { //(int id, string size, decimal price, string image, string name, int count)
+            
+            location.href = window.location.protocol + "//" +window.location.host +"@Url.Action("SaveProduct")?id=@id&size=" + iSize + "&price=" + iPrice.replace(",0000", "") + "&image=" + iLogo + "&name=" + iName + "&count=" + iCount;
+        }
+    }
+</script>
 

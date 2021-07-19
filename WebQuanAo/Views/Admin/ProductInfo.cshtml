@@ -35,10 +35,10 @@
                         <td>@product.Find(x => x.id == i.id).name</td>
                         <td>@i.size</td>
                         <td>@i.count</td>
-                        <td>@string.Format("{0:#,##0.00}", i.price).Replace(".00", String.Empty) đ</td>
+                        <td>@string.Format("{0:#,##0}", i.price).Replace(".0000", String.Empty) đ</td>
                         <td>
-                            <a href="@Url.Action("EditProduct","Admin")">Chỉnh Sửa</a>
-                            <a class="ml-1" href="#">Xóa</a>
+                            <a href="@Url.Action("EditProduct")?id=@i.id&size=@i.size">Chỉnh Sửa</a>
+                            <a class="ml-1" href="@Url.Action("RemoveProDuctinfo","Admin", new { i.id , i.size})">Xóa</a>
                         </td>
                     </tr>
                 }

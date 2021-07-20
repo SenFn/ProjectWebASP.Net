@@ -10,11 +10,12 @@
     string size = ViewBag.size;
 }
 <link rel="stylesheet" href="../Content/style-EditProduct.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 
 <div class="Content">
     <!-- Đây Là Chỗ Để Render Body Khi Quăng Vào MVC -->
     <!-- Nó Sẽ Thay Đổi Dựa Theo Người Dùng Muốn Click Coi Gì -->
-    <div class="container-fluid">
+    <div class="container-fluid animated fadeIn">
         <div class="row">
             <div class="Home col-lg-2 col-md-3 col-sm-5 col-10 fw-bold my-2 mx-3">Header</div>
         </div>
@@ -31,7 +32,7 @@
             <!-------------------------------->
             <label class="pricelbl" for="cartIcon">Giá: </label> <input type="text" name="price" id="iPrice" class="text-size" value="@price"><br>
             <!-------------------------------->
-            <input id="send-btn" class="button mt-2" href="#" onclick="save()" value="Save"/>
+            <input id="send-btn" class="button mt-2" href="#" onclick="save()" type="submit" value="Save"/>
         </form>
     </div>
 </div>

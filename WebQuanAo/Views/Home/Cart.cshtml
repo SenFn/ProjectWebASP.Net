@@ -36,7 +36,7 @@
                     <td>@cart[i].size</td>
                     <td><input type="number" name="" id="" min="1" placeholder="0" value="@cart[i].count"></td>
                     <td>@string.Format("{0:#,##0}", @cart[i].price * @cart[i].count).Replace(".0000", String.Empty) đ</td>
-                    <td><a href="@Url.Action("Cart")?id=@i">Xóa</a></td>
+                    <td><a href="#">Cập Nhật</a> <br /> <a href="@Url.Action("Cart")?id=@i">Xóa</a></td>
                 </tr>
             }
         </tbody>

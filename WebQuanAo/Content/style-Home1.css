@@ -96,6 +96,7 @@ body {
     color: white;
     height: 450px;
     font-size: 13px;
+    bottom:0;
 }
 /* Social Media and Policy */
 .socialmedia, .policy {

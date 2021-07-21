@@ -31,16 +31,21 @@
             </div>
             <div class="col-md-5 col-sm-6 col-5">
                 <p class="number">Số Lượng:</p>
-                <input type="number" name="num-product" id="num_product" min="1" placeholder="1" value="1" style="width: 80px !important; height: 25px; text-align: center; ">
+                <input type="number" name="num-product" id="num_product" min="1" placeholder="1" value="1" style="width: 80px !important; height: 25px; text-align: center; " onchange="changeCount()">
             </div>
         </div>
         <div class="buy mt-5" onmouseover="changeHrefBuy()"><a class="d-block" id="them" href="#">Mua Ngay</a></div>
-        <div class="add mt-3" ><a class="d-block" id="them1" onclick="changeHrefAdd()">Thêm giỏ</a></div>
+        <div class="add mt-3" ><a class="d-block" id="them1" href="#" onclick="changeHrefAdd()">Thêm giỏ</a></div>
 
     </div>
 </div>
 
 <script>
+    function changeCount() {
+        var link = document.getElementById("them1").href;
+        document.getElementById("them1").href = link.split("count=")[0] + "count=" + document.getElementById("num_product").value;
+    }
+
     function changeHrefBuy(){
 
     }
@@ -50,10 +55,7 @@
             alert('Chọn size cần mua!');
         } else if (document.getElementById("countSize").innerHTML.indexOf("Hết hàng")>-1) {
            alert('Size hết hàng, hãy chọn size khác!');
-        } else {
-            location.href = "@Url.Action("AddCard")?id=@product.id&name=@product.name&url=null&size=@currentSize&price=@currentPrice.ToString().Replace(",0000",string.Empty)&count=" + document.getElementById("num_product").value;
         }
-
     }
 
     function sizeOnClick(id) {

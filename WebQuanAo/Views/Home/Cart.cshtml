@@ -1,5 +1,6 @@
 ﻿@using WebQuanAo.Models;
 @using WebQuanAo.Controllers;
+@using System.Collections.Generic;
 @{
     ViewBag.Title = "Cart";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,6 +8,8 @@
     List<GioHang> cart = ViewBag.Cart;
     List<product> product = ViewBag.product;
     decimal totalPrice = 0;
+
+    List<(string,string)> catalog = new  List<(string, string)>();
 }
 <link rel="stylesheet" href="~/Content/style-Cart.css">
 
@@ -34,9 +37,9 @@
                     <td><img class="" src="@p.srcImage" alt=""></td>
                     <td>@product.Find(x => x.id == cart[i].id).name</td>
                     <td>@cart[i].size</td>
-                    <td><input type="number" name="" id="" min="1" placeholder="0" value="@cart[i].count"></td>
+                    <td><input type="number" name="" id="count_@i" min="1" placeholder="0" value="@cart[i].count" ></td>
                     <td>@string.Format("{0:#,##0}", @cart[i].price * @cart[i].count).Replace(".0000", String.Empty) đ</td>
-                    <td><a href="#">Cập Nhật</a> <br /> <a href="@Url.Action("Cart")?id=@i">Xóa</a></td>
+                    <td><a href="#" onclick="changeCount(@i)">Cập Nhật</a> <br /> <a href="@Url.Action("Cart")?id=@i">Xóa</a></td>
                 </tr>
             }
         </tbody>
@@ -45,3 +48,21 @@
     <div class="buy mt-4 mb-5"><a class="d-block" id="them1" href="@Url.Action("ComfirmPay")">Thanh Toán</a></div>
 </div>
 
+<script>
+    function changeCount(id) {
+        var count = document.getElementById("count_"+id).value;
+        console.log(count);
+        console.log(id);
+
+        jQuery.ajax({
+            type: 'POST',
+            url: 'UpdateCart/',
+            data: { id: id, count: count },
+            success: function (data) {
+                alert('Cập nhật thành công!');
+                window.location.reload();
+            }
+        });
+
+    }
+</script>

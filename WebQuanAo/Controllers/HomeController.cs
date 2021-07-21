@@ -99,7 +99,7 @@ namespace WebQuanAo.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(string username, string password,string area = "")
+        public ActionResult Login(string username, string password, string area = "")
         {
             ViewBag.Page = "Login";
             using (DBStore dbModel = new DBStore())
@@ -119,7 +119,7 @@ namespace WebQuanAo.Controllers
                 Session["admin"] = names.admin;
                 if (area == "ConfirmCart")
                     return RedirectToAction("ComfirmPay");
-                else if(area == "")
+                else if (area == "")
                     return RedirectToAction("Index");
                 else
                     return RedirectToAction(area);
@@ -243,7 +243,7 @@ namespace WebQuanAo.Controllers
             cart.RemoveAt((int)id);
             Session["Cart"] = cart;
             ViewBag.Cart = (List<GioHang>)Session["Cart"];
-            return View();
+            return RedirectToAction("Cart");
 
 
         }
@@ -288,7 +288,7 @@ namespace WebQuanAo.Controllers
                 ViewBag.product = product;
             }
             List<GioHang> cart = GetListCart();
-            if(cart.Count == 0)
+            if (cart.Count == 0)
             {
                 return RedirectToAction("Index", "Home", new { area = "ConfirmCart" });
             }
@@ -296,7 +296,7 @@ namespace WebQuanAo.Controllers
             return View();
         }
 
-        
+
         public ActionResult SuccessPay()
         {
             if (!string.IsNullOrEmpty(Session["username"] as string))
@@ -405,7 +405,25 @@ namespace WebQuanAo.Controllers
                 ViewBag.userName = "";
                 return RedirectToAction("Login", "Home");
             }
-            return RedirectToAction("UpdateInfo"); ;
+            return RedirectToAction("UpdateInfo");
         }
+
+        [HttpPost]
+        public ActionResult UpdateCart(string id, string count)
+        {            
+            if (Session["Cart"] is List<GioHang>)
+            {
+                List<GioHang> cart = (List<GioHang>)Session["Cart"];
+                cart[Int32.Parse(id)].count = Int32.Parse(count);
+                ViewBag.Cart = cart;
+            }
+            else
+            {
+                ViewBag.Cart = new List<GioHang>();
+            }
+            return RedirectToAction("Cart");
+        }
+
+
     }
 }

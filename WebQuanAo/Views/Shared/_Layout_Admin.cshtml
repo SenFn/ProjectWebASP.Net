@@ -70,6 +70,7 @@
                             <li><a class="dropdown-item" onclick="logOut()">Thoát</a></li>
                         </ul>
                     </li>
+                </ul>
             </div>
         </div>
     </nav>
@@ -104,20 +105,23 @@
                         <a class="nav-link" href="@Url.Action("ProductInfo","Admin")">Thông Tin Sản Phẩm</a>
                     </li>
                     <li>
-                        <a class="nav-link" data-bs-toggle="collapse" href="#collapseBill" role="button" aria-expanded="false" aria-controls="collapseBill">Hóa Đơn</a>
-                        <div class="collapse" id="collapseBill">
-                            <div>
-                                <ul class="navbar-nav">
-                                    <li>
-                                        <a class="nav-link mx-4" href="@Url.Action("BillInfo","Admin")">Hóa Đơn Mua</a>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link mx-4" href="@Url.Action("Bill","Admin")">Hóa Đơn Bán</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                        <a class="nav-link" href="@Url.Action("Bill","Admin")">Hóa Đơn Mua</a>
                     </li>
+                    @*<li>
+            <a class="nav-link" data-bs-toggle="collapse" href="#collapseBill" role="button" aria-expanded="false" aria-controls="collapseBill">Hóa Đơn</a>
+            <div class="collapse" id="collapseBill">
+                <div>
+                    <ul class="navbar-nav">
+                        <li>
+                            <a class="nav-link mx-4" href="@Url.Action("BillInfo","Admin")">Hóa Đơn Mua</a>
+                        </li>
+                        <li>
+                            <a class="nav-link mx-4" href="@Url.Action("Bill","Admin")">Hóa Đơn Bán</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </li>*@
                     <li>
                         <div class="Title">Tài Khoản</div>
                     </li>
@@ -132,10 +136,10 @@
 
     @RenderBody();
 </body>
+</html>
 
 <script>
     function logOut() {
         window.location.href = "@Url.Action("LogOut", "Home", new { area = "Admin" })";
     }
 </script>
-</html>

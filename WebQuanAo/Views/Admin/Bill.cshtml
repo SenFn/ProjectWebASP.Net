@@ -1,15 +1,36 @@
-﻿
+﻿@using WebQuanAo.Models;
 @{
     ViewBag.Title = "Bill";
     Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+    List<cart> cartList = ViewBag.carts;
+    List<cardInfo> cartI = ViewBag.cartsI;
 }
 <link rel="stylesheet" href="../Content/style-Bill.css">
+<link rel="stylesheet" href="~/Content/style-ListAccount.css">
 <div class="Content animated fadeIn">
     <!-- Đây Là Chỗ Để Render Body Khi Quăng Vào MVC -->
     <!-- Nó Sẽ Thay Đổi Dựa Theo Người Dùng Muốn Click Coi Gì -->
     <div class="container-fluid">
         <div class="row">
             <div class="Home col-lg-2 col-md-3 col-sm-5 col-10 fw-bold my-2 mx-3">Hóa Đơn Bán</div>
+        </div>
+
+        <div class="dropdown listsearch mb-3 mt-3">
+            Tìm Kiếm theo:
+            <button class="btn btnlistsearch dropdown-toggle ml-1" type="button" id="dropdownListSearch" data-bs-toggle="dropdown" aria-expanded="false">Xếp theo giá tăng</button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownListSearch">
+                <li><a class="dropdown-item" href="#" onclick="FindTypeAccount(0)">Xếp theo giá tăng</a></li>
+                <li><a class="dropdown-item" href="#" onclick="FindTypeAccount(1)">Xếp theo giá giảm</a></li>
+                <li><a class="dropdown-item" href="#" onclick="FindTypeAccount(2)">Xếp theo ngày mới</a></li>
+                <li><a class="dropdown-item" href="#" onclick="FindTypeAccount(3)">Xếp theo ngày cũ</a></li>
+                <li><a class="dropdown-item" href="#" onclick="FindTypeAccount(4)">Tình Trạng: Chưa giao</a></li>
+                <li><a class="dropdown-item" href="#" onclick="FindTypeAccount(5)">Tình Trạng: Hoàn Thành</a></li>
+            </ul>
+            <form class="d-inline-flex ms-3">
+                <button class="btnsearch" onmouseover="search()">
+                    <a href="#" id="searchButton" onmouseover="search()">Search</a>
+                </button>
+            </form>
         </div>
         <table class="table table-dark table-striped">
             <thead>
@@ -18,21 +39,60 @@
                     <th scope="col">Giá</th>
                     <th scope="col">Ngày Đặt</th>
                     <th scope="col">Ngày Giao</th>
+                    <th scope="col">Địa Chỉ</th>
                     <th scope="col">Tình Trạng</th>
+                    <th scope="col">Thêm</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>2,500,000đ</td>
-                    <td>4/7/2021</td>
-                    <td>6/7/2021</td>
-                    <td>
-                        <a href="@Url.Action("BillInfo","Admin")">Chưa Giao</a>
-                    </td>
-                </tr>
+                @for (int i = 0; i < cartList.Count; i++)
+                {
+                    decimal total = 0;
+                    List<cardInfo> cartF = cartI.Where(x => x.idCart == cartList[i].idCart).ToList();
+                    foreach (cardInfo cF in cartF)
+                    {
+                        total += cF.price * cF.count;
+                    }
+                    <tr>
+                        <th scope="row">@(i+1)</th>
+                        <td>@string.Format("{0:#,##0}", total).Replace(".0000", String.Empty) đ</td>
+                        <td>@cartList[i].ngaydathang.ToString("dd/MM/yyyy")</td>
+                        <td>@cartList[i].ngaygiao.ToString("dd/MM/yyyy")</td>
+                        <td>@cartList[i].location</td>
+                        <td>@cartList[i].type</td>
+                        <td>
+                            <a href="@Url.Action("BillInfo","Admin")?id=@i">Xem Chi Tiết</a>
+                        </td>
+                    </tr>
+                }
+
             </tbody>
         </table>
     </div>
 </div>
+
+<script>
+    function FindTypeAccount(id) {
+        switch (id) {
+            case 0:
+                document.getElementById('dropdownListSearch').innerHTML = 'Xếp theo giá tăng';
+                break;
+            case 1:
+                document.getElementById('dropdownListSearch').innerHTML = 'Xếp theo giá giảm';
+                break;
+            case 2:
+                document.getElementById('dropdownListSearch').innerHTML = 'Xếp theo ngày mới';
+                break;
+            case 3:
+                document.getElementById('dropdownListSearch').innerHTML = 'Xếp theo ngày cũ';
+                break;
+            case 4:
+                document.getElementById('dropdownListSearch').innerHTML = 'Tình Trạng: Chưa giao';
+                break;
+            case 5:
+                document.getElementById('dropdownListSearch').innerHTML = 'Tình Trạng: Hoàn Thành';
+                break;
+        }
+    }
+</script>
 

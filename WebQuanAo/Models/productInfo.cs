@@ -21,6 +21,7 @@ namespace WebQuanAo.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int count { get; set; }
 
+
         [Key]
         [Column(Order = 2, TypeName = "money")]
         public decimal price { get; set; }

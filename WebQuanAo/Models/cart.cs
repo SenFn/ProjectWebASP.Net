@@ -16,10 +16,9 @@ namespace WebQuanAo.Models
         }
 
         [Key]
-        [StringLength(10)]
-        public string inCart { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int idCart { get; set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
 
         [Column(TypeName = "date")]
@@ -31,6 +30,8 @@ namespace WebQuanAo.Models
         [Required]
         [StringLength(100)]
         public string location { get; set; }
+
+        public int type { get; set; }
 
         public virtual account account { get; set; }
 

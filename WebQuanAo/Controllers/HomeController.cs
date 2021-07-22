@@ -299,16 +299,56 @@ namespace WebQuanAo.Controllers
 
         public ActionResult SuccessPay()
         {
+            string name = Session["username"].ToString();
             if (!string.IsNullOrEmpty(Session["username"] as string))
             {
                 ViewBag.userName = Session["username"].ToString();
-                ViewBag.admin = Session["admin"];
+                ViewBag.admin = Session["admin"];              
+
+                using (DBStore dbModel = new DBStore())
+                {
+                    DateTime today = DateTime.Today;
+
+                    account acc = dbModel.accounts.FirstOrDefault(x => x.username == name);
+                    
+
+                    cart newCart = new cart();
+                    newCart.idCart = dbModel.carts.ToList().Count;
+                    newCart.id = acc.id;
+                    newCart.ngaydathang = today;
+                    newCart.ngaygiao = today.AddDays(2);
+                    newCart.type = 0;
+                    newCart.location = acc.location;
+                    dbModel.carts.Add(newCart);
+                    dbModel.SaveChanges();
+                    
+
+                List<GioHang> gh = (List<GioHang>)Session["Cart"];
+
+                    foreach(GioHang gio in gh)
+                    {
+                        cardInfo newCardInfo = new cardInfo();
+                        newCardInfo.idCart = newCart.idCart;
+                        newCardInfo.id = gio.id??0;
+                        newCardInfo.price = gio.price;
+                        newCardInfo.count = gio.count;
+                        newCardInfo.discount = 0;
+                        newCardInfo.size = gio.size;
+                        dbModel.cardInfoes.Add(newCardInfo);
+                        dbModel.SaveChanges();
+                    }
+
+                    
+                }
+
+                Session["Cart"] = new List<GioHang>();
             }
             else
             {
                 ViewBag.userName = "";
             }
-            Session["Cart"] = new List<GioHang>();
+            
+
             return View();
         }
 

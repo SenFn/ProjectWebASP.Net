@@ -210,13 +210,54 @@ namespace WebQuanAo.Controllers
         //Đây Là Form Hóa Đơn Bán
         public ActionResult Bill()
         {
-            return View();
+            if (!string.IsNullOrEmpty(Session["username"] as string))
+            {
+                String userName = Session["username"].ToString();
+                using (DBStore dbModel = new DBStore())
+                {
+                    account names = dbModel.accounts.FirstOrDefault(x => x.username == userName);
+                    if (names.admin == true)
+                    {
+                        List<cart> cartList = dbModel.carts.ToList();
+                        List<cardInfo> cartI = dbModel.cardInfoes.ToList();
+                        ViewBag.carts = cartList;
+                        ViewBag.cartsI = cartI;
+                        return View();
+                    }
+                }
+
+            }
+
+            return RedirectToAction("Index", "Home", new { area = "Admin" });
         }
 
         //Đây Là Form Chi Tiết Của Hóa Đơn Bán Khi Click Vào Tình Trạng Của Hóa Đơn
-        public ActionResult BillInfo()
+        public ActionResult BillInfo(int ?id)
         {
-            return View();
+            if (!string.IsNullOrEmpty(Session["username"] as string))
+            {
+                String userName = Session["username"].ToString();
+                using (DBStore dbModel = new DBStore())
+                {
+                    account names = dbModel.accounts.FirstOrDefault(x => x.username == userName);
+                    if (names.admin == true)
+                    {
+                        if(id == null)
+                        {
+                            return RedirectToAction("Bill", "Admin");
+                        }
+                        List<cardInfo> cartI = dbModel.cardInfoes.Where(x=> x.idCart == id).ToList();                        
+                        List<product> pList = dbModel.products.ToList();
+
+                        ViewBag.cartsI = cartI;
+                        ViewBag.pList = pList;
+                        return View();
+                    }
+                }
+
+            }
+
+            return RedirectToAction("Index", "Home", new { area = "Admin" });
         }
 
         //Đây Là Form Danh Sách Tài Khoản (Đã Chỉnh Sửa Chỗ DropDown Không Còn Chia Làm 2 Loại Tài Khoản Nữa Mà Lọc Chung Với Phần Tìm Kiếm

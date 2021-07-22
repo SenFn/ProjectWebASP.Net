@@ -21,6 +21,7 @@ namespace WebQuanAo.Models
             this.email = email;
             this.phone = phone;
         }
+
         public int id { get; set; }
 
         [Required]

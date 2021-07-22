@@ -11,8 +11,8 @@ namespace WebQuanAo.Models
     {
         [Key]
         [Column(Order = 0)]
-        [StringLength(10)]
-        public string inCart { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int idCart { get; set; }
 
         [Key]
         [Column(Order = 1)]
@@ -32,9 +32,15 @@ namespace WebQuanAo.Models
         [Column(Order = 4)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int discount { get; set; }
+        [Key]
+        [Column(Order = 5)]
+        [StringLength(10)]
+        public string size { get; set; }
 
         public virtual cart cart { get; set; }
 
         public virtual product product { get; set; }
+
+        
     }
 }

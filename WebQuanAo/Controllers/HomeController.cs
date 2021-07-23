@@ -467,13 +467,68 @@ namespace WebQuanAo.Controllers
         /* View Lịch Sử Thanh Toán */
         public ActionResult BilHistory()
         {
+
+
+            if (!string.IsNullOrEmpty(Session["username"] as string))
+            {
+                string uName = Session["username"].ToString();
+
+                ViewBag.userName = uName;
+                ViewBag.admin = Session["admin"];
+                using (DBStore dbModel = new DBStore())
+                {
+                    account acc = dbModel.accounts.FirstOrDefault(a => a.username == uName);
+                    List<cart> cart = dbModel.carts.Where(x => x.id == acc.id).ToList();
+                    List<cardInfo> cartInfo = dbModel.cardInfoes.ToList();
+                    ViewBag.cart = cart;
+                    ViewBag.acc = acc;
+                    ViewBag.cartInfo = cartInfo;
+                }
+            }
+            else
+            {
+                ViewBag.userName = "";
+                return RedirectToAction("Login", "Home");
+            }
             return View();
         }
 
         /* View Thông Tin Chi Tiết Của Hóa Đơn Trong Lịch Sử Thanh Toán */
-        public ActionResult BillInfoHistory()
+        public ActionResult BillInfoHistory(int ?id)
         {
+
+            if (!string.IsNullOrEmpty(Session["username"] as string))
+            {
+                string uName = Session["username"].ToString();
+
+                ViewBag.userName = uName;
+                ViewBag.admin = Session["admin"];
+                using (DBStore dbModel = new DBStore())
+                {
+
+                    if (id == null)
+                    {
+                        return RedirectToAction("BilHistory", "Home");
+                    }
+                    List<cardInfo> cartI = dbModel.cardInfoes.Where(x => x.idCart == id).ToList();
+                    List<product> pList = dbModel.products.ToList();
+
+                    cart cart = dbModel.carts.FirstOrDefault(x => x.idCart == id);
+                    ViewBag.cartsI = cartI;
+                    ViewBag.pList = pList;
+                    ViewBag.cart = cart;
+                    return View();
+                }
+            }
+            else
+            {
+                ViewBag.userName = "";
+                return RedirectToAction("Login", "Home");
+            }
             return View();
+
         }
+
+       
     }
 }

@@ -1,7 +1,10 @@
-﻿
+﻿@using WebQuanAo.Models;
 @{
     ViewBag.Title = "BilHistory";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    List<cart> cart = ViewBag.cart;
+    account acc = ViewBag.acc;
+    List<cardInfo> cartInfo = ViewBag.cartInfo;
 }
 <link rel="stylesheet" href="~/Content/style-BillHistory.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
@@ -22,16 +25,35 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Peter Tèo</td>
-                <td>696969</td>
-                <td>Ngã ba chuồng chó</td>
-                <td>23/7/2021</td>
-                <td>25/7/2021</td>
-                <td>30.000.000đ</td>
-                <td><a href="@Url.Action("BillInfoHistory","Home")">Xem Chi Tiết</a></td>
-            </tr>
+            @if (cart.Count == 0)
+            {
+                <tr>
+                    Không có lịch sử đơn hàng!
+                </tr>
+            }
+            else
+            {
+                for (int i = 0; i < cart.Count; i++)
+                {
+                    decimal total = 0;
+                    List<cardInfo> cartF = cartInfo.Where(x => x.idCart == cart[i].idCart).ToList();
+                    foreach (cardInfo cF in cartF)
+                    {
+                        total += cF.price * cF.count;
+                    }
+                    <tr>
+                        <th scope="row">@(i+1)</th>
+                        <td>@acc.name</td>
+                        <td>@acc.phone</td>
+                        <td>@acc.location</td>
+                        <td>@cart[i].ngaydathang.ToString("dd/MM/yyyy")</td>
+                        <td>@cart[i].ngaygiao.ToString("dd/MM/yyyy")</td>
+                        <td>@string.Format("{0:#,##0}", total).Replace(".0000", String.Empty) đ</td>
+                        <td><a href="@Url.Action("BillInfoHistory","Home")?id=@cart[i].idCart">Xem Chi Tiết</a></td>
+                    </tr>
+                }
+            }
+
         </tbody>
     </table>
 </div>

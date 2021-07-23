@@ -1,14 +1,17 @@
-﻿
+﻿@using WebQuanAo.Models;
 @{
     ViewBag.Title = "BillInfoHistory";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    List<cardInfo> cartI = ViewBag.cartsI;
+    List<product> pList = ViewBag.pList;
+    cart cart = ViewBag.cart;
 }
 <link rel="stylesheet" href="~/Content/style-BillInfoHistory.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 
 <div class="bill-info-history mt-5 animated fadeIn">
     <h4 class=" mb-4">
-        <a href="@Url.Action("BilHistory","Home")">Lịch Sử Thanh Toán</a> / <a href="#">Hóa Đơn 1</a>
+        <a href="@Url.Action("BilHistory","Home")">Lịch Sử Thanh Toán</a> / <a href="#">Hóa Đơn @(cart.idCart+1)</a>
     </h4>
     <!-- Ý dòng h4 này của tôi là khi người dùng click vào chi tiết của 1 hóa đơn
      thì nó sẽ chuyển sang trang này và h4 nó sẽ hiện cụ thể là mình click vào
@@ -26,24 +29,23 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td><img src="~/Content/Images/Images/air-vapormax-r-running-shoe-9dgzpr1-300x300.jpg" alt=""></td>
-                <td>Air Vapormax Running Shoes</td>
-                <td>1</td>
-                <td>30.000.000đ</td>
-                <td>23/7/2021</td>
-                <td>25/7/2021</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td><img src="~/Content/Images/Images/kobe-bryant-all-star-edition-swingman-jersey-jordan-nba-connected-jersey-Sv016H1-300x300.jpg" alt=""></td>
-                <td>Kobe Bryant All Star Edition Swingman</td>
-                <td>1</td>
-                <td>30.000.000đ</td>
-                <td>23/7/2021</td>
-                <td>25/7/2021</td>
-            </tr>
+
+            @for (int i = 0; i < cartI.Count; i++)
+            {
+                product p = pList.FirstOrDefault(x => x.id == cartI[i].id);                
+                <tr>
+                    <th scope="row">@(i+1)</th>
+                    <td><img src="@p.srcImage" alt=""></td>
+                    <td>@p.name</td>
+                    <td>@cartI[i].count</td>
+                    <td>@string.Format("{0:#,##0}", cartI[i].price * cartI[i].count).Replace(".0000", String.Empty) đ</td>
+                    <td>@cart.ngaydathang.ToString("dd/MM/yyyy")</td>
+                    <td>@cart.ngaygiao.ToString("dd/MM/yyyy")</td>
+                </tr>
+
+            }
+
+            
         </tbody>
     </table>
 </div>

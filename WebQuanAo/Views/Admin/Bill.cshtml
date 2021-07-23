@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_Layout_Admin.cshtml";
     List<cart> cartList = ViewBag.carts;
     List<cardInfo> cartI = ViewBag.cartsI;
+    string pending = ViewBag.pending;
 }
 <link rel="stylesheet" href="../Content/style-Bill.css">
 <link rel="stylesheet" href="~/Content/style-ListAccount.css">
@@ -17,7 +18,15 @@
 
         <div class="dropdown listsearch mb-3 mt-3">
             Tìm Kiếm theo:
-            <button class="btn btnlistsearch dropdown-toggle ml-1" type="button" id="dropdownListSearch" data-bs-toggle="dropdown" aria-expanded="false">Xếp theo giá tăng</button>
+            @if (pending == "")
+            {
+                <button class="btn btnlistsearch dropdown-toggle ml-1" type="button" id="dropdownListSearch" data-bs-toggle="dropdown" aria-expanded="false">Xếp theo giá tăng</button>
+            }
+            else
+            {
+                <button class="btn btnlistsearch dropdown-toggle ml-1" type="button" id="dropdownListSearch" data-bs-toggle="dropdown" aria-expanded="false">@pending</button>
+            }
+
             <ul class="dropdown-menu" aria-labelledby="dropdownListSearch">
                 <li><a class="dropdown-item" href="#" onclick="FindTypeAccount(0)">Xếp theo giá tăng</a></li>
                 <li><a class="dropdown-item" href="#" onclick="FindTypeAccount(1)">Xếp theo giá giảm</a></li>
@@ -26,11 +35,11 @@
                 <li><a class="dropdown-item" href="#" onclick="FindTypeAccount(4)">Tình Trạng: Chưa giao</a></li>
                 <li><a class="dropdown-item" href="#" onclick="FindTypeAccount(5)">Tình Trạng: Hoàn Thành</a></li>
             </ul>
-            <form class="d-inline-flex ms-3">
+            @*<form class="d-inline-flex ms-3">
                 <button class="btnsearch" onmouseover="search()">
                     <a href="#" id="searchButton" onmouseover="search()">Search</a>
                 </button>
-            </form>
+            </form>*@
         </div>
         <table class="table table-dark table-striped">
             <thead>
@@ -53,17 +62,29 @@
                     {
                         total += cF.price * cF.count;
                     }
-                    <tr>
-                        <th scope="row">@(i+1)</th>
-                        <td>@string.Format("{0:#,##0}", total).Replace(".0000", String.Empty) đ</td>
-                        <td>@cartList[i].ngaydathang.ToString("dd/MM/yyyy")</td>
-                        <td>@cartList[i].ngaygiao.ToString("dd/MM/yyyy")</td>
-                        <td>@cartList[i].location</td>
-                        <td>@cartList[i].type</td>
+                <tr>
+                    <th scope="row">@(i+1)</th>
+                    <td>@string.Format("{0:#,##0}", total).Replace(".0000", String.Empty) đ</td>
+                    <td>@cartList[i].ngaydathang.ToString("dd/MM/yyyy")</td>
+                    <td>@cartList[i].ngaygiao.ToString("dd/MM/yyyy")</td>
+                    <td>@cartList[i].location</td>
+                    @if (cartList[i].type == 0)
+                    {
+                        <td>Chưa giao</td>
+                        <td>
+                            <a href="@Url.Action("BillInfo","Admin")?id=@i">Xem Chi Tiết</a> |
+                            <a href="@Url.Action("ConfirmBill","Admin")?id=@i">Hoàn thành</a>
+                        </td>
+                    }
+                    else if (cartList[i].type == 1)
+                    {
+                        <td>Hoàn thành</td>
                         <td>
                             <a href="@Url.Action("BillInfo","Admin")?id=@i">Xem Chi Tiết</a>
                         </td>
-                    </tr>
+                    }
+
+                </tr>
                 }
 
             </tbody>
@@ -75,22 +96,22 @@
     function FindTypeAccount(id) {
         switch (id) {
             case 0:
-                document.getElementById('dropdownListSearch').innerHTML = 'Xếp theo giá tăng';
+                window.location.href = "@Url.Action("Bill")?priceT=true";
                 break;
             case 1:
-                document.getElementById('dropdownListSearch').innerHTML = 'Xếp theo giá giảm';
+                window.location.href = "@Url.Action("Bill")?priceG=true";
                 break;
             case 2:
-                document.getElementById('dropdownListSearch').innerHTML = 'Xếp theo ngày mới';
+                window.location.href = "@Url.Action("Bill")?pNew=true";
                 break;
             case 3:
-                document.getElementById('dropdownListSearch').innerHTML = 'Xếp theo ngày cũ';
+                window.location.href = "@Url.Action("Bill")?pOld=true";
                 break;
             case 4:
-                document.getElementById('dropdownListSearch').innerHTML = 'Tình Trạng: Chưa giao';
+                window.location.href = "@Url.Action("Bill")?holding=true";
                 break;
             case 5:
-                document.getElementById('dropdownListSearch').innerHTML = 'Tình Trạng: Hoàn Thành';
+                window.location.href = "@Url.Action("Bill")?complete=true";
                 break;
         }
     }

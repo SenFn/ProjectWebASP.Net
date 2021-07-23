@@ -208,7 +208,7 @@ namespace WebQuanAo.Controllers
         }
 
         //Đây Là Form Hóa Đơn Bán
-        public ActionResult Bill()
+        public ActionResult Bill(bool complete = false, bool holding = false, bool priceT = false, bool priceG = false, bool pNew = false, bool pOld = false)
         {
             if (!string.IsNullOrEmpty(Session["username"] as string))
             {
@@ -220,8 +220,84 @@ namespace WebQuanAo.Controllers
                     {
                         List<cart> cartList = dbModel.carts.ToList();
                         List<cardInfo> cartI = dbModel.cardInfoes.ToList();
+                        ViewBag.pending = "";
+                        if (complete == true)
+                        {
+                            cartList = dbModel.carts.Where(x=>x.type == 1).ToList();
+                            ViewBag.pending = "Tình Trạng: Hoàn Thành";
+                        }
+                        if(holding == true)
+                        {
+                            cartList = dbModel.carts.Where(x => x.type == 0).ToList();
+                            ViewBag.pending = "Tình Trạng: Chưa giao";
+                        }
+
+                        if (pNew == true)
+                        {
+                            cartList = dbModel.carts.OrderByDescending(x => x.ngaydathang).ToList();
+                            ViewBag.pending = "Xếp theo ngày mới";
+                        }
+                        if (pOld == true)
+                        {
+                            cartList = dbModel.carts.OrderBy(x => x.ngaydathang).ToList();
+                            ViewBag.pending = "Xếp theo ngày cũ";
+                        }
+                        
+
+                        if (priceT == true)
+                        {
+                            List<SortList> listSort = new List<SortList>();
+                            for (int i=0;i< cartList.Count; i++)
+                            {
+                                decimal total = 0;
+                                List<cardInfo> cartF = cartI.Where(x => x.idCart == cartList[i].idCart).ToList();
+                                foreach (cardInfo c in cartF)
+                                {
+                                    total += c.price * c.count;
+                                }
+                                listSort.Add(new SortList(i, total));
+                            }
+                            listSort = listSort.OrderBy(x=> x.total).ToList();
+                            List<cart> newList = new List<cart>();
+                            for (int i = 0; i < listSort.Count; i++)
+                            {
+                                cart c = cartList.FirstOrDefault(x => x.idCart == listSort[i].id);
+                                newList.Add(c);
+                            }
+                            cartList = newList;
+
+                        }
+
+                        if (priceG == true)
+                        {
+                            List<SortList> listSort = new List<SortList>();
+                            for (int i = 0; i < cartList.Count; i++)
+                            {
+                                decimal total = 0;
+                                List<cardInfo> cartF = cartI.Where(x => x.idCart == cartList[i].idCart).ToList();
+                                foreach (cardInfo c in cartF)
+                                {
+                                    total += c.price * c.count;
+                                }
+                                listSort.Add(new SortList(i, total));
+                            }
+                            listSort = listSort.OrderByDescending(x => x.total).ToList();
+                            List<cart> newList = new List<cart>();
+                            for (int i = 0; i < listSort.Count; i++)
+                            {
+                                cart c = cartList.FirstOrDefault(x => x.idCart == listSort[i].id);
+                                newList.Add(c);
+                            }
+                            cartList = newList;
+
+                        }
+
+
+
+
+
                         ViewBag.carts = cartList;
-                        ViewBag.cartsI = cartI;
+                        ViewBag.cartsI = cartI;                        
                         return View();
                     }
                 }
@@ -252,6 +328,32 @@ namespace WebQuanAo.Controllers
                         ViewBag.cartsI = cartI;
                         ViewBag.pList = pList;
                         return View();
+                    }
+                }
+
+            }
+
+            return RedirectToAction("Index", "Home", new { area = "Admin" });
+        }
+
+        public ActionResult ConfirmBill(int? id)
+        {
+            if (!string.IsNullOrEmpty(Session["username"] as string))
+            {
+                String userName = Session["username"].ToString();
+                using (DBStore dbModel = new DBStore())
+                {
+                    account names = dbModel.accounts.FirstOrDefault(x => x.username == userName);
+                    if (names.admin == true)
+                    {
+                        if (id == null)
+                        {
+                            return RedirectToAction("Bill", "Admin");
+                        }
+                        cart cartGet = dbModel.carts.FirstOrDefault(x => x.idCart == id);
+                        cartGet.type = 1;
+                        dbModel.SaveChanges();
+                        return RedirectToAction("Bill", "Admin");
                     }
                 }
 

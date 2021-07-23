@@ -529,6 +529,17 @@ namespace WebQuanAo.Controllers
 
         }
 
-       
+
+        public ActionResult BuyNow(int count, int? id, decimal price, string name = "", string url = "", string size = "")
+        {
+            List<GioHang> cart = new List<GioHang>();
+
+            cart.Add(new GioHang(id, name, url, size, price, count));     
+            
+            Session["Cart"] = cart;
+            return RedirectToAction("ComfirmPay");
+        }
+
+
     }
 }

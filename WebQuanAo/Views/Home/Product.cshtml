@@ -34,7 +34,7 @@
                 <input type="number" name="num-product" id="num_product" min="1" placeholder="1" value="1" style="width: 80px !important; height: 25px; text-align: center; " onchange="changeCount()">
             </div>
         </div>
-        <div class="buy mt-5" onmouseover="changeHrefBuy()"><a class="d-block" id="them" href="#">Mua Ngay</a></div>
+        <div class="buy mt-5"><a class="d-block" id="them" href="#" onclick="changeHrefAdd()">Mua Ngay</a></div>
         <div class="add mt-3" ><a class="d-block" id="them1" href="#" onclick="changeHrefAdd()">Thêm giỏ</a></div>
 
     </div>
@@ -44,10 +44,7 @@
     function changeCount() {
         var link = document.getElementById("them1").href;
         document.getElementById("them1").href = link.split("count=")[0] + "count=" + document.getElementById("num_product").value;
-    }
-
-    function changeHrefBuy(){
-
+        document.getElementById("them").href = link.split("count=")[0] + "count=" + document.getElementById("num_product").value;
     }
 
     function changeHrefAdd() {
@@ -70,11 +67,15 @@
                         currentSize = infoS.size;
                     }
                     document.getElementById("them1").setAttribute("href", "@Url.Action("AddCard")?id=@product.id&name=@product.name&url=null&size=@currentSize&price=@currentPrice.ToString().Replace(",0000",string.Empty)&count=" + (document.getElementById("num_product").value == "" ? 1 : document.getElementById("num_product").value));
+                    document.getElementById("them").setAttribute("href", "@Url.Action("BuyNow")?id=@product.id&name=@product.name&url=null&size=@currentSize&price=@currentPrice.ToString().Replace(",0000",string.Empty)&count=" + (document.getElementById("num_product").value == "" ? 1 : document.getElementById("num_product").value));
+
+
                     break;
                 } else {
                     document.getElementById("countSize").innerHTML = "Size S: Hết hàng";
                     document.getElementById("priceP").innerHTML = `@string.Format("{0:#,##0}", @product.price).Replace(".0000", String.Empty) đ`;
                     document.getElementById("them1").setAttribute("href", "#");
+                    document.getElementById("them").setAttribute("href", "#");
                     break;
                 }
 
@@ -88,11 +89,13 @@
                          currentPrice = infoM.price;
                      }
                     document.getElementById("them1").setAttribute("href", "@Url.Action("AddCard")?id=@product.id&name=@product.name&url=null&size=@currentSize&price=@currentPrice.ToString().Replace(",0000",string.Empty)&count=" + (document.getElementById("num_product").value == "" ? 1 : document.getElementById("num_product").value));
+                    document.getElementById("them").setAttribute("href", "@Url.Action("BuyNow")?id=@product.id&name=@product.name&url=null&size=@currentSize&price=@currentPrice.ToString().Replace(",0000",string.Empty)&count=" + (document.getElementById("num_product").value == "" ? 1 : document.getElementById("num_product").value));
 
                     break;
                 } else {
                     document.getElementById("countSize").innerHTML = "Size M: Hết hàng";
                     document.getElementById("priceP").innerHTML = `@string.Format("{0:#,##0}", @product.price).Replace(".0000", String.Empty) đ`;
+                    document.getElementById("them").setAttribute("href", "#");
                     document.getElementById("them1").setAttribute("href", "#");
                     break;
                 }
@@ -106,12 +109,14 @@
                         currentSize = infoL.size;
                     }
                     document.getElementById("them1").setAttribute("href", "@Url.Action("AddCard")?id=@product.id&name=@product.name&url=null&size=@currentSize&price=@currentPrice.ToString().Replace(",0000",string.Empty)&count=" + (document.getElementById("num_product").value == "" ? 1 : document.getElementById("num_product").value));
+                    document.getElementById("them").setAttribute("href", "@Url.Action("BuyNow")?id=@product.id&name=@product.name&url=null&size=@currentSize&price=@currentPrice.ToString().Replace(",0000",string.Empty)&count=" + (document.getElementById("num_product").value == "" ? 1 : document.getElementById("num_product").value));
 
                     break;
                 } else {
                     document.getElementById("countSize").innerHTML = "Size L: Hết hàng";
                     document.getElementById("priceP").innerHTML = `@string.Format("{0:#,##0}", @product.price).Replace(".0000", String.Empty) đ`;
                     document.getElementById("them1").setAttribute("href", "#");
+                    document.getElementById("them").setAttribute("href", "#");
                     break;
                 }
         }

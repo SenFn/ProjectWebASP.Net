@@ -7,6 +7,12 @@
     List<product> product = ViewBag.product;
     decimal totalPrice = 0;
     account account = ViewBag.accResult;
+    bool locaAccisNull = false;
+
+    if (account.location == null)
+    {
+        locaAccisNull = true;
+    }
 }
 <link rel="stylesheet" href="~/Content/style-ConfirmPay.css">
 
@@ -46,12 +52,9 @@
         <!-- Thông Tin Khách Hàng -->
         <h5>Thông Tin Khách Hàng</h5>
 
-
         @if (ViewBag.userName == null || ViewBag.userName == "")
         {
-
             <div class="btn-buy"><a id="linkThanhToan" class="d-block" href="@Url.Action("Login","Home")">Thanh Toán</a></div>
-
         }
         else
         {
@@ -63,9 +66,21 @@
                 <b>Tổng Tiền:</b>  @string.Format("{0:#,##0}", @totalPrice).Replace(".0000", String.Empty) đ
             </p>
 
-            <div class="btn-buy"><a id="linkThanhToan" class="d-block" href="@Url.Action("SuccessPay","Home")">Thanh Toán</a></div>
+            <div class="btn-buy"><a id="linkThanhToan" class="d-block" href="#" onclick="checkUser()">Thanh Toán</a></div>
         }
 
     </div>
 </div>
+
+<script>
+    function checkUser() {
+
+        if ('@locaAccisNull' == 'True') {
+            alert("Tài khoản chưa cài đặt địa chỉ giao hàng, bạn cần cài đặt địa chỉ giao hàng!");
+            window.location.href = "@Url.Action("UpdateInfo", "Home")";
+        } else {
+             window.location.href = "@Url.Action("SuccessPay", "Home")";
+        }
+    }
+</script>
 

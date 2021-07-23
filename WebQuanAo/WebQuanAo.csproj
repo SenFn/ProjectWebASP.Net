@@ -170,7 +170,9 @@
     <Content Include="Content\Images\Images\vapor-max-air-training-duffel-bag-yJwoN91-300x300.jpg" />
     <Content Include="Content\style-Admin.css" />
     <Content Include="Content\style-Bill.css" />
+    <Content Include="Content\style-BillHistory.css" />
     <Content Include="Content\style-BillInfo.css" />
+    <Content Include="Content\style-BillInfoHistory.css" />
     <Content Include="Content\style-BodyForm.css" />
     <Content Include="Content\style-Cart.css" />
     <Content Include="Content\style-ChangePassword.css" />
@@ -236,6 +238,8 @@
     <Content Include="Views\Home\SuccessPay.cshtml" />
     <Content Include="Views\Home\UpdateInfo.cshtml" />
     <Content Include="Views\Home\ChangePassword.cshtml" />
+    <Content Include="Views\Home\BilHistory.cshtml" />
+    <Content Include="Views\Home\BillInfoHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

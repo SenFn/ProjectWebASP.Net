@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "BilHistory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/Content/style-BillHistory.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<div class="bill-history mt-5 animated fadeIn">
+    <h4 class=" mb-4">Lịch Sử Thanh Toán</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Tên Khách</th>
+                <th scope="col">Số Điện Thoại</th>
+                <th scope="col">Khu Vực</th>
+                <th scope="col">Ngày Đặt Hàng</th>
+                <th scope="col">Ngày Giao Hàng</th>
+                <th scope="col">Tổng Tiền</th>
+                <th scope="col">Thao Tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Peter Tèo</td>
+                <td>696969</td>
+                <td>Ngã ba chuồng chó</td>
+                <td>23/7/2021</td>
+                <td>25/7/2021</td>
+                <td>30.000.000đ</td>
+                <td><a href="@Url.Action("BillInfoHistory","Home")">Xem Chi Tiết</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+

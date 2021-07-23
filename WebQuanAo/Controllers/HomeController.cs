@@ -464,6 +464,16 @@ namespace WebQuanAo.Controllers
             return RedirectToAction("Cart");
         }
 
+        /* View Lịch Sử Thanh Toán */
+        public ActionResult BilHistory()
+        {
+            return View();
+        }
 
+        /* View Thông Tin Chi Tiết Của Hóa Đơn Trong Lịch Sử Thanh Toán */
+        public ActionResult BillInfoHistory()
+        {
+            return View();
+        }
     }
 }

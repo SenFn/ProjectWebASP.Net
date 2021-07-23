@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "BillInfoHistory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/Content/style-BillInfoHistory.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<div class="bill-info-history mt-5 animated fadeIn">
+    <h4 class=" mb-4">
+        <a href="@Url.Action("BilHistory","Home")">Lịch Sử Thanh Toán</a> / <a href="#">Hóa Đơn 1</a>
+    </h4>
+    <!-- Ý dòng h4 này của tôi là khi người dùng click vào chi tiết của 1 hóa đơn
+     thì nó sẽ chuyển sang trang này và h4 nó sẽ hiện cụ thể là mình click vào
+     chi tiết đơn hàng của Hóa Đơn 1-->
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th> <!-- Đây là số thứ tự của sản phẩm, không phải số id sản phẩm -->
+                <th scope="col">Ảnh</th>
+                <th scope="col">Sản Phẩm</th>
+                <th scope="col">Số Lượng</th>
+                <th scope="col">Giá</th>
+                <th scope="col">Ngày Đặt Hàng</th>
+                <th scope="col">Ngày Giao Hàng</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td><img src="~/Content/Images/Images/air-vapormax-r-running-shoe-9dgzpr1-300x300.jpg" alt=""></td>
+                <td>Air Vapormax Running Shoes</td>
+                <td>1</td>
+                <td>30.000.000đ</td>
+                <td>23/7/2021</td>
+                <td>25/7/2021</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td><img src="~/Content/Images/Images/kobe-bryant-all-star-edition-swingman-jersey-jordan-nba-connected-jersey-Sv016H1-300x300.jpg" alt=""></td>
+                <td>Kobe Bryant All Star Edition Swingman</td>
+                <td>1</td>
+                <td>30.000.000đ</td>
+                <td>23/7/2021</td>
+                <td>25/7/2021</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+

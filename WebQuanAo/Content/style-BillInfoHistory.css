@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+    /* Container */
+    .bill-info-history{
+        margin-left: 10%;
+    }
+    .bill-info-history h4{
+        font-weight: 700;
+    }
+        h4 a{
+            text-decoration: none;
+            color: #ff723b;
+        }
+        h4 a:hover{
+            color: #ff723b !important;
+        }
+    table{
+        width: 80% !important;
+        margin-top: 50px;
+        margin-left: 5%;
+        margin-bottom: 150px !important;
+    }
+        td img{
+            height: 100px;
+        }

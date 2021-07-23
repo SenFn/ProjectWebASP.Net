@@ -72,15 +72,15 @@
                     {
                         <td>Chưa giao</td>
                         <td>
-                            <a href="@Url.Action("BillInfo","Admin")?id=@i">Xem Chi Tiết</a> |
-                            <a href="@Url.Action("ConfirmBill","Admin")?id=@i">Hoàn thành</a>
+                            <a href="@Url.Action("BillInfo","Admin")?id=@cartList[i].idCart">Xem Chi Tiết</a> |
+                            <a href="@Url.Action("ConfirmBill","Admin")?id=@cartList[i].idCart">Hoàn thành</a>
                         </td>
                     }
                     else if (cartList[i].type == 1)
                     {
                         <td>Hoàn thành</td>
                         <td>
-                            <a href="@Url.Action("BillInfo","Admin")?id=@i">Xem Chi Tiết</a>
+                            <a href="@Url.Action("BillInfo","Admin")?id=@cartList[i].idCart">Xem Chi Tiết</a>
                         </td>
                     }
 

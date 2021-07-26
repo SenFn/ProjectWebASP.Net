@@ -30,6 +30,9 @@ namespace WebQuanAo.Controllers
 
                 bodySave bS = dbModel.bodySaves.FirstOrDefault();
                 ViewBag.bodySave = bS;
+
+                headerSave bH = dbModel.headerSaves.FirstOrDefault();
+                ViewBag.headerSave = bH;
             }
             return View();
         }
@@ -64,7 +67,8 @@ namespace WebQuanAo.Controllers
 
                 account acc = new account(username, password, email, phone);
                 dbModel.accounts.Add(acc);
-
+                headerSave bH = dbModel.headerSaves.FirstOrDefault();
+                ViewBag.headerSave = bH;
 
                 try
                 {
@@ -225,6 +229,8 @@ namespace WebQuanAo.Controllers
             {
                 List<product> product = dbModel.products.ToList();
                 ViewBag.product = product;
+                List<productInfo> productInfo = dbModel.productInfoes.ToList();
+                ViewBag.productInfo = productInfo;
             }
             if (id is null)
             {
@@ -336,10 +342,28 @@ namespace WebQuanAo.Controllers
                         newCardInfo.size = gio.size;
                         dbModel.cardInfoes.Add(newCardInfo);
                         dbModel.SaveChanges();
+
+
+
+                        productInfo pInfoChange = dbModel.productInfoes.FirstOrDefault(x => x.id == gio.id && x.size == gio.size);
+                        if(pInfoChange.id == gio.id)
+                        {
+                           
+                            dbModel.productInfoes.Remove(pInfoChange);
+                            dbModel.SaveChanges();
+
+                            pInfoChange.id = gio.id;
+                            pInfoChange.count -= gio.count;
+                            dbModel.productInfoes.Add(pInfoChange);
+                            dbModel.SaveChanges();
+                        }
+                        
                     }
 
-                    
+
                 }
+
+                
 
                 Session["Cart"] = new List<GioHang>();
             }

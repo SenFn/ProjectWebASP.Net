@@ -7,6 +7,8 @@
 
     List<GioHang> cart = ViewBag.Cart;
     List<product> product = ViewBag.product;
+    List<productInfo> productInfo = ViewBag.productInfo;
+
     decimal totalPrice = 0;
 
     List<(string,string)> catalog = new  List<(string, string)>();
@@ -30,14 +32,15 @@
         <tbody>
             @for (int i = 0; i < cart.Count; i++)
             {
-                product p = @product.FirstOrDefault(x => x.id == cart[i].id);
+                product p = product.FirstOrDefault(x => x.id == cart[i].id);
+                productInfo pIndex = productInfo.FirstOrDefault(x => x.id == cart[i].id && x.size == cart[i].size);
                 totalPrice += (decimal)(cart[i].price * cart[i].count);
                 <tr>
                     <th id="num" scope="row">@(i+1)</th>
                     <td><img class="" src="@p.srcImage" alt=""></td>
                     <td>@product.Find(x => x.id == cart[i].id).name</td>
                     <td>@cart[i].size</td>
-                    <td><input type="number" name="" id="count_@i" min="1" placeholder="0" value="@cart[i].count" ></td>
+                    <td><input type="number" name="" id="count_@i" min="1" max="@pIndex.count" placeholder="0" value="@cart[i].count" ></td>
                     <td>@string.Format("{0:#,##0}", @cart[i].price * @cart[i].count).Replace(".0000", String.Empty) đ</td>
                     <td><a href="#" onclick="changeCount(@i)">Cập Nhật</a> <br /> <a href="@Url.Action("Cart")?id=@i">Xóa</a></td>
                 </tr>
@@ -50,19 +53,25 @@
 
 <script>
     function changeCount(id) {
-        var count = document.getElementById("count_"+id).value;
+        var count = document.getElementById("count_" + id).value;
+        var countMax = document.getElementById("count_" + id).getAttribute("max");
         console.log(count);
         console.log(id);
+        if (countMax < count) {
+            alert("Số lượng hàng không đủ!");
+        } else{
 
-        jQuery.ajax({
-            type: 'POST',
-            url: 'UpdateCart/',
-            data: { id: id, count: count },
-            success: function (data) {
-                alert('Cập nhật thành công!');
-                window.location.reload();
-            }
-        });
+            jQuery.ajax({
+                type: 'POST',
+                url: 'UpdateCart/',
+                data: { id: id, count: count },
+                success: function (data) {
+                    alert('Cập nhật thành công!');
+                    window.location.reload();
+                }
+            });
+        }
+
 
     }
 </script>

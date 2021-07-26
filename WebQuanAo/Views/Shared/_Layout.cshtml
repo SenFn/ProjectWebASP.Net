@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using WebQuanAo.Models;
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,67 +14,79 @@
     <link rel="stylesheet" href="../Content/style-Home1.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="@Url.Action("Index","Home")"><img src="../Content/Images/Icon/kisspng-logo-brand-retail-price-book-store-5b1ff6bb22f1a4.9079057215288214351431-removebg-preview.png" alt=""></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <form class="d-flex ms-auto">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-                <ul class="navbar-nav ms-5 mb-2 mb-lg-0">
-                    <li class="nav-item me-2">
-                        <!-- Cart Icon -->
-                        <a href="@Url.Action("Cart","Home")"><img class="mt-2" src="../Content/Images/Icon/icons8_delivery_handcart_24px.png" alt="Cart Icon"></a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 
-                            <img src="../Content/Images/Icon/icons8_account_25px.png" alt="Account_icon">
+    @using (DBStore dbModel1 = new DBStore())
+    {
+        headerSave bS = dbModel1.headerSaves.FirstOrDefault();
+        if (bS != null)
+        {
+            <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="@Url.Action("Index","Home")"><img src="@bS.logo" alt=""></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <form class="d-flex ms-auto">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+                        <ul class="navbar-nav ms-5 mb-2 mb-lg-0">
+                            <li class="nav-item me-2">
+                                <!-- Cart Icon -->
+                                <a href="@Url.Action("Cart","Home")"><img class="mt-2" src="@bS.cardIcon" alt="Cart Icon"></a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 
-
-
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            @if (ViewBag.userName == null || ViewBag.userName == "")
-                            {// new { area = "ConfirmCart" }
-                                if (ViewBag.Page == null || ViewBag.Page == "")
-                                {
-                                    <li><a class="dropdown-item" href="@Url.Action("Login","Home")">Đăng Nhập</a></li>
-                                    <li><a class="dropdown-item" href="@Url.Action("SignUp","Home")">Đăng Ký</a></li>
-                                }
-                                else
-                                {
-                                    <li><a class="dropdown-item" href="@Url.Action("Login","Home", new { area = @ViewBag.Page})">Đăng Nhập</a></li>
-                                    <li><a class="dropdown-item" href="@Url.Action("SignUp","Home", new { area = @ViewBag.Page})">Đăng Ký</a></li>
-                                }
+                                    <img src="@bS.accountIcon" alt="Account_icon">
 
 
 
-                            }
-                            else
-                            {
-                                if (ViewBag.admin == true)
-                                {
-                                    <li><a class="dropdown-item" style="cursor:pointer;" onclick="admin()">Admin</a></li>
-                                }
-                                <!-- Bổ Sung Thêm Phần Cập Nhật Thông Tin Cho Tài Khoản -->
-                                <li><a class="dropdown-item" style="cursor:pointer;" href="@Url.Action("UpdateInfo","Home")">Cập Nhật Thông Tin</a></li>
-                                <li><a class="dropdown-item" style="cursor:pointer;" href="@Url.Action("ChangePassword","Home")">Đổi Mật Khẩu</a></li>
-                                <li><a class="dropdown-item" style="cursor:pointer;" href="@Url.Action("BilHistory","Home")">Lịch Sử Thanh Toán</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" style="cursor:pointer;" onclick="logOut()">Đăng Xuất</a></li>
-                            }
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    @if (ViewBag.userName == null || ViewBag.userName == "")
+                                    {// new { area = "ConfirmCart" }
+                                        if (ViewBag.Page == null || ViewBag.Page == "")
+                                        {
+                                            <li><a class="dropdown-item" href="@Url.Action("Login","Home")">Đăng Nhập</a></li>
+                                            <li><a class="dropdown-item" href="@Url.Action("SignUp","Home")">Đăng Ký</a></li>
+                                        }
+                                        else
+                                        {
+                                            <li><a class="dropdown-item" href="@Url.Action("Login","Home", new { area = @ViewBag.Page})">Đăng Nhập</a></li>
+                                            <li><a class="dropdown-item" href="@Url.Action("SignUp","Home", new { area = @ViewBag.Page})">Đăng Ký</a></li>
+                                        }
 
+
+
+                                    }
+                                    else
+                                    {
+                                        if (ViewBag.admin == true)
+                                        {
+                                            <li><a class="dropdown-item" style="cursor:pointer;" onclick="admin()">Admin</a></li>
+                                        }
+                                        <!-- Bổ Sung Thêm Phần Cập Nhật Thông Tin Cho Tài Khoản -->
+                                        <li><a class="dropdown-item" style="cursor:pointer;" href="@Url.Action("UpdateInfo","Home")">Cập Nhật Thông Tin</a></li>
+                                        <li><a class="dropdown-item" style="cursor:pointer;" href="@Url.Action("ChangePassword","Home")">Đổi Mật Khẩu</a></li>
+                                        <li><a class="dropdown-item" style="cursor:pointer;" href="@Url.Action("BilHistory","Home")">Lịch Sử Thanh Toán</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" style="cursor:pointer;" onclick="logOut()">Đăng Xuất</a></li>
+                                    }
+
+                                </ul>
+                            </li>
                         </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav> <!-- End Navigation -->
+                    </div>
+                </div>
+            </nav> <!-- End Navigation -->
+
+        }
+    }
+
+
+
 
     <div class="Container">
         <!-- Container -->

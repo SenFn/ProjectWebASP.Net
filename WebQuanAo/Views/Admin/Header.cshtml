@@ -1,7 +1,8 @@
-﻿
+﻿@using WebQuanAo.Models
 @{
     ViewBag.Title = "Header";
     Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+    headerSave bS = ViewBag.headerSave;
 }
 <link rel="stylesheet" href="../Content/style-HeaderForm.css">
 
@@ -15,14 +16,34 @@
         <form action="#">
             <h2>Change Header</h2>
             <!-------------------------------->
-            <label class="logolbl" for="logo">Logo: </label> <input type="text" name="text-logo" id="text" class="text-logo"><br>
+            <label class="logolbl" for="logo">Logo: </label> <input type="text" name="b1" id="text1" class="text-logo" value="@bS.logo"><br>
             <!-------------------------------->
-            <label for="accountIcon">Account Icon: </label> <input type="text" name="text-account" id="text" class="text-account"><br>
+            <label for="accountIcon">Account Icon: </label> <input type="text" name="b2" id="text2" class="text-account" value="@bS.accountIcon"><br>
             <!-------------------------------->
-            <label class="cartlbl" for="cartIcon">Cart Icon: </label> <input type="text" name="text-cart" id="text" class="text-cart"><br>
+            <label class="cartlbl" for="cartIcon">Cart Icon: </label> <input type="text" name="b3" id="text3" class="text-cart" value="@bS.cardIcon"><br>
             <!-------------------------------->
-            <input type="submit" value="SEND" id="send-btn" class="button mt-2">
+            <div id="message" style="display:none; color:red;">
+                Không được để trống banner.
+            </div>
+            <input type="submit" value="SEND" id="send_btn" class="button mt-2" href="#" onclick="save()">
         </form>
     </div>
 </div>
+
+<script>
+    function save() {
+        var b1 = document.getElementById("text1").value;
+        var b2 = document.getElementById("text2").value;
+        var b3 = document.getElementById("text3").value;
+
+        if (b1 === "" ||
+            b2 === "" ||
+            b3 === "" ) {
+            document.getElementById("message").style.display = "block";
+            return;
+        } else {
+            document.getElementById("send_btn").setAttribute("href", "@Url.Action("Header")?b1=" + b1 + "&b2=" + b2 + "&b3=" + b3);
+        }
+    }
+</script>
 

@@ -29,7 +29,7 @@ namespace WebQuanAo.Controllers
 
             return RedirectToAction("Index", "Home", new { area = "Admin" });
         }
-        public ActionResult Header()
+        public ActionResult Header(string b1 = "", string b2 = "", string b3 = "")
         {
             if (!string.IsNullOrEmpty(Session["username"] as string))
             {
@@ -39,7 +39,42 @@ namespace WebQuanAo.Controllers
                     account names = dbModel.accounts.FirstOrDefault(x => x.username == userName);
                     if (names.admin == true)
                     {
-                        return View();
+                        if (b1 == "" ||
+                               b2 == "" ||
+                               b3 == "" )
+                        {
+                            using (DBStore dbModel1 = new DBStore())
+                            {
+                                headerSave bS = dbModel.headerSaves.FirstOrDefault();
+                                if(bS == null)
+                                {
+                                    bS = new headerSave();
+                                    bS.logo = "../Content/Images/Icon/kisspng-logo-brand-retail-price-book-store-5b1ff6bb22f1a4.9079057215288214351431-removebg-preview.png";
+                                    bS.accountIcon = "../Content/Images/Icon/icons8_account_25px.png";
+                                    bS.cardIcon = "../Content/Images/Icon/icons8_delivery_handcart_24px.png";
+                                    dbModel1.headerSaves.Add(bS);
+                                }
+                                    
+                                ViewBag.headerSave = bS;
+                            }
+                            return View();
+                        }
+                        else
+                        {
+                            using (DBStore dbModel1 = new DBStore())
+                            {
+                                headerSave bS = dbModel1.headerSaves.FirstOrDefault();
+                                dbModel1.headerSaves.Remove(bS);
+                                dbModel1.SaveChanges();
+                                bS.logo = b1;
+                                bS.accountIcon = b2;
+                                bS.cardIcon = b3;
+                                dbModel1.headerSaves.Add(bS);
+                                dbModel1.SaveChanges();
+                                ViewBag.headerSave = bS;
+                            }
+                            return View();
+                        }
                     }
                 }
             }

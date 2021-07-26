@@ -1,13 +1,33 @@
 ﻿
 @{
-    ViewBag.Title = "EditProduct";
     Layout = "~/Views/Shared/_Layout_Admin.cshtml";
-    int id = ViewBag.id;
-    string name = ViewBag.name;
-    string image = ViewBag.image;
-    decimal price = ViewBag.price;
-    int count = ViewBag.count;
-    string size = ViewBag.size;
+
+    int id;
+    string name;
+    string image;
+    decimal price;
+    int count;
+    string size;
+
+    if (ViewBag.id is null)
+    {
+        id = -1;
+        name = "";
+        image = "";
+        price = 0;
+        count = 0;
+        size = "";
+    }
+    else
+    {
+        id = ViewBag.id;
+        name = ViewBag.name;
+        image = ViewBag.image;
+        price = ViewBag.price;
+        count = ViewBag.count;
+        size = ViewBag.size;
+    }
+
 }
 <link rel="stylesheet" href="../Content/style-EditProduct.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
@@ -20,7 +40,13 @@
             <div class="Home col-lg-2 col-md-3 col-sm-5 col-10 fw-bold my-2 mx-3">Header</div>
         </div>
         <form action="#">
-            <h2>Edit Product</h2>
+            <h2>@ViewBag.Title</h2>
+            @if (id == -1)
+            {
+                <!-------------------------------->
+                <label class="nameProduct" for="picture">Id sản phẩm: </label> <input type="text" name="logo" id="iId" class="text-pic" value=""><br>
+            }
+
             <!-------------------------------->
             <label class="picturelbl" for="picture">Ảnh: </label> <input type="text" name="logo" id="iLogo" class="text-pic" value="@image"><br>
             <!-------------------------------->
@@ -32,7 +58,7 @@
             <!-------------------------------->
             <label class="pricelbl" for="cartIcon">Giá: </label> <input type="text" name="price" id="iPrice" class="text-size" value="@price"><br>
             <!-------------------------------->
-            <input id="send-btn" class="button mt-2" href="#" onclick="save()"  value="Save"/>
+            <input id="send-btn" class="button mt-2" href="#" onclick="save()" value="Save" />
         </form>
     </div>
 </div>
@@ -44,11 +70,16 @@
         var iSize = document.getElementById("iSize").innerHTML || document.getElementById("iSize").value;
         var iCount = document.getElementById("iCount").innerHTML || document.getElementById("iCount").value;
         var iPrice = document.getElementById("iPrice").innerHTML || document.getElementById("iPrice").value;
+        var iId = document.getElementById("iId").innerHTML || document.getElementById("iId").value;
         if (iLogo == "" || iName == "" || iSize == "" || iCount == "" || iPrice == "") {
             alert('Input không được để trống!');
         } else { //(int id, string size, decimal price, string image, string name, int count)
-            
-            location.href = window.location.protocol + "//" +window.location.host +"@Url.Action("SaveProduct")?id=@id&size=" + iSize + "&price=" + iPrice.replace(",0000", "") + "&image=" + iLogo + "&name=" + iName + "&count=" + iCount;
+            if ("@id" == "-1") {
+                location.href = window.location.protocol + "//" + window.location.host + "@Url.Action("SaveProduct")?id="+iId+"&size=" + iSize + "&price=" + iPrice.replace(",0000", "") + "&image=" + iLogo + "&name=" + iName + "&count=" + iCount;
+            } else {
+                 location.href = window.location.protocol + "//" +window.location.host +"@Url.Action("SaveProduct")?id=@id&size=" + iSize + "&price=" + iPrice.replace(",0000", "") + "&image=" + iLogo + "&name=" + iName + "&count=" + iCount;
+            }
+
         }
     }
 </script>

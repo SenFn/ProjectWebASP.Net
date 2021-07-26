@@ -153,7 +153,7 @@ namespace WebQuanAo.Controllers
             return RedirectToAction("Index", "Home", new { area = "Admin" });
 
         }
-        public ActionResult EditProduct(int ?id, string size)
+        public ActionResult EditProduct(int ?id, string size ="")
         {
             if (!string.IsNullOrEmpty(Session["username"] as string))
             {
@@ -163,11 +163,15 @@ namespace WebQuanAo.Controllers
                     account names = dbModel.accounts.FirstOrDefault(x => x.username == userName);
                     if (names.admin == true)
                     {
-                        if (id == null)
-                            return RedirectToAction("ProductInfo", "Admin");
+                        if (id == null || size == "")
+                        {
+                            ViewBag.Title = "Add Product";
+                            return View();
+                        }
+                        ViewBag.Title = "Edit Product";
 
 
-                            List<product> product = dbModel.products.ToList();
+                        List<product> product = dbModel.products.ToList();
                             List<productInfo> productInfo = dbModel.productInfoes.ToList();
                             ViewBag.productInfo = productInfo;
                             ViewBag.product = product;
@@ -220,11 +224,21 @@ namespace WebQuanAo.Controllers
                         }
 
                         productInfo result1 = dbModel.productInfoes.FirstOrDefault(b => b.id == id && b.size == size);
-                        if (result.id == id)
+                        if (result is null)
                         {
                             dbModel.productInfoes.Remove(result1);                                                      
                             dbModel.SaveChanges();
 
+                            result1.id = id;
+                            result1.size = size;
+                            result1.price = p;
+                            result1.count = count;
+                            dbModel.productInfoes.Add(result1);
+                            dbModel.SaveChanges();
+                        }
+                        else
+                        {
+                            result1 = new productInfo();
                             result1.id = id;
                             result1.size = size;
                             result1.price = p;

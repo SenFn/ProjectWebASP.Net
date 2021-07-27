@@ -142,7 +142,7 @@ body{
             transition: .3s;
             background: #ff723b;
         }
-            #send-btn{
+            #send_btn{
                 margin-left: 270px;
             }
             .button:hover{

@@ -37,14 +37,14 @@
     <!-- Nó Sẽ Thay Đổi Dựa Theo Người Dùng Muốn Click Coi Gì -->
     <div class="container-fluid animated fadeIn">
         <div class="row">
-            <div class="Home col-lg-2 col-md-3 col-sm-5 col-10 fw-bold my-2 mx-3">Header</div>
+            <div class="Home col-lg-2 col-md-3 col-sm-5 col-10 fw-bold my-2 mx-3">Chỉnh Sửa Sản Phẩm</div>
         </div>
         <form action="#">
             <h2>@ViewBag.Title</h2>
             @if (id == -1)
             {
                 <!-------------------------------->
-                <label class="nameProduct" for="picture">Id sản phẩm: </label> <input type="text" name="logo" id="iId" class="text-pic" value=""><br>
+                <label class="nameProduct" for="picture"style="margin-left:35px">Id sản phẩm: </label> <input type="text" name="logo" id="iId" class="text-pic" value=""><br>
             }
 
             <!-------------------------------->
@@ -58,7 +58,7 @@
             <!-------------------------------->
             <label class="pricelbl" for="cartIcon">Giá: </label> <input type="text" name="price" id="iPrice" class="text-size" value="@price"><br>
             <!-------------------------------->
-            <input id="send-btn" class="button mt-2" href="#" onclick="save()" value="Save" />
+            <input id="send-btn" class="button mt-2" href="#" onclick="save()" value="Save" type="button"/>
         </form>
     </div>
 </div>

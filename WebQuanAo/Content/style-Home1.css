@@ -23,6 +23,13 @@ body {
     color: white;
     background: #ff723b;
 }
+#searchButton{
+    text-decoration:none;
+    color:green;
+}
+    #searchButton:hover{
+        color: white;
+    }
 /* Container */
 .Title {
     background: white;

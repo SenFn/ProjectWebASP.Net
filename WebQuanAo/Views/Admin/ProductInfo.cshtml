@@ -6,14 +6,14 @@
     List<product> product = ViewBag.product;
 }
 <link rel="stylesheet" href="../Content/style-ProductForm.css">
-
+<!--------------------------------------------------------------->
 <div class="Content animated fadeIn">
     <!-- Đây Là Chỗ Để Render Body Khi Quăng Vào MVC -->
     <!-- Nó Sẽ Thay Đổi Dựa Theo Người Dùng Muốn Click Coi Gì -->
     <div class="container-fluid">
         <div class="row">
             <div class="Home col-lg-2 col-md-3 col-sm-5 col-10 fw-bold my-2 mx-3">Thông Tin Sản Phẩm</div>
-            <div class="Home col-lg-2 col-md-3 col-sm-5 col-10 fw-bold my-2 mx-3" onclick="addProduct()">Add Product</div>
+            <div class="Home col-lg-2 col-md-3 col-sm-5 col-10 fw-bold my-2 mx-3" onclick="addProduct()" style="cursor:pointer">Add Product</div>
         </div>
         <table class="table table-dark table-striped">
             <thead>

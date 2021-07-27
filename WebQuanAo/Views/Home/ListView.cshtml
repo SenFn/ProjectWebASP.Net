@@ -4,11 +4,24 @@
     List<product> product = ViewBag.product;
     List<product> MEN = product;
 }
-
+<style>
+    .find{
+        margin-top:5% !important;
+        margin-left:2% !important;
+        margin-bottom: 2% !important;
+    }
+    button a{
+        text-decoration:none;
+        color:green;
+    }
+        button a:hover{
+            color:white;
+        }
+</style>
 
 <div id="carouselMenProduct" class="carousel slide container-fluid" data-bs-ride="carousel" data-aos="fade-up">
 
-    <div class="dropdown listsearch mb-3 mt-3">
+    <div class="find dropdown listsearch mb-3 mt-3">
         Tìm Kiếm theo:
         <button class="btn btnlistsearch dropdown-toggle ml-1" type="button" id="dropdownListSearch" data-bs-toggle="dropdown" aria-expanded="false">Tên</button>
 
@@ -27,7 +40,7 @@
 
         <form class="d-inline-flex ms-3">
             <input class="form-control me-2" id="findInput" type="search" placeholder="Search" aria-label="Search" value="">
-            <button class="btnsearch" onmouseover="search()">
+            <button class="btnsearch btn btn-outline-success" onmouseover="search()">
                 <a href="#" id="searchButton" onmouseover="search()">Search</a>
             </button>
             

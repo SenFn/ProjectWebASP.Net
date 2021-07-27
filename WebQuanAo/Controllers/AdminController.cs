@@ -128,7 +128,7 @@ namespace WebQuanAo.Controllers
             return RedirectToAction("Index", "Home", new { area = "Admin" });
         }
 
-        public ActionResult ProductInfo()
+        public ActionResult ProductInfo(int? page)
         {
 
             if (!string.IsNullOrEmpty(Session["username"] as string))
@@ -145,6 +145,12 @@ namespace WebQuanAo.Controllers
                             List<productInfo> productInfo = dbModel1.productInfoes.ToList();
                             ViewBag.productInfo = productInfo;
                             ViewBag.product = product;
+                            ViewBag.page = page;
+                            if (page == null)
+                            {
+                                ViewBag.page = 1;
+                            }
+                           
                         }
                         return View();
                     }
@@ -165,10 +171,10 @@ namespace WebQuanAo.Controllers
                     {
                         if (id == null || size == "")
                         {
-                            ViewBag.Title = "Add Product";
+                            ViewBag.Title = "Thêm Sản Phẩm";
                             return View();
                         }
-                        ViewBag.Title = "Edit Product";
+                        ViewBag.Title = "Chỉnh Sửa Sản Phẩm";
 
 
                         List<product> product = dbModel.products.ToList();

@@ -4,6 +4,15 @@
     Layout = "~/Views/Shared/_Layout_Admin.cshtml";
     List<productInfo> productInfo = ViewBag.productInfo;
     List<product> product = ViewBag.product;
+    int pageIndex = ViewBag.page;
+
+    int pCount = productInfo.Count/4;
+    int pCountLeft = productInfo.Count % 4;
+    if (pCountLeft != 0)
+    {
+        pCount += 1;
+    }
+
 }
 <link rel="stylesheet" href="../Content/style-ProductForm.css">
 <!--------------------------------------------------------------->
@@ -28,20 +37,42 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (productInfo i in @productInfo)
+                @for (int i = 0; i < 4; i++)
                 {
-                    <tr>
-                        <th scope="row">@i.id</th>
-                        <td><img class="image" src="@product.Find(x=> x.id == i.id).srcImage" alt=""></td>
-                        <td>@product.Find(x => x.id == i.id).name</td>
-                        <td>@i.size</td>
-                        <td>@i.count</td>
-                        <td>@string.Format("{0:#,##0}", i.price).Replace(".0000", String.Empty) đ</td>
-                        <td>
-                            <a href="@Url.Action("EditProduct")?id=@i.id&size=@i.size">Chỉnh Sửa</a>
-                            <a class="ml-1" href="@Url.Action("RemoveProDuctinfo","Admin", new { i.id , i.size})">Xóa</a>
-                        </td>
-                    </tr>
+                    if (pageIndex < pCount)
+                    {
+                        <tr>
+                            <th scope="row">@productInfo[i + ((pageIndex-1) * 4)].id</th>
+                            <td><img class="image" src="@product.Find(x=> x.id == productInfo[i + ((pageIndex-1) * 4)].id).srcImage" alt=""></td>
+                            <td>@product.Find(x => x.id == productInfo[i + ((pageIndex - 1) * 4)].id).name</td>
+                            <td>@productInfo[i + ((pageIndex - 1) * 4)].size</td>
+                            <td>@productInfo[i + ((pageIndex - 1) * 4)].count</td>
+                            <td>@string.Format("{0:#,##0}", productInfo[i + ((pageIndex - 1) * 4)].price).Replace(".0000", String.Empty) đ</td>
+                            <td>
+                                <a href="@Url.Action("EditProduct")?id=@productInfo[i + ((pageIndex-1) * 4)].id&size=@productInfo[i + ((pageIndex-1) * 4)].size">Chỉnh Sửa</a>
+                                <a class="ml-1" href="@Url.Action("RemoveProDuctinfo","Admin", new { productInfo[i + ((pageIndex-1) * 4)].id , productInfo[i + ((pageIndex-1) * 4)].size})">Xóa</a>
+                            </td>
+                        </tr>
+                    }
+                    else if (pageIndex == pCount)
+                    {
+                        if ((i + 1) <= pCountLeft)
+                        {
+                            <tr>
+                                <th scope="row">@productInfo[i + ((pageIndex - 1) * 4)].id</th>
+                                <td><img class="image" src="@product.Find(x=> x.id == productInfo[i + ((pageIndex-1) * 4)].id).srcImage" alt=""></td>
+                                <td>@product.Find(x => x.id == productInfo[i + ((pageIndex - 1) * 4)].id).name</td>
+                                <td>@productInfo[i + ((pageIndex - 1) * 4)].size</td>
+                                <td>@productInfo[i + ((pageIndex - 1) * 4)].count</td>
+                                <td>@string.Format("{0:#,##0}", productInfo[i + ((pageIndex - 1) * 4)].price).Replace(".0000", String.Empty) đ</td>
+                                <td>
+                                    <a href="@Url.Action("EditProduct")?id=@productInfo[i + ((pageIndex-1) * 4)].id&size=@productInfo[i + ((pageIndex-1) * 4)].size">Chỉnh Sửa</a>
+                                    <a class="ml-1" href="@Url.Action("RemoveProDuctinfo","Admin", new { productInfo[i + ((pageIndex-1) * 4)].id , productInfo[i + ((pageIndex-1) * 4)].size})">Xóa</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+
                 }
 
             </tbody>
@@ -50,21 +81,48 @@
         <!-- Thêm Giao Diện Của Tính Năng Phân Trang -->
         <nav aria-label="...">
             <ul class="pagination">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Trước</a>
-                </li>
-                <li class="page-item active">
-                    <a class="page-link" href="#">1</a>
-                </li>
-                <li class="page-item" aria-current="page">
-                    <a class="page-link" href="#">2</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">3</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">Sau</a>
-                </li>
+                @if (pageIndex == 1)
+                {
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Trước</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item">
+                        <a class="page-link"  tabindex="-1" aria-disabled="true"  onclick="goPage((@pageIndex - 1))">Trước</a>
+                    </li>
+                }
+
+                @for (int i = 0; i < pCount; i++)
+                {
+                    if (pageIndex == i + 1)
+                    {
+                        <li class="page-item active">
+                            <a class="page-link" href="#" >@(i + 1)</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="page-item">
+                            <a class="page-link" onclick="goPage(@(i + 1))">@(i + 1)</a>
+                        </li>
+                    }
+                }
+
+                @if (pageIndex == pCount)
+                {
+                    <li class="page-item disabled">
+                        <a class="page-link" tabindex="-1" aria-disabled="true" >Sau</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item">
+                        <a class="page-link" tabindex="-1" aria-disabled="true"  onclick="goPage((@pageIndex + 1))">Sau</a>
+                    </li>
+                }               
+
             </ul>
         </nav>
     </div>
@@ -73,6 +131,10 @@
 <script>
     function addProduct() {
             location.href = window.location.protocol + "//" +window.location.host +"@Url.Action("EditProduct")";
+    }
+
+    function goPage(id) {
+         location.href = window.location.protocol + "//" +window.location.host +"@Url.Action("ProductInfo")?page="+id;
     }
 </script>
 

@@ -427,19 +427,23 @@ namespace WebQuanAo.Controllers
         {
             if (!string.IsNullOrEmpty(Session["username"] as string))
             {
-                string uName = Session["username"].ToString();
-
-                ViewBag.userName = uName;
-                ViewBag.admin = Session["admin"];
+                String userName = Session["username"].ToString();
                 using (DBStore dbModel = new DBStore())
                 {
-                    account acc = dbModel.accounts.FirstOrDefault(a => a.username == uName);
-                    acc.name = name;
-                    acc.email = email;
-                    acc.phone = phone;
-                    acc.location = location;
-                    dbModel.SaveChanges();
+                    account names = dbModel.accounts.FirstOrDefault(x => x.username == userName);
+                    if (names.admin == true)
+                    {
+
+                        account acc = dbModel.accounts.FirstOrDefault(a => a.id == id);
+                        acc.name = name;
+                        acc.email = email;
+                        acc.phone = phone;
+                        acc.location = location;
+                        dbModel.SaveChanges();
+
+                    }
                 }
+
             }
             else
             {
@@ -448,6 +452,7 @@ namespace WebQuanAo.Controllers
             }
             return RedirectToAction("UpdateInfo"); ;
         }
+
 
         public ActionResult SavePass(int id, string pass)
         {

@@ -241,6 +241,7 @@
     <Content Include="Views\Home\BilHistory.cshtml" />
     <Content Include="Views\Home\BillInfoHistory.cshtml" />
     <Content Include="Views\Home\ListView.cshtml" />
+    <Content Include="Views\Admin\UpdateInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

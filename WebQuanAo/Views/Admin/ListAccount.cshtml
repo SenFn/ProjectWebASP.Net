@@ -63,7 +63,7 @@
                         <td>@acc[i].location</td>
                         <td>@acc[i].admin</td>
                         <td>
-                            <a href="#">Chỉnh Sửa</a>
+                            <a href="@Url.Action("UpdateInfo")?id=@acc[i].id">Chỉnh Sửa</a>
                             <a class="ml-1" href="@Url.Action("RemoveAccount")?acc=@acc[i].username">Xóa</a>
                         </td>
                     </tr>

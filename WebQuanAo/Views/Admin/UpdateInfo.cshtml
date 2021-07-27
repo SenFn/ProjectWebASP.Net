@@ -1,0 +1,60 @@
+﻿@using WebQuanAo.Models; 
+@{
+    ViewBag.Title = "UpdateInfo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    account acc = ViewBag.acc;
+}
+<link rel="stylesheet" href="~/Content/style-UpdateInfo.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<div class="update-info mt-5 animated fadeInLeft">
+    <h4 class="mb-4">Cập Nhật Thông Tin</h4>
+    <form action="">
+        <label class="lbl_txt" for="">Tên đăng nhập</label> <br>
+        <input id="uSName" class="mb-2" type="text" name="" value="@acc.username"> <br>
+        <label class="lbl_txt" for="">Tên</label> <br>
+        <input id="uName" class="mb-2" type="text" name="" value="@acc.name"> <br>
+        <label class="lbl_txt" for="">Mật Khẩu</label> <br>
+        <input id="uPass" class="mb-2" type="text" name="" value="@acc.password"> <br>
+        <label class="lbl_txt" for="">Email</label> <br>
+        <input id="uEmail" class="mb-2" type="email" name="" value="@acc.email"> <br>
+        <label class="lbl_txt" for="">Số Điện Thoại</label> <br>
+        <input id="uPhone" class="mb-2" type="tel" name="phone" value="@acc.phone"><br>
+        <label class="lbl_txt" for="">Khu Vực</label> <br>
+        <input id="uLocation" class="mb-2" type="tel" name="location" value="@acc.location"><br>
+        <label for="cars">Admin:</label>
+        <select id="admin">
+            @if (acc.admin == true)
+            {
+                <option selected="selected">True</option>
+                <option>False</option>
+            }
+            else
+            {
+                <option>True</option>
+                <option selected="selected">False</option>
+            }
+
+        </select>
+        <input type="button" class="button mt-2" value="Cập Nhật" onclick="save()">
+    </form>
+</div>
+
+<script>
+    function save() {
+        var usName = document.getElementById("uSName").innerHTML || document.getElementById("uSName").value;
+        var uPass = document.getElementById("uPass").innerHTML || document.getElementById("uPass").value;
+        var uName = document.getElementById("uName").innerHTML || document.getElementById("uName").value;
+        var uEmail = document.getElementById("uEmail").innerHTML || document.getElementById("uEmail").value;
+        var uPhone = document.getElementById("uPhone").innerHTML || document.getElementById("uPhone").value;
+        var uLocation = document.getElementById("uLocation").innerHTML || document.getElementById("uLocation").value;
+        var admin = document.getElementById('admin');
+        admin = admin.options[admin.selectedIndex].text;
+        if (uName == "" || uEmail == "" || uPhone == "" || uLocation == "") {
+            alert('Input không được để trống!');
+        } else { //(int id, string size, decimal price, string image, string name, int count)
+            location.href = window.location.protocol + "//" + window.location.host + "@Url.Action("SaveAccount")?id=@acc.id&username=" + usName + "&name=" + uName + "&pass=" + uPass + "&email=" + uEmail + "&phone=" + uPhone + "&location=" + uLocation + "&admin=" + admin;
+        }
+    }
+</script>
+

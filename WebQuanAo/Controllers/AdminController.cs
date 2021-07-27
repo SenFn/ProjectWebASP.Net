@@ -512,5 +512,70 @@ namespace WebQuanAo.Controllers
             return RedirectToAction("Index", "Home", new { area = "Admin" });
             
         }
+
+
+
+        public ActionResult UpdateInfo(int?id)
+        {
+
+            if (!string.IsNullOrEmpty(Session["username"] as string))
+            {
+                String userName = Session["username"].ToString();
+                using (DBStore dbModel = new DBStore())
+                {
+                    account names = dbModel.accounts.FirstOrDefault(x => x.username == userName);
+                    if (names.admin == true)
+                    {      
+                        account acc = dbModel.accounts.FirstOrDefault(a => a.id == id);
+                        if(acc == null)
+                        {
+                            acc = dbModel.accounts.FirstOrDefault(a => a.id == 1);
+                            ViewBag.acc = acc;
+                            return View();
+                        }
+                        ViewBag.acc = acc;
+                        return View();
+                    }
+                }               
+            }
+            else
+            {
+                ViewBag.userName = "";
+                return RedirectToAction("Login", "Home");
+            }
+
+            return View();
+        }
+
+        public ActionResult SaveAccount(int id, string username, string name, string pass, string email, string phone, string location, bool admin = false)
+        {
+            if (!string.IsNullOrEmpty(Session["username"] as string))
+            {
+                string uName = Session["username"].ToString();
+
+                ViewBag.userName = uName;
+                ViewBag.admin = Session["admin"];
+                using (DBStore dbModel = new DBStore())
+                {
+                    account acc = dbModel.accounts.FirstOrDefault(a => a.id == id);
+                    acc.username = username;
+                    acc.name = name;
+                    acc.password = pass;
+                    acc.email = email;
+                    acc.phone = phone;
+                    acc.location = location;
+                    acc.admin = admin;
+                    dbModel.SaveChanges();
+                }
+            }
+            else
+            {
+                ViewBag.userName = "";
+                return RedirectToAction("Login", "Home");
+            }
+            return RedirectToAction("ListAccount"); ;
+        }
+
+
     }
 }

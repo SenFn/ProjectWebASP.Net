@@ -41,9 +41,9 @@
         </ul>
 
         <form class="d-inline-flex ms-3">
-            <input class="form-control me-2" id="findInput" type="search" placeholder="Search" aria-label="Search" value="">
-            <button class="btnsearch btn btn-outline-success" onmouseover="search()">
-                <a href="#" id="searchButton" onmouseover="search()">Search</a>
+            <input class="form-control me-2" id="findInput1" type="search" placeholder="Search" aria-label="Search" value="">
+            <button class="btnsearch btn btn-outline-success" onmouseover="search1()">
+                <a href="#" id="searchButton1" onmouseover="search1()">Search</a>
             </button>
             
         </form>
@@ -81,9 +81,9 @@
 
 
 <script>
-    function search() {
-        var stringGet = document.getElementById("findInput").innerHTML || document.getElementById("findInput").value;
-        document.getElementById("searchButton").setAttribute("href", "@Url.Action("ListView")?find=" + stringGet);
+    function search1() {
+        var stringGet = document.getElementById("findInput1").innerHTML || document.getElementById("findInput1").value;
+        document.getElementById("searchButton1").setAttribute("href", "@Url.Action("ListView")?find=" + stringGet);
     }
 
     function FindTypeAccount(id) {

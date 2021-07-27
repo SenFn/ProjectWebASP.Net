@@ -1,0 +1,106 @@
+﻿@using WebQuanAo.Models;
+@{
+    ViewBag.Title = "ListView";
+    List<product> product = ViewBag.product;
+    List<product> MEN = product;
+}
+
+
+<div id="carouselMenProduct" class="carousel slide container-fluid" data-bs-ride="carousel" data-aos="fade-up">
+
+    <div class="dropdown listsearch mb-3 mt-3">
+        Tìm Kiếm theo:
+        <button class="btn btnlistsearch dropdown-toggle ml-1" type="button" id="dropdownListSearch" data-bs-toggle="dropdown" aria-expanded="false">Tên</button>
+
+
+        <ul class="dropdown-menu" aria-labelledby="dropdownListSearch">
+            <li><a class="dropdown-item" href="#" onclick="FindTypeAccount(1)">Xếp theo giá tăng</a></li>
+            <li><a class="dropdown-item" href="#" onclick="FindTypeAccount(2)">Xếp theo giá giảm</a></li>
+            <li><a class="dropdown-item" href="#" onclick="FindTypeAccount(3)">Loại: CLOTHING</a></li>
+            <li><a class="dropdown-item" href="#" onclick="FindTypeAccount(4)">Loại: GEAR</a></li>
+            <li><a class="dropdown-item" href="#" onclick="FindTypeAccount(5)">Loại: SHOES</a></li>
+            <li><a class="dropdown-item" href="#" onclick="FindTypeAccount(6)">Dành Cho: MEN</a></li>
+            <li><a class="dropdown-item" href="#" onclick="FindTypeAccount(7)">Dành Cho: WOMEN</a></li>
+            <li><a class="dropdown-item" href="#" onclick="FindTypeAccount(8)">Dành Cho: BOY</a></li>
+            <li><a class="dropdown-item" href="#" onclick="FindTypeAccount(9)">Dành Cho: GIRL</a></li>
+        </ul>
+
+        <form class="d-inline-flex ms-3">
+            <input class="form-control me-2" id="findInput" type="search" placeholder="Search" aria-label="Search" value="">
+            <button class="btnsearch" onmouseover="search()">
+                <a href="#" id="searchButton" onmouseover="search()">Search</a>
+            </button>
+            
+        </form>
+    </div>
+
+
+    <!-- Carousel Product -->
+    <div class="carousel-inner">
+
+        <div class="carousel-item active">
+            <div class="row row-cols-1 row-cols-md-4 row-cols-sm-2 g-4">
+                @for (int a = 0; a < MEN.Count; a++)
+                {
+                    <div class="col">
+                        <div class="product card">
+                            <a href="@Url.Action("Product")?id=@MEN[a].id">
+                                <img src="@MEN[a].srcImage" class="card-img-top" alt="Best Dri-Fit UV protective crew shirt. Look stylish and protected from the sun while playing tennis.">
+                                <div class="card-body">
+                                    <p class="card-title">
+                                        <span> @MEN[a].types </span> <br>
+                                        <a href="#">@MEN[a].name</a> <br>
+                                        <span class="price">@string.Format("{0:#,##0}", @MEN[a].price).Replace(".0000", String.Empty) đ</span>
+                                    </p>
+
+                                </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+
+<script>
+    function search() {
+        var stringGet = document.getElementById("findInput").innerHTML || document.getElementById("findInput").value;
+        document.getElementById("searchButton").setAttribute("href", "@Url.Action("ListView")?find=" + stringGet);
+    }
+
+    function FindTypeAccount(id) {
+        switch (id) {
+            case 1:
+                window.location.href = "@Url.Action("ListView")?priceT=true";
+                break;
+            case 2:
+               window.location.href = "@Url.Action("ListView")?priceG=true";
+                break;
+            case 3:
+                window.location.href = "@Url.Action("ListView")?type=CLOTHING";
+                break;
+            case 4:
+                window.location.href = "@Url.Action("ListView")?type=GEAR";
+                break;
+            case 5:
+                window.location.href = "@Url.Action("ListView")?type=SHOES";
+                break;
+            case 6:
+                window.location.href = "@Url.Action("ListView")?forW=MEN";
+                break;
+            case 7:
+                window.location.href = "@Url.Action("ListView")?forW=WOMEN";
+                break;
+            case 8:
+                window.location.href = "@Url.Action("ListView")?forW=BOY";
+                break;
+            case 9:
+                window.location.href = "@Url.Action("ListView")?forW=GIRL";
+                break;
+        }
+    }
+</script>

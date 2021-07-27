@@ -240,6 +240,7 @@
     <Content Include="Views\Home\ChangePassword.cshtml" />
     <Content Include="Views\Home\BilHistory.cshtml" />
     <Content Include="Views\Home\BillInfoHistory.cshtml" />
+    <Content Include="Views\Home\ListView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

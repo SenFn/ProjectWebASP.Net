@@ -554,7 +554,7 @@ namespace WebQuanAo.Controllers
         }
 
 
-        public ActionResult BuyNow(int count, int? id, decimal price, string name = "", string url = "", string size = "")
+        public ActionResult BuyNow(int count, int? id, decimal price, string name = "", string url = "", string size = "" )
         {
             List<GioHang> cart = new List<GioHang>();
 
@@ -562,6 +562,52 @@ namespace WebQuanAo.Controllers
             
             Session["Cart"] = cart;
             return RedirectToAction("ComfirmPay");
+        }
+
+        public ActionResult ListView(bool priceT = false, bool priceG = false,string type = "",string forW="", string find = "")
+        {
+            if (!string.IsNullOrEmpty(Session["username"] as string))
+            {
+                ViewBag.userName = Session["username"].ToString();
+                ViewBag.admin = Session["admin"];
+            }
+            else
+            {
+                ViewBag.userName = "";
+            }
+
+            using (DBStore dbModel = new DBStore())
+            {
+                List<product> product = dbModel.products.ToList();
+               
+
+                if(find != "")
+                {                    
+                     product = product.Where(a => (a.name.ToLower()).IndexOf(find.ToLower()) != -1).ToList();
+                    ViewBag.product = product;
+                }else if(priceT == true)
+                {
+                    product = product.OrderBy(p => p.price).ToList();
+                    ViewBag.product = product;
+                }else if (priceG == true)
+                {
+                    product = product.OrderByDescending(p => p.price).ToList();
+                    ViewBag.product = product;
+                }else if (type != "")
+                {
+                    product = product.Where(p => p.types == type).ToList();
+                    ViewBag.product = product;
+                }else if (forW != "")
+                {
+                    product = product.Where(p => p.byHuman == forW).ToList();
+                    ViewBag.product = product;
+                }
+                else
+                {
+                    ViewBag.product = product;
+                }
+            }
+            return View();
         }
 
 
